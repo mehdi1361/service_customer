@@ -17,7 +17,7 @@ type Customer struct {
 	IsActive           bool            `json:"is_active"`
 	IsRayanService     bool            `json:"is_rayan_service"`
 	PhonePerson        []PhonePerson   `json:"phone_persons"`
-	PrivateInfo        CustomerPrivate  `gorm:"foreignKey:CustomerId;association_foreignkey:ID"`
+	PrivateInfo        CustomerPrivate `gorm:"foreignKey:CustomerId;association_foreignkey:ID"`
 	LegalInfo          CustomerLegal   `gorm:"foreignKey:CustomerId;association_foreignkey:ID"`
 }
 

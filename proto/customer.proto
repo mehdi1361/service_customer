@@ -1,0 +1,32 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+package genders;
+
+service Gender {
+        rpc GenderAll (google.protobuf.Empty) returns (GenderListResponse) {}
+        rpc GetGenderById (GenderItemRequest) returns (GenderItemResponse) {}
+        rpc CreateGender (CreateGenderItemRequest) returns (GenderItemResponse) {}
+        rpc DeleteGender (GenderItemRequest) returns (DeleteGenderItemResponse) {}
+}
+
+message GenderListResponse {
+        repeated GenderItemResponse genderitemresponse = 1;
+}
+
+message GenderItemResponse {
+        int32 id = 1;
+        string name = 2;
+}
+
+
+message GenderItemRequest {
+        int32 id = 1;
+}
+
+message CreateGenderItemRequest {
+        string name = 1;
+}
+
+message DeleteGenderItemResponse {
+        string message = 1;
+}
