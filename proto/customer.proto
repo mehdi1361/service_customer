@@ -1,12 +1,23 @@
 syntax = "proto3";
 import "google/protobuf/empty.proto";
-package genders;
+package services;
 
-service Gender {
+service CustomerService {
         rpc GenderAll (google.protobuf.Empty) returns (GenderListResponse) {}
         rpc GetGenderById (GenderItemRequest) returns (GenderItemResponse) {}
         rpc CreateGender (CreateGenderItemRequest) returns (GenderItemResponse) {}
         rpc DeleteGender (GenderItemRequest) returns (DeleteGenderItemResponse) {}
+
+        rpc CountryAll (google.protobuf.Empty) returns (CountryListResponse) {}
+        rpc GetCountryById (CountryItemRequest) returns (CountryItemResponse) {}
+        rpc CreateCountry (CreateCountryItemRequest) returns (CountryItemResponse) {}
+        rpc DeleteCountry (CountryItemRequest) returns (DeleteCountryItemResponse) {}
+
+
+        rpc ProvinceAll (google.protobuf.Empty) returns (ProvinceListResponse) {}
+        rpc GetProvinceById (ProvinceItemRequest) returns (ProvinceItemResponse) {}
+        rpc CreateProvince (CreateProvinceItemRequest) returns (ProvinceItemResponse) {}
+        rpc DeleteProvince (ProvinceItemRequest) returns (DeleteProvinceItemResponse) {}
 }
 
 message GenderListResponse {
@@ -28,5 +39,56 @@ message CreateGenderItemRequest {
 }
 
 message DeleteGenderItemResponse {
+        string message = 1;
+}
+
+message CountryListResponse {
+        repeated CountryItemResponse countryitemresponse = 1;
+}
+
+message CountryItemResponse {
+        int32 id = 1;
+        int32 countryid = 2;
+        string name = 3;
+}
+
+
+message CountryItemRequest {
+        int32 id = 1;
+}
+
+message CreateCountryItemRequest {
+        string name = 1;
+        int32 countryid = 2;
+}
+
+message DeleteCountryItemResponse {
+        string message = 1;
+}
+
+
+message ProvinceListResponse {
+        repeated ProvinceItemResponse provinceitemresponse = 1;
+}
+
+message ProvinceItemResponse {
+        int32 id = 1;
+        string name = 2;
+        int32 provinceId = 3;
+        int32 countryId = 4;
+        string countryName = 5;
+}
+
+message ProvinceItemRequest {
+        int32 id = 1;
+}
+
+message CreateProvinceItemRequest {
+        string name = 1;
+        int32 countryid = 2;
+        int32 provinceid = 3;
+}
+
+message DeleteProvinceItemResponse {
         string message = 1;
 }

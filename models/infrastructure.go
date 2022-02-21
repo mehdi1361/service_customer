@@ -18,6 +18,7 @@ func (g *Gender) TableName() string {
 type Country struct {
 	gorm.Model
 	Name      string     `json:"name" gorm:"size:10;unique"`
+	CountryId uint       `json="country_id" gorm:"Column:country_id"`
 	Provinces []Province `json="provinces"`
 }
 
@@ -28,6 +29,7 @@ func (p *Country) TableName() string {
 type Province struct {
 	gorm.Model
 	Name      string `json:"name" gorm:"size:10;unique"`
+	ProvinceId uint       `json="coun_id" gorm:"Column:country_id"`
 	CountryId uint   `json="country_id" gorm:"Column:country_id"`
 	Cities    []City `json="cities"`
 }
