@@ -18,6 +18,11 @@ service CustomerService {
         rpc GetProvinceById (ProvinceItemRequest) returns (ProvinceItemResponse) {}
         rpc CreateProvince (CreateProvinceItemRequest) returns (ProvinceItemResponse) {}
         rpc DeleteProvince (ProvinceItemRequest) returns (DeleteProvinceItemResponse) {}
+
+        rpc CityAll (google.protobuf.Empty) returns (CityListResponse) {}
+        rpc GetCityById (CityItemRequest) returns (CityItemResponse) {}
+        rpc CreateCity (CreateCityItemRequest) returns (CityItemResponse) {}
+        rpc DeleteCity (CityItemRequest) returns (DeleteCityItemResponse) {}
 }
 
 message GenderListResponse {
@@ -90,5 +95,31 @@ message CreateProvinceItemRequest {
 }
 
 message DeleteProvinceItemResponse {
+        string message = 1;
+}
+
+message CityListResponse {
+        repeated CityItemResponse cityitemresponse = 1;
+}
+
+message CityItemResponse {
+        int32 id = 1;
+        string name = 2;
+        int32 provinceId = 3;
+        int32 cityId = 4;
+        string provinceName = 5;
+}
+
+message CityItemRequest {
+        int32 id = 1;
+}
+
+message CreateCityItemRequest {
+        string name = 1;
+        int32 provinceId = 2;
+        int32 cityId = 3;
+}
+
+message DeleteCityItemResponse {
         string message = 1;
 }

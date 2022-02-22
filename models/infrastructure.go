@@ -28,10 +28,10 @@ func (p *Country) TableName() string {
 
 type Province struct {
 	gorm.Model
-	Name      string `json:"name" gorm:"size:10;unique"`
-	ProvinceId uint       `json="coun_id" gorm:"Column:country_id"`
-	CountryId uint   `json="country_id" gorm:"Column:country_id"`
-	Cities    []City `json="cities"`
+	Name       string `json:"name" gorm:"size:10;unique"`
+	ProvinceId uint   `json="coun_id" gorm:"Column:country_id"`
+	CountryId  uint   `json="country_id" gorm:"Column:country_id"`
+	Cities     []City `json="cities"`
 }
 
 func (p *Province) TableName() string {
@@ -42,6 +42,7 @@ type City struct {
 	gorm.Model
 	Name       string       `json:"name" gorm:"size:10;unique"`
 	ProvinceId uint         `json="province_id" gorm:"Column:province_id"`
+	CityId     uint         `json="city_id" gorm:"Column:city_id"`
 	BankBranch []BankBranch `json:"bank_branch"`
 }
 
