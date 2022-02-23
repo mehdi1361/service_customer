@@ -23,6 +23,24 @@ service CustomerService {
         rpc GetCityById (CityItemRequest) returns (CityItemResponse) {}
         rpc CreateCity (CreateCityItemRequest) returns (CityItemResponse) {}
         rpc DeleteCity (CityItemRequest) returns (DeleteCityItemResponse) {}
+
+
+        rpc BankAll (google.protobuf.Empty) returns (BankListResponse) {}
+        rpc GetBankById (BankItemRequest) returns (BankItemResponse) {}
+        rpc CreateBank (CreateBankItemRequest) returns (BankItemResponse) {}
+        rpc DeleteBank (BankItemRequest) returns (DeleteBankItemResponse) {}
+
+
+        rpc DomainAll (google.protobuf.Empty) returns (DomainListResponse) {}
+        rpc GetDomainById (DomainItemRequest) returns (DomainItemResponse) {}
+        rpc CreateDomain (CreateDomainItemRequest) returns (DomainItemResponse) {}
+        rpc DeleteDomain (DomainItemRequest) returns (DeleteDomainItemResponse) {}
+
+
+        rpc CustomerGroupAll (google.protobuf.Empty) returns (CustomerGroupListResponse) {}
+        rpc GetCustomerGroupById (DomainItemRequest) returns (CustomerGroupItemResponse) {}
+        rpc CreateCustomerGroup (CreateCustomerGroupItemRequest) returns (CustomerGroupItemResponse) {}
+        rpc DeleteCustomerGroup (CustomerGroupItemRequest) returns (DeleteCustomerGroupItemResponse) {}
 }
 
 message GenderListResponse {
@@ -121,5 +139,77 @@ message CreateCityItemRequest {
 }
 
 message DeleteCityItemResponse {
+        string message = 1;
+}
+
+message BankListResponse {
+        repeated BankItemResponse bankitemresponse = 1;
+}
+
+message BankItemResponse {
+        int32 id = 1;
+        string title = 2;
+        int32 BankId = 3;
+}
+
+message BankItemRequest {
+        int32 id = 1;
+}
+
+message CreateBankItemRequest {
+        string title = 1;
+        int32 bankId = 2;
+}
+
+message DeleteBankItemResponse {
+        string message = 1;
+}
+
+
+message DomainListResponse {
+        repeated DomainItemResponse domainitemresponse = 1;
+}
+
+message DomainItemResponse {
+        int32 id = 1;
+        string title = 2;
+        int32 IdRayan = 3;
+}
+
+message DomainItemRequest {
+        int32 id = 1;
+}
+
+message CreateDomainItemRequest {
+        string title = 1;
+        int32 idRayan = 2;
+}
+
+message DeleteDomainItemResponse {
+        string message = 1;
+}
+
+
+
+message CustomerGroupListResponse {
+        repeated CustomerGroupItemResponse customergroupitemresponse = 1;
+}
+
+message CustomerGroupItemResponse {
+        int32 id = 1;
+        string title = 2;
+        int32 IdRayan = 3;
+}
+
+message CustomerGroupItemRequest {
+        int32 id = 1;
+}
+
+message CreateCustomerGroupItemRequest {
+        string title = 1;
+        int32 idRayan = 2;
+}
+
+message DeleteCustomerGroupItemResponse {
         string message = 1;
 }

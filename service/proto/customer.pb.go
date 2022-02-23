@@ -933,6 +933,663 @@ func (m *DeleteCityItemResponse) GetMessage() string {
 	return ""
 }
 
+type BankListResponse struct {
+	Bankitemresponse     []*BankItemResponse `protobuf:"bytes,1,rep,name=bankitemresponse,proto3" json:"bankitemresponse,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}            `json:"-"`
+	XXX_unrecognized     []byte              `json:"-"`
+	XXX_sizecache        int32               `json:"-"`
+}
+
+func (m *BankListResponse) Reset()         { *m = BankListResponse{} }
+func (m *BankListResponse) String() string { return proto.CompactTextString(m) }
+func (*BankListResponse) ProtoMessage()    {}
+func (*BankListResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_d164c08f51b4bb12, []int{20}
+}
+
+func (m *BankListResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_BankListResponse.Unmarshal(m, b)
+}
+func (m *BankListResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_BankListResponse.Marshal(b, m, deterministic)
+}
+func (m *BankListResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_BankListResponse.Merge(m, src)
+}
+func (m *BankListResponse) XXX_Size() int {
+	return xxx_messageInfo_BankListResponse.Size(m)
+}
+func (m *BankListResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_BankListResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_BankListResponse proto.InternalMessageInfo
+
+func (m *BankListResponse) GetBankitemresponse() []*BankItemResponse {
+	if m != nil {
+		return m.Bankitemresponse
+	}
+	return nil
+}
+
+type BankItemResponse struct {
+	Id                   int32    `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Title                string   `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	BankId               int32    `protobuf:"varint,3,opt,name=BankId,proto3" json:"BankId,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *BankItemResponse) Reset()         { *m = BankItemResponse{} }
+func (m *BankItemResponse) String() string { return proto.CompactTextString(m) }
+func (*BankItemResponse) ProtoMessage()    {}
+func (*BankItemResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_d164c08f51b4bb12, []int{21}
+}
+
+func (m *BankItemResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_BankItemResponse.Unmarshal(m, b)
+}
+func (m *BankItemResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_BankItemResponse.Marshal(b, m, deterministic)
+}
+func (m *BankItemResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_BankItemResponse.Merge(m, src)
+}
+func (m *BankItemResponse) XXX_Size() int {
+	return xxx_messageInfo_BankItemResponse.Size(m)
+}
+func (m *BankItemResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_BankItemResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_BankItemResponse proto.InternalMessageInfo
+
+func (m *BankItemResponse) GetId() int32 {
+	if m != nil {
+		return m.Id
+	}
+	return 0
+}
+
+func (m *BankItemResponse) GetTitle() string {
+	if m != nil {
+		return m.Title
+	}
+	return ""
+}
+
+func (m *BankItemResponse) GetBankId() int32 {
+	if m != nil {
+		return m.BankId
+	}
+	return 0
+}
+
+type BankItemRequest struct {
+	Id                   int32    `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *BankItemRequest) Reset()         { *m = BankItemRequest{} }
+func (m *BankItemRequest) String() string { return proto.CompactTextString(m) }
+func (*BankItemRequest) ProtoMessage()    {}
+func (*BankItemRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_d164c08f51b4bb12, []int{22}
+}
+
+func (m *BankItemRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_BankItemRequest.Unmarshal(m, b)
+}
+func (m *BankItemRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_BankItemRequest.Marshal(b, m, deterministic)
+}
+func (m *BankItemRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_BankItemRequest.Merge(m, src)
+}
+func (m *BankItemRequest) XXX_Size() int {
+	return xxx_messageInfo_BankItemRequest.Size(m)
+}
+func (m *BankItemRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_BankItemRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_BankItemRequest proto.InternalMessageInfo
+
+func (m *BankItemRequest) GetId() int32 {
+	if m != nil {
+		return m.Id
+	}
+	return 0
+}
+
+type CreateBankItemRequest struct {
+	Title                string   `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
+	BankId               int32    `protobuf:"varint,2,opt,name=bankId,proto3" json:"bankId,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *CreateBankItemRequest) Reset()         { *m = CreateBankItemRequest{} }
+func (m *CreateBankItemRequest) String() string { return proto.CompactTextString(m) }
+func (*CreateBankItemRequest) ProtoMessage()    {}
+func (*CreateBankItemRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_d164c08f51b4bb12, []int{23}
+}
+
+func (m *CreateBankItemRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CreateBankItemRequest.Unmarshal(m, b)
+}
+func (m *CreateBankItemRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CreateBankItemRequest.Marshal(b, m, deterministic)
+}
+func (m *CreateBankItemRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateBankItemRequest.Merge(m, src)
+}
+func (m *CreateBankItemRequest) XXX_Size() int {
+	return xxx_messageInfo_CreateBankItemRequest.Size(m)
+}
+func (m *CreateBankItemRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateBankItemRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CreateBankItemRequest proto.InternalMessageInfo
+
+func (m *CreateBankItemRequest) GetTitle() string {
+	if m != nil {
+		return m.Title
+	}
+	return ""
+}
+
+func (m *CreateBankItemRequest) GetBankId() int32 {
+	if m != nil {
+		return m.BankId
+	}
+	return 0
+}
+
+type DeleteBankItemResponse struct {
+	Message              string   `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *DeleteBankItemResponse) Reset()         { *m = DeleteBankItemResponse{} }
+func (m *DeleteBankItemResponse) String() string { return proto.CompactTextString(m) }
+func (*DeleteBankItemResponse) ProtoMessage()    {}
+func (*DeleteBankItemResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_d164c08f51b4bb12, []int{24}
+}
+
+func (m *DeleteBankItemResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DeleteBankItemResponse.Unmarshal(m, b)
+}
+func (m *DeleteBankItemResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DeleteBankItemResponse.Marshal(b, m, deterministic)
+}
+func (m *DeleteBankItemResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DeleteBankItemResponse.Merge(m, src)
+}
+func (m *DeleteBankItemResponse) XXX_Size() int {
+	return xxx_messageInfo_DeleteBankItemResponse.Size(m)
+}
+func (m *DeleteBankItemResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_DeleteBankItemResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DeleteBankItemResponse proto.InternalMessageInfo
+
+func (m *DeleteBankItemResponse) GetMessage() string {
+	if m != nil {
+		return m.Message
+	}
+	return ""
+}
+
+type DomainListResponse struct {
+	Domainitemresponse   []*DomainItemResponse `protobuf:"bytes,1,rep,name=domainitemresponse,proto3" json:"domainitemresponse,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}              `json:"-"`
+	XXX_unrecognized     []byte                `json:"-"`
+	XXX_sizecache        int32                 `json:"-"`
+}
+
+func (m *DomainListResponse) Reset()         { *m = DomainListResponse{} }
+func (m *DomainListResponse) String() string { return proto.CompactTextString(m) }
+func (*DomainListResponse) ProtoMessage()    {}
+func (*DomainListResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_d164c08f51b4bb12, []int{25}
+}
+
+func (m *DomainListResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DomainListResponse.Unmarshal(m, b)
+}
+func (m *DomainListResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DomainListResponse.Marshal(b, m, deterministic)
+}
+func (m *DomainListResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DomainListResponse.Merge(m, src)
+}
+func (m *DomainListResponse) XXX_Size() int {
+	return xxx_messageInfo_DomainListResponse.Size(m)
+}
+func (m *DomainListResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_DomainListResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DomainListResponse proto.InternalMessageInfo
+
+func (m *DomainListResponse) GetDomainitemresponse() []*DomainItemResponse {
+	if m != nil {
+		return m.Domainitemresponse
+	}
+	return nil
+}
+
+type DomainItemResponse struct {
+	Id                   int32    `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Title                string   `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	IdRayan              int32    `protobuf:"varint,3,opt,name=IdRayan,proto3" json:"IdRayan,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *DomainItemResponse) Reset()         { *m = DomainItemResponse{} }
+func (m *DomainItemResponse) String() string { return proto.CompactTextString(m) }
+func (*DomainItemResponse) ProtoMessage()    {}
+func (*DomainItemResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_d164c08f51b4bb12, []int{26}
+}
+
+func (m *DomainItemResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DomainItemResponse.Unmarshal(m, b)
+}
+func (m *DomainItemResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DomainItemResponse.Marshal(b, m, deterministic)
+}
+func (m *DomainItemResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DomainItemResponse.Merge(m, src)
+}
+func (m *DomainItemResponse) XXX_Size() int {
+	return xxx_messageInfo_DomainItemResponse.Size(m)
+}
+func (m *DomainItemResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_DomainItemResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DomainItemResponse proto.InternalMessageInfo
+
+func (m *DomainItemResponse) GetId() int32 {
+	if m != nil {
+		return m.Id
+	}
+	return 0
+}
+
+func (m *DomainItemResponse) GetTitle() string {
+	if m != nil {
+		return m.Title
+	}
+	return ""
+}
+
+func (m *DomainItemResponse) GetIdRayan() int32 {
+	if m != nil {
+		return m.IdRayan
+	}
+	return 0
+}
+
+type DomainItemRequest struct {
+	Id                   int32    `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *DomainItemRequest) Reset()         { *m = DomainItemRequest{} }
+func (m *DomainItemRequest) String() string { return proto.CompactTextString(m) }
+func (*DomainItemRequest) ProtoMessage()    {}
+func (*DomainItemRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_d164c08f51b4bb12, []int{27}
+}
+
+func (m *DomainItemRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DomainItemRequest.Unmarshal(m, b)
+}
+func (m *DomainItemRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DomainItemRequest.Marshal(b, m, deterministic)
+}
+func (m *DomainItemRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DomainItemRequest.Merge(m, src)
+}
+func (m *DomainItemRequest) XXX_Size() int {
+	return xxx_messageInfo_DomainItemRequest.Size(m)
+}
+func (m *DomainItemRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_DomainItemRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DomainItemRequest proto.InternalMessageInfo
+
+func (m *DomainItemRequest) GetId() int32 {
+	if m != nil {
+		return m.Id
+	}
+	return 0
+}
+
+type CreateDomainItemRequest struct {
+	Title                string   `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
+	IdRayan              int32    `protobuf:"varint,2,opt,name=idRayan,proto3" json:"idRayan,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *CreateDomainItemRequest) Reset()         { *m = CreateDomainItemRequest{} }
+func (m *CreateDomainItemRequest) String() string { return proto.CompactTextString(m) }
+func (*CreateDomainItemRequest) ProtoMessage()    {}
+func (*CreateDomainItemRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_d164c08f51b4bb12, []int{28}
+}
+
+func (m *CreateDomainItemRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CreateDomainItemRequest.Unmarshal(m, b)
+}
+func (m *CreateDomainItemRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CreateDomainItemRequest.Marshal(b, m, deterministic)
+}
+func (m *CreateDomainItemRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateDomainItemRequest.Merge(m, src)
+}
+func (m *CreateDomainItemRequest) XXX_Size() int {
+	return xxx_messageInfo_CreateDomainItemRequest.Size(m)
+}
+func (m *CreateDomainItemRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateDomainItemRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CreateDomainItemRequest proto.InternalMessageInfo
+
+func (m *CreateDomainItemRequest) GetTitle() string {
+	if m != nil {
+		return m.Title
+	}
+	return ""
+}
+
+func (m *CreateDomainItemRequest) GetIdRayan() int32 {
+	if m != nil {
+		return m.IdRayan
+	}
+	return 0
+}
+
+type DeleteDomainItemResponse struct {
+	Message              string   `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *DeleteDomainItemResponse) Reset()         { *m = DeleteDomainItemResponse{} }
+func (m *DeleteDomainItemResponse) String() string { return proto.CompactTextString(m) }
+func (*DeleteDomainItemResponse) ProtoMessage()    {}
+func (*DeleteDomainItemResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_d164c08f51b4bb12, []int{29}
+}
+
+func (m *DeleteDomainItemResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DeleteDomainItemResponse.Unmarshal(m, b)
+}
+func (m *DeleteDomainItemResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DeleteDomainItemResponse.Marshal(b, m, deterministic)
+}
+func (m *DeleteDomainItemResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DeleteDomainItemResponse.Merge(m, src)
+}
+func (m *DeleteDomainItemResponse) XXX_Size() int {
+	return xxx_messageInfo_DeleteDomainItemResponse.Size(m)
+}
+func (m *DeleteDomainItemResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_DeleteDomainItemResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DeleteDomainItemResponse proto.InternalMessageInfo
+
+func (m *DeleteDomainItemResponse) GetMessage() string {
+	if m != nil {
+		return m.Message
+	}
+	return ""
+}
+
+type CustomerGroupListResponse struct {
+	Customergroupitemresponse []*CustomerGroupItemResponse `protobuf:"bytes,1,rep,name=customergroupitemresponse,proto3" json:"customergroupitemresponse,omitempty"`
+	XXX_NoUnkeyedLiteral      struct{}                     `json:"-"`
+	XXX_unrecognized          []byte                       `json:"-"`
+	XXX_sizecache             int32                        `json:"-"`
+}
+
+func (m *CustomerGroupListResponse) Reset()         { *m = CustomerGroupListResponse{} }
+func (m *CustomerGroupListResponse) String() string { return proto.CompactTextString(m) }
+func (*CustomerGroupListResponse) ProtoMessage()    {}
+func (*CustomerGroupListResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_d164c08f51b4bb12, []int{30}
+}
+
+func (m *CustomerGroupListResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CustomerGroupListResponse.Unmarshal(m, b)
+}
+func (m *CustomerGroupListResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CustomerGroupListResponse.Marshal(b, m, deterministic)
+}
+func (m *CustomerGroupListResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CustomerGroupListResponse.Merge(m, src)
+}
+func (m *CustomerGroupListResponse) XXX_Size() int {
+	return xxx_messageInfo_CustomerGroupListResponse.Size(m)
+}
+func (m *CustomerGroupListResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_CustomerGroupListResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CustomerGroupListResponse proto.InternalMessageInfo
+
+func (m *CustomerGroupListResponse) GetCustomergroupitemresponse() []*CustomerGroupItemResponse {
+	if m != nil {
+		return m.Customergroupitemresponse
+	}
+	return nil
+}
+
+type CustomerGroupItemResponse struct {
+	Id                   int32    `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Title                string   `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
+	IdRayan              int32    `protobuf:"varint,3,opt,name=IdRayan,proto3" json:"IdRayan,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *CustomerGroupItemResponse) Reset()         { *m = CustomerGroupItemResponse{} }
+func (m *CustomerGroupItemResponse) String() string { return proto.CompactTextString(m) }
+func (*CustomerGroupItemResponse) ProtoMessage()    {}
+func (*CustomerGroupItemResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_d164c08f51b4bb12, []int{31}
+}
+
+func (m *CustomerGroupItemResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CustomerGroupItemResponse.Unmarshal(m, b)
+}
+func (m *CustomerGroupItemResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CustomerGroupItemResponse.Marshal(b, m, deterministic)
+}
+func (m *CustomerGroupItemResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CustomerGroupItemResponse.Merge(m, src)
+}
+func (m *CustomerGroupItemResponse) XXX_Size() int {
+	return xxx_messageInfo_CustomerGroupItemResponse.Size(m)
+}
+func (m *CustomerGroupItemResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_CustomerGroupItemResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CustomerGroupItemResponse proto.InternalMessageInfo
+
+func (m *CustomerGroupItemResponse) GetId() int32 {
+	if m != nil {
+		return m.Id
+	}
+	return 0
+}
+
+func (m *CustomerGroupItemResponse) GetTitle() string {
+	if m != nil {
+		return m.Title
+	}
+	return ""
+}
+
+func (m *CustomerGroupItemResponse) GetIdRayan() int32 {
+	if m != nil {
+		return m.IdRayan
+	}
+	return 0
+}
+
+type CustomerGroupItemRequest struct {
+	Id                   int32    `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *CustomerGroupItemRequest) Reset()         { *m = CustomerGroupItemRequest{} }
+func (m *CustomerGroupItemRequest) String() string { return proto.CompactTextString(m) }
+func (*CustomerGroupItemRequest) ProtoMessage()    {}
+func (*CustomerGroupItemRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_d164c08f51b4bb12, []int{32}
+}
+
+func (m *CustomerGroupItemRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CustomerGroupItemRequest.Unmarshal(m, b)
+}
+func (m *CustomerGroupItemRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CustomerGroupItemRequest.Marshal(b, m, deterministic)
+}
+func (m *CustomerGroupItemRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CustomerGroupItemRequest.Merge(m, src)
+}
+func (m *CustomerGroupItemRequest) XXX_Size() int {
+	return xxx_messageInfo_CustomerGroupItemRequest.Size(m)
+}
+func (m *CustomerGroupItemRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_CustomerGroupItemRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CustomerGroupItemRequest proto.InternalMessageInfo
+
+func (m *CustomerGroupItemRequest) GetId() int32 {
+	if m != nil {
+		return m.Id
+	}
+	return 0
+}
+
+type CreateCustomerGroupItemRequest struct {
+	Title                string   `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
+	IdRayan              int32    `protobuf:"varint,2,opt,name=idRayan,proto3" json:"idRayan,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *CreateCustomerGroupItemRequest) Reset()         { *m = CreateCustomerGroupItemRequest{} }
+func (m *CreateCustomerGroupItemRequest) String() string { return proto.CompactTextString(m) }
+func (*CreateCustomerGroupItemRequest) ProtoMessage()    {}
+func (*CreateCustomerGroupItemRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_d164c08f51b4bb12, []int{33}
+}
+
+func (m *CreateCustomerGroupItemRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CreateCustomerGroupItemRequest.Unmarshal(m, b)
+}
+func (m *CreateCustomerGroupItemRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CreateCustomerGroupItemRequest.Marshal(b, m, deterministic)
+}
+func (m *CreateCustomerGroupItemRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateCustomerGroupItemRequest.Merge(m, src)
+}
+func (m *CreateCustomerGroupItemRequest) XXX_Size() int {
+	return xxx_messageInfo_CreateCustomerGroupItemRequest.Size(m)
+}
+func (m *CreateCustomerGroupItemRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateCustomerGroupItemRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_CreateCustomerGroupItemRequest proto.InternalMessageInfo
+
+func (m *CreateCustomerGroupItemRequest) GetTitle() string {
+	if m != nil {
+		return m.Title
+	}
+	return ""
+}
+
+func (m *CreateCustomerGroupItemRequest) GetIdRayan() int32 {
+	if m != nil {
+		return m.IdRayan
+	}
+	return 0
+}
+
+type DeleteCustomerGroupItemResponse struct {
+	Message              string   `protobuf:"bytes,1,opt,name=message,proto3" json:"message,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *DeleteCustomerGroupItemResponse) Reset()         { *m = DeleteCustomerGroupItemResponse{} }
+func (m *DeleteCustomerGroupItemResponse) String() string { return proto.CompactTextString(m) }
+func (*DeleteCustomerGroupItemResponse) ProtoMessage()    {}
+func (*DeleteCustomerGroupItemResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_d164c08f51b4bb12, []int{34}
+}
+
+func (m *DeleteCustomerGroupItemResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DeleteCustomerGroupItemResponse.Unmarshal(m, b)
+}
+func (m *DeleteCustomerGroupItemResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DeleteCustomerGroupItemResponse.Marshal(b, m, deterministic)
+}
+func (m *DeleteCustomerGroupItemResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DeleteCustomerGroupItemResponse.Merge(m, src)
+}
+func (m *DeleteCustomerGroupItemResponse) XXX_Size() int {
+	return xxx_messageInfo_DeleteCustomerGroupItemResponse.Size(m)
+}
+func (m *DeleteCustomerGroupItemResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_DeleteCustomerGroupItemResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DeleteCustomerGroupItemResponse proto.InternalMessageInfo
+
+func (m *DeleteCustomerGroupItemResponse) GetMessage() string {
+	if m != nil {
+		return m.Message
+	}
+	return ""
+}
+
 func init() {
 	proto.RegisterType((*GenderListResponse)(nil), "services.GenderListResponse")
 	proto.RegisterType((*GenderItemResponse)(nil), "services.GenderItemResponse")
@@ -954,59 +1611,95 @@ func init() {
 	proto.RegisterType((*CityItemRequest)(nil), "services.CityItemRequest")
 	proto.RegisterType((*CreateCityItemRequest)(nil), "services.CreateCityItemRequest")
 	proto.RegisterType((*DeleteCityItemResponse)(nil), "services.DeleteCityItemResponse")
+	proto.RegisterType((*BankListResponse)(nil), "services.BankListResponse")
+	proto.RegisterType((*BankItemResponse)(nil), "services.BankItemResponse")
+	proto.RegisterType((*BankItemRequest)(nil), "services.BankItemRequest")
+	proto.RegisterType((*CreateBankItemRequest)(nil), "services.CreateBankItemRequest")
+	proto.RegisterType((*DeleteBankItemResponse)(nil), "services.DeleteBankItemResponse")
+	proto.RegisterType((*DomainListResponse)(nil), "services.DomainListResponse")
+	proto.RegisterType((*DomainItemResponse)(nil), "services.DomainItemResponse")
+	proto.RegisterType((*DomainItemRequest)(nil), "services.DomainItemRequest")
+	proto.RegisterType((*CreateDomainItemRequest)(nil), "services.CreateDomainItemRequest")
+	proto.RegisterType((*DeleteDomainItemResponse)(nil), "services.DeleteDomainItemResponse")
+	proto.RegisterType((*CustomerGroupListResponse)(nil), "services.CustomerGroupListResponse")
+	proto.RegisterType((*CustomerGroupItemResponse)(nil), "services.CustomerGroupItemResponse")
+	proto.RegisterType((*CustomerGroupItemRequest)(nil), "services.CustomerGroupItemRequest")
+	proto.RegisterType((*CreateCustomerGroupItemRequest)(nil), "services.CreateCustomerGroupItemRequest")
+	proto.RegisterType((*DeleteCustomerGroupItemResponse)(nil), "services.DeleteCustomerGroupItemResponse")
 }
 
 func init() { proto.RegisterFile("proto/customer.proto", fileDescriptor_d164c08f51b4bb12) }
 
 var fileDescriptor_d164c08f51b4bb12 = []byte{
-	// 746 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x95, 0x5d, 0x4f, 0xdb, 0x3c,
-	0x14, 0xc7, 0x93, 0x42, 0xe1, 0xe1, 0x94, 0xb7, 0xc7, 0x30, 0x16, 0xca, 0xcb, 0x8a, 0x61, 0x12,
-	0x37, 0x0b, 0x12, 0x7b, 0xd1, 0xee, 0xa6, 0xad, 0x83, 0xaa, 0x5a, 0x35, 0xb6, 0x6c, 0x12, 0xd2,
-	0xee, 0x20, 0x31, 0x95, 0xa7, 0xa6, 0x61, 0x89, 0x8b, 0xc4, 0xdd, 0x3e, 0xc3, 0x2e, 0xf7, 0x69,
-	0xa7, 0xd8, 0x31, 0xb1, 0x13, 0x27, 0xac, 0x68, 0x77, 0xc9, 0xf1, 0x39, 0xc7, 0xc7, 0xbf, 0x63,
-	0x9f, 0x3f, 0xac, 0x5f, 0xc7, 0x11, 0x8b, 0x8e, 0xfc, 0x49, 0xc2, 0xa2, 0x90, 0xc4, 0x2e, 0xff,
-	0x45, 0xff, 0x25, 0x24, 0xbe, 0xa1, 0x3e, 0x49, 0xda, 0x5b, 0xc3, 0x28, 0x1a, 0x8e, 0xc8, 0x11,
-	0xb7, 0x5f, 0x4e, 0xae, 0x8e, 0x48, 0x78, 0xcd, 0x6e, 0x85, 0x1b, 0xbe, 0x04, 0xd4, 0x23, 0xe3,
-	0x80, 0xc4, 0x03, 0x9a, 0x30, 0x8f, 0x24, 0xd7, 0xd1, 0x38, 0x21, 0x68, 0x00, 0x68, 0xc8, 0xad,
-	0x94, 0x91, 0x30, 0xce, 0xac, 0x8e, 0xdd, 0x99, 0x39, 0x6c, 0x1d, 0x6f, 0xbb, 0x32, 0xb3, 0x2b,
-	0x22, 0xfb, 0x8c, 0x84, 0x32, 0xd2, 0x33, 0xc4, 0xe1, 0xd7, 0x72, 0x0f, 0xd5, 0x13, 0x2d, 0x43,
-	0x83, 0x06, 0x8e, 0xdd, 0xb1, 0x0f, 0x9b, 0x5e, 0x83, 0x06, 0x08, 0xc1, 0xec, 0xf8, 0x22, 0x24,
-	0x4e, 0xa3, 0x63, 0x1f, 0x2e, 0x78, 0xfc, 0x1b, 0xef, 0xc3, 0xff, 0x6a, 0xe4, 0x8f, 0x09, 0x49,
-	0x58, 0x31, 0x10, 0x3f, 0x83, 0xc7, 0xdd, 0x98, 0x5c, 0x30, 0x52, 0x76, 0x95, 0x39, 0x6d, 0x25,
-	0xe7, 0x0b, 0x70, 0xde, 0x93, 0x11, 0xd1, 0xdd, 0xb3, 0x9a, 0x1c, 0x98, 0x0f, 0x49, 0x92, 0x5c,
-	0x0c, 0x65, 0x88, 0xfc, 0xc5, 0x57, 0xb0, 0xd6, 0x8d, 0x26, 0x63, 0x16, 0xdf, 0x6a, 0xa0, 0xce,
-	0x60, 0xcd, 0x17, 0x66, 0x03, 0xa9, 0x9d, 0x9c, 0x54, 0x16, 0xab, 0xa1, 0x32, 0x45, 0xe2, 0xf3,
-	0xbb, 0x7d, 0x6a, 0x61, 0x6d, 0xc3, 0x82, 0x8c, 0x0e, 0x38, 0xb1, 0xa6, 0x97, 0x1b, 0xee, 0x8e,
-	0x3d, 0xa3, 0x1c, 0xfb, 0x00, 0x90, 0x96, 0xd8, 0xcc, 0x72, 0x00, 0x8e, 0x60, 0x69, 0xf0, 0x35,
-	0xc0, 0xac, 0xaf, 0x03, 0xbf, 0x84, 0x4d, 0x81, 0xda, 0x74, 0xa4, 0x6a, 0xd6, 0xdf, 0x61, 0xfd,
-	0x53, 0x1c, 0xdd, 0xd0, 0xb1, 0x4f, 0x34, 0xd8, 0x1e, 0xbf, 0xea, 0xdc, 0x6e, 0xa0, 0xbd, 0x9b,
-	0xd3, 0x96, 0xd1, 0x1a, 0x6e, 0x63, 0x2c, 0xfe, 0x6d, 0xe7, 0x9b, 0x4d, 0x7b, 0x3d, 0xd1, 0x2e,
-	0x80, 0x4c, 0xda, 0x0f, 0x38, 0xed, 0xa6, 0xa7, 0x58, 0x14, 0x3a, 0xfd, 0xc0, 0x99, 0xd5, 0xe8,
-	0xf4, 0x03, 0xd4, 0x81, 0x56, 0xf6, 0xf3, 0x31, 0x4d, 0xdc, 0xe4, 0x89, 0x55, 0x13, 0x7e, 0x0a,
-	0x6b, 0x7a, 0x6d, 0xe6, 0xa6, 0x85, 0xb0, 0x29, 0x9a, 0x66, 0x72, 0x9e, 0xba, 0x6b, 0xea, 0xa9,
-	0x68, 0xe9, 0x54, 0x34, 0xc0, 0xaf, 0xa0, 0x2d, 0xba, 0x6a, 0xe4, 0x56, 0xdd, 0xd6, 0x6f, 0xb0,
-	0xda, 0xa5, 0x4c, 0x7f, 0x3f, 0xa7, 0xb0, 0xea, 0x53, 0x66, 0x7a, 0x3c, 0x6d, 0xe5, 0xf1, 0x50,
-	0xa6, 0xbf, 0x9c, 0x52, 0x0c, 0xfe, 0x65, 0x8b, 0xe4, 0xff, 0xbc, 0x85, 0x1b, 0x30, 0x97, 0x6e,
-	0x76, 0xd7, 0xbf, 0xec, 0x0f, 0x61, 0x58, 0x94, 0x5e, 0x4a, 0xf7, 0x34, 0x1b, 0xde, 0x83, 0x95,
-	0xbc, 0x26, 0x73, 0xeb, 0x7c, 0x78, 0x94, 0xbd, 0xb7, 0x82, 0xa3, 0xa9, 0x6d, 0x7a, 0xad, 0x8d,
-	0x9a, 0x5a, 0x67, 0xd4, 0x5a, 0xf1, 0x31, 0x6c, 0x64, 0xcf, 0xb0, 0x48, 0xa8, 0xb2, 0x59, 0xc7,
-	0x3f, 0x01, 0x56, 0xba, 0x99, 0xa2, 0x7c, 0x11, 0x8d, 0x40, 0x5d, 0x58, 0x10, 0x33, 0xf3, 0xed,
-	0x68, 0x84, 0x36, 0x5c, 0x21, 0x2b, 0xae, 0x94, 0x15, 0xf7, 0x24, 0x95, 0x95, 0x76, 0x49, 0x1e,
-	0xd4, 0x7e, 0x63, 0x0b, 0x0d, 0x60, 0xa9, 0x47, 0x98, 0x58, 0x7a, 0x97, 0x92, 0xdc, 0x32, 0xeb,
-	0x09, 0xc7, 0xd0, 0xae, 0x15, 0x1b, 0x6c, 0xa1, 0xcf, 0xb0, 0xa8, 0xce, 0x7e, 0xb4, 0xa7, 0xdc,
-	0x1a, 0xb3, 0x26, 0xfc, 0x4d, 0x4a, 0x55, 0x1f, 0xea, 0xeb, 0xc3, 0xf9, 0x62, 0x95, 0xa8, 0x60,
-	0x0b, 0x9d, 0x00, 0x64, 0x13, 0xb0, 0x8e, 0x5c, 0x59, 0x2e, 0x0a, 0xe8, 0xce, 0x60, 0xb9, 0x47,
-	0x58, 0xb6, 0xc6, 0xd9, 0x6d, 0x57, 0x28, 0x8c, 0x28, 0xae, 0x5e, 0x7f, 0xb0, 0x85, 0xbe, 0xc2,
-	0x92, 0x36, 0xed, 0x11, 0x2e, 0xe2, 0x7b, 0x60, 0x56, 0x6d, 0xea, 0xdf, 0x53, 0xe5, 0x7e, 0x11,
-	0xa1, 0x39, 0x6b, 0x0f, 0x5a, 0x72, 0xde, 0xd4, 0x41, 0x34, 0xa8, 0x40, 0x81, 0xa2, 0x07, 0x2b,
-	0x3d, 0xc2, 0xe4, 0x22, 0xc7, 0xb8, 0x53, 0x25, 0x1d, 0xa2, 0xc2, 0x7b, 0x94, 0x05, 0x5b, 0xe8,
-	0x1c, 0x96, 0xf5, 0x09, 0x8c, 0xf6, 0x8b, 0x24, 0x1f, 0x9c, 0x58, 0x9f, 0xb5, 0xf7, 0xd5, 0x7a,
-	0x50, 0xa4, 0x59, 0x91, 0xf8, 0x0d, 0xcc, 0xa7, 0xd3, 0xa0, 0x0e, 0x65, 0x61, 0x02, 0x17, 0x30,
-	0x9e, 0x42, 0x2b, 0xbd, 0x8c, 0x94, 0x89, 0x9b, 0xb8, 0x69, 0x1a, 0xd7, 0xa2, 0xa4, 0x9a, 0x49,
-	0x8e, 0x2d, 0xf4, 0x01, 0x20, 0x9f, 0x80, 0xe8, 0x49, 0xe9, 0x02, 0x4e, 0x9b, 0x2c, 0x9f, 0x74,
-	0x75, 0x35, 0x75, 0x4a, 0x97, 0xae, 0x94, 0xec, 0x72, 0x8e, 0xf3, 0x78, 0xfe, 0x27, 0x00, 0x00,
-	0xff, 0xff, 0xfd, 0x1b, 0xcf, 0xd2, 0x60, 0x0b, 0x00, 0x00,
+	// 1083 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x96, 0xdd, 0x6e, 0xdb, 0x36,
+	0x14, 0xc7, 0xad, 0xa4, 0xae, 0x97, 0x93, 0x36, 0x49, 0x99, 0x2c, 0x93, 0xdd, 0x34, 0x75, 0x99,
+	0x0e, 0xc8, 0x06, 0xcc, 0x01, 0xb2, 0x0f, 0x0c, 0xd8, 0x45, 0xb1, 0xba, 0xa9, 0x61, 0x2c, 0x58,
+	0x33, 0xad, 0x40, 0x81, 0xee, 0x4a, 0xb6, 0x18, 0x43, 0xab, 0x25, 0x65, 0x12, 0x5d, 0x20, 0x37,
+	0x7b, 0x88, 0x5d, 0xee, 0xd5, 0xf6, 0x32, 0x83, 0x44, 0xd1, 0xe2, 0x77, 0xe2, 0xa0, 0x77, 0xe6,
+	0xc7, 0xf9, 0xf3, 0xf0, 0x77, 0x44, 0x9f, 0x3f, 0xec, 0x5d, 0xe5, 0x19, 0xcd, 0x4e, 0xa6, 0x8b,
+	0x82, 0x66, 0x09, 0xc9, 0x07, 0xd5, 0x10, 0x7d, 0x56, 0x90, 0xfc, 0x63, 0x3c, 0x25, 0x45, 0xef,
+	0xf1, 0x2c, 0xcb, 0x66, 0x73, 0x72, 0x52, 0xcd, 0x4f, 0x16, 0x97, 0x27, 0x24, 0xb9, 0xa2, 0xd7,
+	0x6c, 0x1b, 0x9e, 0x00, 0x1a, 0x91, 0x34, 0x22, 0xf9, 0x79, 0x5c, 0xd0, 0x80, 0x14, 0x57, 0x59,
+	0x5a, 0x10, 0x74, 0x0e, 0x68, 0x56, 0xcd, 0xc6, 0x94, 0x24, 0x79, 0x3d, 0xeb, 0x7b, 0xfd, 0xf5,
+	0xe3, 0xcd, 0xd3, 0x83, 0x01, 0x57, 0x1e, 0xb0, 0xc8, 0x31, 0x25, 0x09, 0x8f, 0x0c, 0x0c, 0x71,
+	0xf8, 0x47, 0x7e, 0x86, 0xb8, 0x13, 0x6d, 0xc1, 0x5a, 0x1c, 0xf9, 0x5e, 0xdf, 0x3b, 0x6e, 0x07,
+	0x6b, 0x71, 0x84, 0x10, 0xdc, 0x4b, 0xc3, 0x84, 0xf8, 0x6b, 0x7d, 0xef, 0x78, 0x23, 0xa8, 0x7e,
+	0xe3, 0x23, 0x78, 0x24, 0x46, 0xfe, 0xb5, 0x20, 0x05, 0x55, 0x03, 0xf1, 0x37, 0xf0, 0xc5, 0x30,
+	0x27, 0x21, 0x25, 0xfa, 0x56, 0xae, 0xe9, 0x09, 0x9a, 0xdf, 0x81, 0xff, 0x8a, 0xcc, 0x89, 0xbc,
+	0xbd, 0xce, 0xc9, 0x87, 0x4e, 0x42, 0x8a, 0x22, 0x9c, 0xf1, 0x10, 0x3e, 0xc4, 0x97, 0xb0, 0x3b,
+	0xcc, 0x16, 0x29, 0xcd, 0xaf, 0x25, 0x50, 0x6f, 0x60, 0x77, 0xca, 0xa6, 0x0d, 0xa4, 0x9e, 0x34,
+	0xa4, 0xea, 0x58, 0x09, 0x95, 0x29, 0x12, 0xbf, 0x5b, 0x9e, 0xe3, 0x84, 0x75, 0x00, 0x1b, 0x3c,
+	0x3a, 0xaa, 0x88, 0xb5, 0x83, 0x66, 0x62, 0x79, 0xed, 0x75, 0xe1, 0xda, 0xcf, 0x01, 0x49, 0xc2,
+	0x66, 0x96, 0xe7, 0xe0, 0x33, 0x96, 0x86, 0xbd, 0x06, 0x98, 0xee, 0x3c, 0xf0, 0xf7, 0xd0, 0x65,
+	0xa8, 0x4d, 0x57, 0xb2, 0xb3, 0xfe, 0x13, 0xf6, 0x2e, 0xf2, 0xec, 0x63, 0x9c, 0x4e, 0x89, 0x04,
+	0x3b, 0xa8, 0x3e, 0xf5, 0x6a, 0xde, 0x40, 0xfb, 0xb0, 0xa1, 0xcd, 0xa3, 0x25, 0xdc, 0xc6, 0x58,
+	0xfc, 0xaf, 0xd7, 0x1c, 0xb6, 0xea, 0xe7, 0x89, 0x0e, 0x01, 0xb8, 0xe8, 0x38, 0xaa, 0x68, 0xb7,
+	0x03, 0x61, 0x46, 0xa0, 0x33, 0x8e, 0xfc, 0x7b, 0x12, 0x9d, 0x71, 0x84, 0xfa, 0xb0, 0x59, 0x0f,
+	0x7e, 0x2d, 0x85, 0xdb, 0x95, 0xb0, 0x38, 0x85, 0xbf, 0x84, 0x5d, 0x39, 0x37, 0x73, 0xd1, 0x12,
+	0xe8, 0xb2, 0xa2, 0x99, 0x36, 0xaf, 0x5c, 0x35, 0xf1, 0x56, 0xb1, 0x76, 0xab, 0x38, 0xc2, 0x3f,
+	0x40, 0x8f, 0x55, 0xd5, 0xc8, 0xcd, 0x5e, 0xd6, 0xf7, 0xb0, 0x33, 0x8c, 0xa9, 0xfc, 0x7e, 0x5e,
+	0xc3, 0xce, 0x34, 0xa6, 0xa6, 0xc7, 0xd3, 0x13, 0x1e, 0x4f, 0x4c, 0xe5, 0x97, 0xa3, 0xc5, 0xe0,
+	0x7f, 0x3c, 0x26, 0xfe, 0xc9, 0x4b, 0xb8, 0x0f, 0xf7, 0xcb, 0xc3, 0x96, 0xf5, 0xab, 0x47, 0x08,
+	0xc3, 0x03, 0xbe, 0x4b, 0xa8, 0x9e, 0x34, 0x87, 0x9f, 0xc1, 0x76, 0x93, 0x93, 0xb9, 0x74, 0x53,
+	0xf8, 0xbc, 0x7e, 0x6f, 0xca, 0x46, 0x53, 0xd9, 0xe4, 0x5c, 0xd7, 0x1c, 0xb9, 0xae, 0x8b, 0xb9,
+	0xe2, 0x53, 0xd8, 0xaf, 0x9f, 0xa1, 0x4a, 0xc8, 0x59, 0xac, 0x97, 0x61, 0xfa, 0x41, 0x2d, 0xd6,
+	0x24, 0x4c, 0x3f, 0xb8, 0x8b, 0x55, 0x46, 0xc9, 0xc5, 0x52, 0x63, 0xf0, 0x05, 0xd3, 0x76, 0xd6,
+	0x6a, 0x0f, 0xda, 0x34, 0xa6, 0x73, 0x5e, 0x2c, 0x36, 0x28, 0x6f, 0x58, 0x45, 0x2e, 0x6f, 0xc8,
+	0x46, 0x25, 0xe9, 0x46, 0xd1, 0x4c, 0xfa, 0x8c, 0x93, 0x56, 0x37, 0x2e, 0x4f, 0xf2, 0x94, 0x93,
+	0x26, 0xec, 0x24, 0xc6, 0xb9, 0x1e, 0x35, 0x2c, 0xb5, 0x1b, 0xd8, 0x59, 0x4e, 0x00, 0xbd, 0xca,
+	0x92, 0x30, 0x4e, 0xd5, 0x1e, 0x1b, 0x55, 0xb3, 0xee, 0x1e, 0xcb, 0x22, 0xe5, 0x1e, 0xab, 0xc7,
+	0xe1, 0xb7, 0xfc, 0x8c, 0x3b, 0x50, 0xf5, 0xa1, 0x33, 0x8e, 0x82, 0xf0, 0x3a, 0x4c, 0x6b, 0xac,
+	0x7c, 0x58, 0xf6, 0x5f, 0x51, 0xd5, 0x4c, 0x76, 0xcc, 0xfb, 0xaf, 0xbe, 0xd5, 0xcc, 0xd6, 0x87,
+	0x4e, 0x5c, 0x9f, 0xc7, 0xe0, 0xf2, 0x61, 0xd3, 0x9b, 0x0d, 0x77, 0xb1, 0xf3, 0xfd, 0x1b, 0xba,
+	0xc3, 0xda, 0xfc, 0x8c, 0xf2, 0x6c, 0x71, 0x25, 0x61, 0x0e, 0xa1, 0xcb, 0x9d, 0xd1, 0xac, 0x5c,
+	0x34, 0xd0, 0x3e, 0x12, 0xfe, 0x6a, 0x44, 0x1d, 0x09, 0xba, 0x5d, 0x05, 0xff, 0xa1, 0x9c, 0xff,
+	0x49, 0x4b, 0xf0, 0x35, 0xf8, 0x06, 0x71, 0x73, 0x25, 0x2e, 0xe0, 0xb0, 0xfe, 0x37, 0xb1, 0x45,
+	0xac, 0x5a, 0x90, 0x9f, 0xe0, 0x69, 0xfd, 0xd7, 0x61, 0xbd, 0xa0, 0xb5, 0x2e, 0xa7, 0xff, 0x3d,
+	0x82, 0x6d, 0x1e, 0xf7, 0x3b, 0x23, 0x8c, 0x86, 0xb0, 0xc1, 0x7c, 0xd7, 0xcf, 0xf3, 0x39, 0xda,
+	0x1f, 0x30, 0x6b, 0x3a, 0xe0, 0xd6, 0x74, 0x70, 0x56, 0x5a, 0xd3, 0x9e, 0x66, 0x31, 0xc5, 0x8a,
+	0xe2, 0x16, 0x3a, 0x87, 0x87, 0x23, 0x42, 0xd9, 0xd2, 0xcb, 0xf2, 0xdf, 0xf8, 0xb1, 0xd9, 0x93,
+	0x56, 0x77, 0xee, 0x39, 0x0d, 0x2b, 0x6e, 0xa1, 0xdf, 0xe0, 0x81, 0xe8, 0x1f, 0xd1, 0x33, 0xe1,
+	0x73, 0x30, 0xfb, 0xca, 0xdb, 0x48, 0x8a, 0x1e, 0xd3, 0x9d, 0x1f, 0x16, 0x1e, 0xbb, 0xc5, 0x98,
+	0xe2, 0x16, 0x3a, 0x03, 0xa8, 0x5d, 0x94, 0x8b, 0x9c, 0x6e, 0x39, 0x15, 0x74, 0x6f, 0x60, 0x6b,
+	0x44, 0x68, 0xbd, 0x56, 0xb1, 0x3b, 0xb0, 0xb8, 0x54, 0x96, 0x9c, 0xdb, 0xc3, 0xe2, 0x16, 0x7a,
+	0x0b, 0x0f, 0x25, 0xc7, 0x88, 0xb0, 0x8a, 0xef, 0x8e, 0xaa, 0x92, 0x73, 0xbc, 0x21, 0xcb, 0x23,
+	0x15, 0xa1, 0x59, 0x75, 0x04, 0x9b, 0xdc, 0xb3, 0xb8, 0x20, 0x1a, 0x9c, 0xa4, 0x42, 0x31, 0x80,
+	0xed, 0x11, 0xa1, 0x7c, 0xb1, 0xc2, 0xf8, 0xc4, 0x66, 0x3f, 0x59, 0x86, 0x37, 0xb8, 0x53, 0xdc,
+	0x42, 0xef, 0x60, 0x4b, 0x76, 0x71, 0xe8, 0x48, 0x25, 0x79, 0x67, 0x61, 0xd9, 0xaf, 0xdd, 0x94,
+	0xeb, 0x73, 0x95, 0xa6, 0x45, 0xf8, 0x05, 0x74, 0x4a, 0x47, 0xe1, 0x42, 0xa9, 0xb8, 0x38, 0x05,
+	0xe3, 0x6b, 0xd8, 0x2c, 0x3f, 0xc6, 0x98, 0xb2, 0x2f, 0xb1, 0x6b, 0xb2, 0x7c, 0x2c, 0x25, 0x87,
+	0x1b, 0xc4, 0x2d, 0xf4, 0x0b, 0x40, 0xe3, 0xa2, 0xd0, 0x53, 0xed, 0x03, 0x5c, 0x55, 0xac, 0x71,
+	0x4b, 0xae, 0x9c, 0xfa, 0xda, 0x47, 0xa7, 0x8b, 0xbd, 0x80, 0x4e, 0x69, 0x14, 0x6e, 0x89, 0x48,
+	0x75, 0x5c, 0x4b, 0x44, 0xe5, 0x82, 0x8a, 0x48, 0xf1, 0x31, 0x3d, 0x87, 0x07, 0x13, 0x11, 0x95,
+	0x6b, 0x3a, 0xa2, 0x95, 0xc5, 0x1a, 0x13, 0xe4, 0xca, 0x49, 0x43, 0x64, 0x10, 0x1b, 0xc2, 0x06,
+	0xeb, 0xf6, 0xb7, 0xec, 0x08, 0xba, 0x95, 0x5a, 0x76, 0x04, 0xb6, 0xa4, 0x76, 0x04, 0xcd, 0x96,
+	0xf4, 0x9c, 0xf6, 0x4a, 0xec, 0x08, 0x6c, 0x55, 0xef, 0x08, 0x77, 0x92, 0x14, 0x9d, 0x8d, 0x3b,
+	0x3f, 0xad, 0x23, 0x58, 0x24, 0x77, 0xa4, 0xae, 0xec, 0xe2, 0x67, 0xb3, 0x38, 0x0a, 0xc6, 0xf7,
+	0xb0, 0x57, 0x3e, 0x48, 0x71, 0xc7, 0xcd, 0x34, 0x6f, 0x63, 0x9f, 0x70, 0x0b, 0x5d, 0xc2, 0xae,
+	0xc1, 0x9c, 0xa0, 0x63, 0xed, 0xb5, 0x5a, 0xbc, 0xcb, 0x0a, 0xe7, 0x18, 0x2c, 0x8b, 0xd4, 0x96,
+	0x6c, 0x27, 0x7c, 0xa5, 0xbd, 0x68, 0xfb, 0x39, 0x93, 0xfb, 0x15, 0xe2, 0x6f, 0xff, 0x0f, 0x00,
+	0x00, 0xff, 0xff, 0xe4, 0xf4, 0x66, 0xe0, 0x7f, 0x13, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -1037,6 +1730,18 @@ type CustomerServiceClient interface {
 	GetCityById(ctx context.Context, in *CityItemRequest, opts ...grpc.CallOption) (*CityItemResponse, error)
 	CreateCity(ctx context.Context, in *CreateCityItemRequest, opts ...grpc.CallOption) (*CityItemResponse, error)
 	DeleteCity(ctx context.Context, in *CityItemRequest, opts ...grpc.CallOption) (*DeleteCityItemResponse, error)
+	BankAll(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*BankListResponse, error)
+	GetBankById(ctx context.Context, in *BankItemRequest, opts ...grpc.CallOption) (*BankItemResponse, error)
+	CreateBank(ctx context.Context, in *CreateBankItemRequest, opts ...grpc.CallOption) (*BankItemResponse, error)
+	DeleteBank(ctx context.Context, in *BankItemRequest, opts ...grpc.CallOption) (*DeleteBankItemResponse, error)
+	DomainAll(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*DomainListResponse, error)
+	GetDomainById(ctx context.Context, in *DomainItemRequest, opts ...grpc.CallOption) (*DomainItemResponse, error)
+	CreateDomain(ctx context.Context, in *CreateDomainItemRequest, opts ...grpc.CallOption) (*DomainItemResponse, error)
+	DeleteDomain(ctx context.Context, in *DomainItemRequest, opts ...grpc.CallOption) (*DeleteDomainItemResponse, error)
+	CustomerGroupAll(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*CustomerGroupListResponse, error)
+	GetCustomerGroupById(ctx context.Context, in *DomainItemRequest, opts ...grpc.CallOption) (*CustomerGroupItemResponse, error)
+	CreateCustomerGroup(ctx context.Context, in *CreateCustomerGroupItemRequest, opts ...grpc.CallOption) (*CustomerGroupItemResponse, error)
+	DeleteCustomerGroup(ctx context.Context, in *CustomerGroupItemRequest, opts ...grpc.CallOption) (*DeleteCustomerGroupItemResponse, error)
 }
 
 type customerServiceClient struct {
@@ -1191,6 +1896,114 @@ func (c *customerServiceClient) DeleteCity(ctx context.Context, in *CityItemRequ
 	return out, nil
 }
 
+func (c *customerServiceClient) BankAll(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*BankListResponse, error) {
+	out := new(BankListResponse)
+	err := c.cc.Invoke(ctx, "/services.CustomerService/BankAll", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *customerServiceClient) GetBankById(ctx context.Context, in *BankItemRequest, opts ...grpc.CallOption) (*BankItemResponse, error) {
+	out := new(BankItemResponse)
+	err := c.cc.Invoke(ctx, "/services.CustomerService/GetBankById", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *customerServiceClient) CreateBank(ctx context.Context, in *CreateBankItemRequest, opts ...grpc.CallOption) (*BankItemResponse, error) {
+	out := new(BankItemResponse)
+	err := c.cc.Invoke(ctx, "/services.CustomerService/CreateBank", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *customerServiceClient) DeleteBank(ctx context.Context, in *BankItemRequest, opts ...grpc.CallOption) (*DeleteBankItemResponse, error) {
+	out := new(DeleteBankItemResponse)
+	err := c.cc.Invoke(ctx, "/services.CustomerService/DeleteBank", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *customerServiceClient) DomainAll(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*DomainListResponse, error) {
+	out := new(DomainListResponse)
+	err := c.cc.Invoke(ctx, "/services.CustomerService/DomainAll", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *customerServiceClient) GetDomainById(ctx context.Context, in *DomainItemRequest, opts ...grpc.CallOption) (*DomainItemResponse, error) {
+	out := new(DomainItemResponse)
+	err := c.cc.Invoke(ctx, "/services.CustomerService/GetDomainById", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *customerServiceClient) CreateDomain(ctx context.Context, in *CreateDomainItemRequest, opts ...grpc.CallOption) (*DomainItemResponse, error) {
+	out := new(DomainItemResponse)
+	err := c.cc.Invoke(ctx, "/services.CustomerService/CreateDomain", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *customerServiceClient) DeleteDomain(ctx context.Context, in *DomainItemRequest, opts ...grpc.CallOption) (*DeleteDomainItemResponse, error) {
+	out := new(DeleteDomainItemResponse)
+	err := c.cc.Invoke(ctx, "/services.CustomerService/DeleteDomain", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *customerServiceClient) CustomerGroupAll(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*CustomerGroupListResponse, error) {
+	out := new(CustomerGroupListResponse)
+	err := c.cc.Invoke(ctx, "/services.CustomerService/CustomerGroupAll", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *customerServiceClient) GetCustomerGroupById(ctx context.Context, in *DomainItemRequest, opts ...grpc.CallOption) (*CustomerGroupItemResponse, error) {
+	out := new(CustomerGroupItemResponse)
+	err := c.cc.Invoke(ctx, "/services.CustomerService/GetCustomerGroupById", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *customerServiceClient) CreateCustomerGroup(ctx context.Context, in *CreateCustomerGroupItemRequest, opts ...grpc.CallOption) (*CustomerGroupItemResponse, error) {
+	out := new(CustomerGroupItemResponse)
+	err := c.cc.Invoke(ctx, "/services.CustomerService/CreateCustomerGroup", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *customerServiceClient) DeleteCustomerGroup(ctx context.Context, in *CustomerGroupItemRequest, opts ...grpc.CallOption) (*DeleteCustomerGroupItemResponse, error) {
+	out := new(DeleteCustomerGroupItemResponse)
+	err := c.cc.Invoke(ctx, "/services.CustomerService/DeleteCustomerGroup", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CustomerServiceServer is the server API for CustomerService service.
 type CustomerServiceServer interface {
 	GenderAll(context.Context, *empty.Empty) (*GenderListResponse, error)
@@ -1209,6 +2022,18 @@ type CustomerServiceServer interface {
 	GetCityById(context.Context, *CityItemRequest) (*CityItemResponse, error)
 	CreateCity(context.Context, *CreateCityItemRequest) (*CityItemResponse, error)
 	DeleteCity(context.Context, *CityItemRequest) (*DeleteCityItemResponse, error)
+	BankAll(context.Context, *empty.Empty) (*BankListResponse, error)
+	GetBankById(context.Context, *BankItemRequest) (*BankItemResponse, error)
+	CreateBank(context.Context, *CreateBankItemRequest) (*BankItemResponse, error)
+	DeleteBank(context.Context, *BankItemRequest) (*DeleteBankItemResponse, error)
+	DomainAll(context.Context, *empty.Empty) (*DomainListResponse, error)
+	GetDomainById(context.Context, *DomainItemRequest) (*DomainItemResponse, error)
+	CreateDomain(context.Context, *CreateDomainItemRequest) (*DomainItemResponse, error)
+	DeleteDomain(context.Context, *DomainItemRequest) (*DeleteDomainItemResponse, error)
+	CustomerGroupAll(context.Context, *empty.Empty) (*CustomerGroupListResponse, error)
+	GetCustomerGroupById(context.Context, *DomainItemRequest) (*CustomerGroupItemResponse, error)
+	CreateCustomerGroup(context.Context, *CreateCustomerGroupItemRequest) (*CustomerGroupItemResponse, error)
+	DeleteCustomerGroup(context.Context, *CustomerGroupItemRequest) (*DeleteCustomerGroupItemResponse, error)
 }
 
 // UnimplementedCustomerServiceServer can be embedded to have forward compatible implementations.
@@ -1262,6 +2087,42 @@ func (*UnimplementedCustomerServiceServer) CreateCity(ctx context.Context, req *
 }
 func (*UnimplementedCustomerServiceServer) DeleteCity(ctx context.Context, req *CityItemRequest) (*DeleteCityItemResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteCity not implemented")
+}
+func (*UnimplementedCustomerServiceServer) BankAll(ctx context.Context, req *empty.Empty) (*BankListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BankAll not implemented")
+}
+func (*UnimplementedCustomerServiceServer) GetBankById(ctx context.Context, req *BankItemRequest) (*BankItemResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetBankById not implemented")
+}
+func (*UnimplementedCustomerServiceServer) CreateBank(ctx context.Context, req *CreateBankItemRequest) (*BankItemResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateBank not implemented")
+}
+func (*UnimplementedCustomerServiceServer) DeleteBank(ctx context.Context, req *BankItemRequest) (*DeleteBankItemResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteBank not implemented")
+}
+func (*UnimplementedCustomerServiceServer) DomainAll(ctx context.Context, req *empty.Empty) (*DomainListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DomainAll not implemented")
+}
+func (*UnimplementedCustomerServiceServer) GetDomainById(ctx context.Context, req *DomainItemRequest) (*DomainItemResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDomainById not implemented")
+}
+func (*UnimplementedCustomerServiceServer) CreateDomain(ctx context.Context, req *CreateDomainItemRequest) (*DomainItemResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateDomain not implemented")
+}
+func (*UnimplementedCustomerServiceServer) DeleteDomain(ctx context.Context, req *DomainItemRequest) (*DeleteDomainItemResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteDomain not implemented")
+}
+func (*UnimplementedCustomerServiceServer) CustomerGroupAll(ctx context.Context, req *empty.Empty) (*CustomerGroupListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CustomerGroupAll not implemented")
+}
+func (*UnimplementedCustomerServiceServer) GetCustomerGroupById(ctx context.Context, req *DomainItemRequest) (*CustomerGroupItemResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCustomerGroupById not implemented")
+}
+func (*UnimplementedCustomerServiceServer) CreateCustomerGroup(ctx context.Context, req *CreateCustomerGroupItemRequest) (*CustomerGroupItemResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateCustomerGroup not implemented")
+}
+func (*UnimplementedCustomerServiceServer) DeleteCustomerGroup(ctx context.Context, req *CustomerGroupItemRequest) (*DeleteCustomerGroupItemResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteCustomerGroup not implemented")
 }
 
 func RegisterCustomerServiceServer(s *grpc.Server, srv CustomerServiceServer) {
@@ -1556,6 +2417,222 @@ func _CustomerService_DeleteCity_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _CustomerService_BankAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(empty.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CustomerServiceServer).BankAll(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/services.CustomerService/BankAll",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CustomerServiceServer).BankAll(ctx, req.(*empty.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CustomerService_GetBankById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BankItemRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CustomerServiceServer).GetBankById(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/services.CustomerService/GetBankById",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CustomerServiceServer).GetBankById(ctx, req.(*BankItemRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CustomerService_CreateBank_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateBankItemRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CustomerServiceServer).CreateBank(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/services.CustomerService/CreateBank",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CustomerServiceServer).CreateBank(ctx, req.(*CreateBankItemRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CustomerService_DeleteBank_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BankItemRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CustomerServiceServer).DeleteBank(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/services.CustomerService/DeleteBank",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CustomerServiceServer).DeleteBank(ctx, req.(*BankItemRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CustomerService_DomainAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(empty.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CustomerServiceServer).DomainAll(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/services.CustomerService/DomainAll",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CustomerServiceServer).DomainAll(ctx, req.(*empty.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CustomerService_GetDomainById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DomainItemRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CustomerServiceServer).GetDomainById(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/services.CustomerService/GetDomainById",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CustomerServiceServer).GetDomainById(ctx, req.(*DomainItemRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CustomerService_CreateDomain_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateDomainItemRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CustomerServiceServer).CreateDomain(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/services.CustomerService/CreateDomain",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CustomerServiceServer).CreateDomain(ctx, req.(*CreateDomainItemRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CustomerService_DeleteDomain_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DomainItemRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CustomerServiceServer).DeleteDomain(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/services.CustomerService/DeleteDomain",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CustomerServiceServer).DeleteDomain(ctx, req.(*DomainItemRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CustomerService_CustomerGroupAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(empty.Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CustomerServiceServer).CustomerGroupAll(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/services.CustomerService/CustomerGroupAll",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CustomerServiceServer).CustomerGroupAll(ctx, req.(*empty.Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CustomerService_GetCustomerGroupById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DomainItemRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CustomerServiceServer).GetCustomerGroupById(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/services.CustomerService/GetCustomerGroupById",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CustomerServiceServer).GetCustomerGroupById(ctx, req.(*DomainItemRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CustomerService_CreateCustomerGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateCustomerGroupItemRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CustomerServiceServer).CreateCustomerGroup(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/services.CustomerService/CreateCustomerGroup",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CustomerServiceServer).CreateCustomerGroup(ctx, req.(*CreateCustomerGroupItemRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CustomerService_DeleteCustomerGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CustomerGroupItemRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CustomerServiceServer).DeleteCustomerGroup(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/services.CustomerService/DeleteCustomerGroup",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CustomerServiceServer).DeleteCustomerGroup(ctx, req.(*CustomerGroupItemRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _CustomerService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "services.CustomerService",
 	HandlerType: (*CustomerServiceServer)(nil),
@@ -1623,6 +2700,54 @@ var _CustomerService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteCity",
 			Handler:    _CustomerService_DeleteCity_Handler,
+		},
+		{
+			MethodName: "BankAll",
+			Handler:    _CustomerService_BankAll_Handler,
+		},
+		{
+			MethodName: "GetBankById",
+			Handler:    _CustomerService_GetBankById_Handler,
+		},
+		{
+			MethodName: "CreateBank",
+			Handler:    _CustomerService_CreateBank_Handler,
+		},
+		{
+			MethodName: "DeleteBank",
+			Handler:    _CustomerService_DeleteBank_Handler,
+		},
+		{
+			MethodName: "DomainAll",
+			Handler:    _CustomerService_DomainAll_Handler,
+		},
+		{
+			MethodName: "GetDomainById",
+			Handler:    _CustomerService_GetDomainById_Handler,
+		},
+		{
+			MethodName: "CreateDomain",
+			Handler:    _CustomerService_CreateDomain_Handler,
+		},
+		{
+			MethodName: "DeleteDomain",
+			Handler:    _CustomerService_DeleteDomain_Handler,
+		},
+		{
+			MethodName: "CustomerGroupAll",
+			Handler:    _CustomerService_CustomerGroupAll_Handler,
+		},
+		{
+			MethodName: "GetCustomerGroupById",
+			Handler:    _CustomerService_GetCustomerGroupById_Handler,
+		},
+		{
+			MethodName: "CreateCustomerGroup",
+			Handler:    _CustomerService_CreateCustomerGroup_Handler,
+		},
+		{
+			MethodName: "DeleteCustomerGroup",
+			Handler:    _CustomerService_DeleteCustomerGroup_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
