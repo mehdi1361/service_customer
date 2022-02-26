@@ -1,4 +1,4 @@
-/*package server
+package server
 
 import (
 	"fmt"
@@ -8,9 +8,9 @@ import (
 	service "service_customer/service/proto"
 )
 
-func (Server) DomainAll(ctx context.Context, e *empty.Empty) (*service.DomainListResponse, error) {
+func (Server) CustomerGroupAll(ctx context.Context, e *empty.Empty) (*service.CustomerGroupListResponse, error) {
 
-	var data []*service.DomainItemResponse
+	var data []*service.CustomerGroupItemResponse
 
 	db, err := models.Connect()
 	if err != nil {
@@ -18,11 +18,11 @@ func (Server) DomainAll(ctx context.Context, e *empty.Empty) (*service.DomainLis
 	}
 	defer db.Close()
 
-	allDomain := []models.Domain{}
+	allDomain := []models.CustomerGroup{}
 	db.Find(&allDomain)
 
 	for _, v := range allDomain {
-		data = append(data, &service.DomainItemResponse{
+		data = append(data, &service.CustomerGroupItemResponse{
 			Id: int32(v.ID),
 			IdRayan: int32(v.IdRayan),
 			Title: v.Title,
@@ -30,14 +30,14 @@ func (Server) DomainAll(ctx context.Context, e *empty.Empty) (*service.DomainLis
 		)
 	}
 
-	result := service.DomainListResponse{
-		Domainitemresponse: data,
+	result := service.CustomerGroupListResponse{
+		Customergroupitemresponse: data,
 	}
 
 	return &result, nil
 }
 
-func (Server) GetDomainById(ctx context.Context, e *service.DomainItemRequest) (*service.DomainItemResponse, error) {
+func (Server) GetCustomerGroupById(ctx context.Context, e *service.CustomerGroupItemRequest) (*service.CustomerGroupItemResponse, error) {
 
 	db, err := models.Connect()
 	if err != nil {
@@ -46,7 +46,7 @@ func (Server) GetDomainById(ctx context.Context, e *service.DomainItemRequest) (
 	defer db.Close()
 	domain := models.Domain{}
 	db.Find(&domain, "id=?", e.Id)
-	result := service.DomainItemResponse{
+	result := service.CustomerGroupItemResponse{
 		Id:   int32(domain.ID),
 		IdRayan:   int32(domain.IdRayan),
 		Title: domain.Title,
@@ -54,19 +54,19 @@ func (Server) GetDomainById(ctx context.Context, e *service.DomainItemRequest) (
 	return &result, nil
 }
 
-func (Server) CreateDomain(ctx context.Context, e *service.CreateDomainItemRequest) (*service.DomainItemResponse, error) {
+func (Server) CreateCustomerGroup(ctx context.Context, e *service.CreateCustomerGroupItemRequest) (*service.CustomerGroupItemResponse, error) {
 
 	db, err := models.Connect()
 	if err != nil {
 		fmt.Print(err)
 	}
 	defer db.Close()
-	domain:= models.Domain{
+	domain:= models.CustomerGroup{
 		Title: e.Title,
 		IdRayan: e.IdRayan,
 	}
 	db.Create(&domain)
-	result := service.DomainItemResponse{
+	result := service.CustomerGroupItemResponse{
 		Id:   int32(domain.ID),
 		IdRayan:   domain.IdRayan,
 		Title: domain.Title,
@@ -74,19 +74,17 @@ func (Server) CreateDomain(ctx context.Context, e *service.CreateDomainItemReque
 	return &result, nil
 }
 
-func (Server) DeleteDomian(ctx context.Context, e *service.DomainItemRequest) (*service.DeleteDomainItemResponse, error) {
+func (Server) DeleteCustomerGroup(ctx context.Context, e *service.CustomerGroupItemRequest) (*service.DeleteCustomerGroupItemResponse, error) {
 
 	db, err := models.Connect()
 	if err != nil {
 		fmt.Print(err)
 	}
 	defer db.Close()
-	db.Delete(&models.Domain{}, e.Id)
+	db.Delete(&models.CustomerGroup{}, e.Id)
 
-	result := service.DeleteDomainItemResponse{
+	result := service.DeleteCustomerGroupItemResponse{
 		Message: "delete successfull",
 	}
 	return &result, nil
 }
-
-*/

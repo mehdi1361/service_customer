@@ -38,9 +38,21 @@ service CustomerService {
 
 
         rpc CustomerGroupAll (google.protobuf.Empty) returns (CustomerGroupListResponse) {}
-        rpc GetCustomerGroupById (DomainItemRequest) returns (CustomerGroupItemResponse) {}
+        rpc GetCustomerGroupById (CustomerGroupItemRequest) returns (CustomerGroupItemResponse) {}
         rpc CreateCustomerGroup (CreateCustomerGroupItemRequest) returns (CustomerGroupItemResponse) {}
         rpc DeleteCustomerGroup (CustomerGroupItemRequest) returns (DeleteCustomerGroupItemResponse) {}
+
+
+        rpc MebbcoBranchAll (google.protobuf.Empty) returns (MebbcoBranchListResponse) {}
+        rpc GetMebbcoBranchById (MebbcoBranchItemRequest) returns (MebbcoBranchItemResponse) {}
+        rpc CreateMebbcoBranch (CreateMebbcoBranchItemRequest) returns (MebbcoBranchItemResponse) {}
+        rpc DeleteMebbcoBranch (MebbcoBranchItemRequest) returns (DeleteMebbcoBranchItemResponse) {}
+
+
+        rpc JobAll (google.protobuf.Empty) returns (JobListResponse) {}
+        rpc GetJobById (JobItemRequest) returns (JobItemResponse) {}
+        rpc CreateJob (CreateJobItemRequest) returns (JobItemResponse) {}
+        rpc DeleteMebbcoBranch (MebbcoBranchItemRequest) returns (DeleteMebbcoBranchItemResponse) {}
 }
 
 message GenderListResponse {
@@ -211,5 +223,31 @@ message CreateCustomerGroupItemRequest {
 }
 
 message DeleteCustomerGroupItemResponse {
+        string message = 1;
+}
+
+
+message MebbcoBranchListResponse {
+        repeated MebbcoBranchItemResponse mebbcobranchitemresponse = 1;
+}
+
+message MebbcoBranchItemResponse {
+        int32 id = 1;
+        string title = 2;
+        string typeMebbco = 3;
+        int32 IdRayan = 4;
+}
+
+message MebbcoBranchItemRequest {
+        int32 id = 1;
+}
+
+message CreateMebbcoBranchItemRequest {
+        string title = 1;
+        int32 idRayan = 2;
+        string typeMebbco = 3;
+}
+
+message DeleteMebbcoBranchItemResponse {
         string message = 1;
 }

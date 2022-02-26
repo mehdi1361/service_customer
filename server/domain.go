@@ -74,7 +74,7 @@ func (Server) CreateDomain(ctx context.Context, e *service.CreateDomainItemReque
 	return &result, nil
 }
 
-func (Server) DeleteDomian(ctx context.Context, e *service.DomainItemRequest) (*service.DeleteDomainItemResponse, error) {
+func (Server) DeleteDomain(ctx context.Context, e *service.DomainItemRequest) (*service.DeleteDomainItemResponse, error) {
 
 	db, err := models.Connect()
 	if err != nil {
