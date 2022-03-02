@@ -101,7 +101,7 @@ type MebbcoBranch struct {
 	IdRayan       int32          `json:"id_rayan"`
 	Portfos       []Portfo       `gorm:"foreignKey:TypeMebbcoId"`
 	ComexVisitors []ComexVisitor `gorm:"foreignKey:TypeMebbcoId"`
-	TradingCodes []TradingCode `gorm:"foreignKey:TypeMebbcoId"`
+	TradingCodes  []TradingCode  `gorm:"foreignKey:TypeMebbcoId"`
 }
 
 func (mb *MebbcoBranch) TableName() string {
@@ -110,8 +110,8 @@ func (mb *MebbcoBranch) TableName() string {
 
 type Job struct {
 	gorm.Model
-	Title string `json:"title" gorm:"size:10;unique"`
-	JobId string `json:"job_id" gorm:"size:10"`
+	Title    string    `json:"title" gorm:"size:10;unique"`
+	JobId    string    `json:"job_id" gorm:"size:10"`
 	JobInfos []JobInfo `gorm:"foreignKey:JobId"`
 }
 
@@ -121,11 +121,11 @@ func (mb *Job) TableName() string {
 
 type TradingCode struct {
 	gorm.Model
-	Type string `json:"Type" gorm:"size:50;Column:type"`
-	FirstPart string `json:"first_part" gorm:"size:70;Column:first_part"`
+	Type       string `json:"Type" gorm:"size:50;Column:type"`
+	FirstPart  string `json:"first_part" gorm:"size:70;Column:first_part"`
 	SecondPart string `json:"second_part" gorm:"size:70;Column:second_part"`
-	Code string `json:"code" gorm:"size:70;Column:code"`
-	IsDefault bool `json:"is_default" gorm:"Column:is_default"`
+	Code       string `json:"code" gorm:"size:70;Column:code"`
+	IsDefault  bool   `json:"is_default" gorm:"Column:is_default"`
 }
 
 func (tc *TradingCode) TableName() string {

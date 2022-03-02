@@ -63,17 +63,17 @@ func (Server) CreateMebbcoBranch(ctx context.Context, e *service.CreateMebbcoBra
 		fmt.Print(err)
 	}
 	defer db.Close()
-	domain:= models.MebbcoBranch{
+	mebbcoBranch := models.MebbcoBranch{
 		Title: e.Title,
 		TypeMebbco: e.TypeMebbco,
 		IdRayan: e.IdRayan,
 	}
-	db.Create(&domain)
+	db.Create(&mebbcoBranch)
 	result := service.MebbcoBranchItemResponse{
-		Id:   int32(domain.ID),
-		IdRayan:   domain.IdRayan,
-		Title: domain.Title,
-		TypeMebbco: domain.TypeMebbco,
+		Id:   int32(mebbcoBranch.ID),
+		IdRayan:   mebbcoBranch.IdRayan,
+		Title: mebbcoBranch.Title,
+		TypeMebbco: mebbcoBranch.TypeMebbco,
 	}
 	return &result, nil
 }

@@ -52,7 +52,12 @@ service CustomerService {
         rpc JobAll (google.protobuf.Empty) returns (JobListResponse) {}
         rpc GetJobById (JobItemRequest) returns (JobItemResponse) {}
         rpc CreateJob (CreateJobItemRequest) returns (JobItemResponse) {}
-        rpc DeleteMebbcoBranch (MebbcoBranchItemRequest) returns (DeleteMebbcoBranchItemResponse) {}
+        rpc DeleteJob (JobItemRequest) returns (DeleteJobItemResponse) {}
+
+        rpc TradingCodeAll (google.protobuf.Empty) returns (TradingCodeListResponse) {}
+        rpc GetTradingCodeId (TradingCodeItemRequest) returns (TradingCodeItemResponse) {}
+        rpc CreateTradingCode (CreateTradingCodeItemRequest) returns (TradingCodeItemResponse) {}
+        rpc DeleteTradingCode (TradingCodeItemRequest) returns (DeleteTradingCodeItemResponse) {}
 }
 
 message GenderListResponse {
@@ -249,5 +254,59 @@ message CreateMebbcoBranchItemRequest {
 }
 
 message DeleteMebbcoBranchItemResponse {
+        string message = 1;
+}
+
+
+
+message JobListResponse {
+        repeated JobItemResponse jobitemresponse = 1;
+}
+
+message JobItemResponse {
+        int32 id = 1;
+        string Title = 2;
+        string JobId = 3;
+}
+
+message JobItemRequest {
+        int32 id = 1;
+}
+
+message CreateJobItemRequest {
+        string Title = 1;
+        string JobId = 2;
+}
+
+message DeleteJobItemResponse {
+        string message = 1;
+}
+
+message TradingCodeListResponse {
+        repeated TradingCodeItemResponse tradingcodeitemresponse = 1;
+}
+
+message TradingCodeItemResponse {
+        int32 id = 1;
+        string Type = 2;
+        string FirstPart = 3;
+        string SecondPart = 4;
+        string Code = 5;
+        bool IsDefault = 6;
+}
+
+message TradingCodeItemRequest {
+        int32 id = 1;
+}
+
+message CreateTradingCodeItemRequest {
+        string Type = 1;
+        string FirstPart = 2;
+        string SecondPart = 3;
+        string Code = 4;
+        bool IsDefault = 5;
+}
+
+message DeleteTradingCodeItemResponse {
         string message = 1;
 }
