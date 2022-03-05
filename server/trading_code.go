@@ -23,12 +23,12 @@ func (Server) TradingCodeAll(ctx context.Context, e *empty.Empty) (*service.Trad
 
 	for _, v := range tradingCodes {
 		data = append(data, &service.TradingCodeItemResponse{
-			Id: int32(v.ID),
-			Type: v.Type,
-			FirstPart: v.FirstPart,
+			Id:         int32(v.ID),
+			Type:       v.Type,
+			FirstPart:  v.FirstPart,
 			SecondPart: v.SecondPart,
-			Code: v.Code,
-			IsDefault: v.IsDefault,
+			Code:       v.Code,
+			IsDefault:  v.IsDefault,
 		},
 		)
 	}
@@ -50,43 +50,52 @@ func (Server) GetTradingCodeId(ctx context.Context, e *service.TradingCodeItemRe
 	tradingCode := models.TradingCode{}
 	db.Find(&tradingCode, "id=?", e.Id)
 	result := service.TradingCodeItemResponse{
-		Id:   int32(tradingCode.ID),
-		Type: tradingCode.Type,
-		JobId: job.JobId,
+		Id:         int32(tradingCode.ID),
+		Type:       tradingCode.Type,
+		FirstPart:  tradingCode.FirstPart,
+		SecondPart: tradingCode.SecondPart,
+		Code:       tradingCode.Code,
+		IsDefault:  tradingCode.IsDefault,
 	}
 	return &result, nil
 }
 
-func (Server) CreateJob(ctx context.Context, e *service.CreateJobItemRequest) (*service.JobItemResponse, error) {
+func (Server) CreateTradingCode(ctx context.Context, e *service.CreateTradingCodeItemRequest) (*service.TradingCodeItemResponse, error) {
 
 	db, err := models.Connect()
 	if err != nil {
 		fmt.Print(err)
 	}
 	defer db.Close()
-	job := models.Job{
-		Title: e.Title,
-		JobId: e.JobId,
+	tradingCode := models.TradingCode{
+		Type:       e.Type,
+		FirstPart:  e.FirstPart,
+		SecondPart: e.SecondPart,
+		Code:       e.Code,
+		IsDefault:  e.IsDefault,
 	}
-	db.Create(&job)
-	result := service.JobItemResponse{
-		Id:   int32(job.ID),
-		Title: job.Title,
-		JobId: job.JobId,
+	db.Create(&tradingCode)
+	result := service.TradingCodeItemResponse{
+		Id:         int32(tradingCode.ID),
+		Type:       tradingCode.Type,
+		FirstPart:  tradingCode.FirstPart,
+		SecondPart: tradingCode.SecondPart,
+		Code:       tradingCode.Code,
+		IsDefault:  tradingCode.IsDefault,
 	}
 	return &result, nil
 }
 
-func (Server) DeleteJob(ctx context.Context, e *service.JobItemRequest) (*service.DeleteJobItemResponse, error) {
+func (Server) DeleteTradingCode(ctx context.Context, e *service.TradingCodeItemRequest) (*service.DeleteTradingCodeItemResponse, error) {
 
 	db, err := models.Connect()
 	if err != nil {
 		fmt.Print(err)
 	}
 	defer db.Close()
-	db.Delete(&models.Job{}, e.Id)
+	db.Delete(&models.TradingCode{}, e.Id)
 
-	result := service.DeleteJobItemResponse{
+	result := service.DeleteTradingCodeItemResponse{
 		Message: "delete successfull",
 	}
 	return &result, nil

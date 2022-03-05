@@ -58,6 +58,17 @@ service CustomerService {
         rpc GetTradingCodeId (TradingCodeItemRequest) returns (TradingCodeItemResponse) {}
         rpc CreateTradingCode (CreateTradingCodeItemRequest) returns (TradingCodeItemResponse) {}
         rpc DeleteTradingCode (TradingCodeItemRequest) returns (DeleteTradingCodeItemResponse) {}
+
+
+        rpc ComexVisitorAll (google.protobuf.Empty) returns (ComexVisitorListResponse) {}
+        rpc GetComexVisitorById (ComexVisitorItemRequest) returns (ComexVisitorItemResponse) {}
+        rpc CreateComexVisitor (CreateComexVisitorItemRequest) returns (ComexVisitorItemResponse) {}
+        rpc DeleteComexVisitor (ComexVisitorItemRequest) returns (DeleteComexVisitorItemResponse) {}
+
+        rpc PersonAll (google.protobuf.Empty) returns (PersonListResponse) {}
+        rpc GetPersonById (PersonItemRequest) returns (PersonItemResponse) {}
+        rpc CreatePerson (CreatePersonItemRequest) returns (PersonItemResponse) {}
+        rpc DeletePerson (PersonItemRequest) returns (DeletePersonItemResponse) {}
 }
 
 message GenderListResponse {
@@ -308,5 +319,61 @@ message CreateTradingCodeItemRequest {
 }
 
 message DeleteTradingCodeItemResponse {
+        string message = 1;
+}
+
+message ComexVisitorListResponse {
+        repeated ComexVisitorItemResponse comexvisitoritemresponse = 1;
+}
+
+message ComexVisitorItemResponse {
+        int32 id = 1;
+        int32 ComexIdRayan = 2;
+        string FullName = 3;
+        int32 Rate = 4;
+        int32 TypeMebbcoId = 5;
+}
+
+message ComexVisitorItemRequest {
+        int32 id = 1;
+}
+
+message CreateComexVisitorItemRequest {
+        int32 ComexIdRayan = 1;
+        string FullName = 2;
+        int32 Rate = 3;
+        int32 TypeMebbcoId = 4;
+}
+
+message DeleteComexVisitorItemResponse {
+        string message = 1;
+}
+
+message PersonListResponse {
+        repeated PersonItemResponse personitemresponse = 1;
+}
+
+message PersonItemResponse {
+        int32 id = 1;
+        string SejamReferenceCode = 2;
+        string UserName = 3;
+        string Password = 4;
+        bool IsActive = 5;
+        bool IsRayanService = 6;
+}
+
+message PersonItemRequest {
+        int32 id = 1;
+}
+
+message CreatePersonItemRequest {
+        string SejamReferenceCode = 1;
+        string UserName = 2;
+        string Password = 3;
+        bool IsActive = 4;
+        bool IsRayanService = 5;
+}
+
+message DeletePersonItemResponse {
         string message = 1;
 }

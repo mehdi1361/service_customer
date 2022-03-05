@@ -89,6 +89,7 @@ func (pp *PhonePerson) TableName() string {
 }
 
 type FinancialInfo struct {
+	gorm.Model
 	AssetValue             int32 `json:"asset_value" gorm:"Column:asset_value"`
 	InCommingAverage       int32 `json:"incoming_average" gorm:"Column:asset_value"`
 	SExchangeTransaction   int32 `json:"s_exchange_tranasction" gorm:"Column:s_exchange_tranasction"`
@@ -103,6 +104,7 @@ func (fi *FinancialInfo) TableName() string {
 }
 
 type Portfo struct {
+	gorm.Model
 	CustomerId           int32  `json:"customer_id" gorm:"Column:customer_id"`
 	DomainIdsId          int32  `json:"domain_id" gorm:"Column:domain_id"`
 	IntroDate            string `json:"intro_date" gorm:"Column:intro_date;size:60"`
@@ -129,6 +131,7 @@ func (po Portfo) TableName() string {
 }
 
 type ComexVisitor struct {
+	gorm.Model
 	ComexIdRayan int32  `json:"comex_id_rayan" gorm:"Column:comex_id_rayan"`
 	FullName     string `json:"full_name" gorm:"Column:full_name;size:60"`
 	Rate         int32  `json:"rate" gorm:"Column:rate"`
@@ -140,6 +143,7 @@ func (cv *ComexVisitor) TableName() string {
 }
 
 type JobInfo struct {
+	gorm.Model
 	EmploymentDate    string `json:"employment_date" gorm:"Column:employment_date;size:60"`
 	CompanyName       string `json:"company_name" gorm:"Column:company_name;size:60"`
 	CompanyAddress    string `json:"company_address" gorm:"Column:company_address;size:60"`
