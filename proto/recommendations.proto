@@ -1,0 +1,702 @@
+syntax = "proto3";
+
+
+message Request {
+}
+
+message RayanAccountDb {
+    string name = 1;
+    string fa_name = 2;
+    string url_website = 3;
+    string image = 4;
+}
+message RayanAccountResponse {
+    repeated RayanAccountDb result = 1;
+}
+
+message RayanAccountImage {
+    string image = 1;
+}
+message RayanAccountImageResponse {
+    RayanAccountImage result = 1;
+}
+
+
+
+
+message FundChartDb {
+    string name = 1;
+    string fa_name = 2;
+    int64 account_id = 4;
+}
+message FundChartDbResponse {
+    repeated FundChartDb result = 1;
+}
+
+
+message MainRequest {
+    string name = 1;
+    string national_code = 2;
+    string start_date = 3;
+    string end_date = 4;
+    int64 size = 5;
+    string rayan_customer_id = 6;
+    int64  page_size = 7;
+    int64  offset = 8;
+
+
+}
+message ErrorResponse {
+    string title = 1;
+}
+
+
+message ServiceErrorResponse {
+    repeated ErrorResponse result = 1;
+}
+
+
+
+message FundLicense {
+    int64 fundId = 1;
+    string fundName = 2;
+    int64 fundLicenseId = 3;
+    int64 licenseNumber = 4;
+    int64 fundUnit = 5;
+    string licenseDate = 6;
+    string fundIssueTypeName = 7;
+    int64 isCancelled = 8;
+    string error = 9;
+}
+message FundLicenseServiceResponse {
+    FundLicense result = 1;
+}
+service Recommendations {
+    rpc FundLicenseService (MainRequest) returns (FundLicenseServiceResponse);
+    rpc FundCustomerListService (MainRequest) returns (FundCustomerListServiceResponse);
+    rpc FundCustomerInfoService (MainRequest) returns (FundCustomerInfoServiceResponse);
+    rpc FunOrderService (MainRequest) returns (FunOrderServiceResponse);
+    rpc FundNavInfoService (MainRequest) returns (FundNavInfoServiceResponse);
+    rpc FundStatisticInfoService(MainRequest) returns (FundStatisticInfoServiceResponse);
+    rpc FundOrderReportsService(MainRequest) returns (FundOrderReportsServiceResponse);
+    rpc FundCustomerProfitsService(MainRequest) returns (FundCustomerProfitsServiceResponse);
+    rpc FundCustomerStatementService(MainRequest) returns (FundCustomerStatementServiceResponse);
+    rpc FundBankAccountTypeService(MainRequest) returns (FundBankAccountTypeServiceResponse);
+    rpc FundIssueTypeService(MainRequest) returns (FundIssueTypeServiceResponse);
+    rpc FundInfoService(MainRequest) returns (FundInfoServiceResponse);
+    rpc FundInvestmentManagersService(MainRequest) returns (FundInvestmentManagersServiceResponse);
+    rpc FundSaveIpoService(FundSaveIpoRequest) returns (FundSaveIpoServiceResponse);
+    rpc BrokerCustomerListService(MainRequest) returns (BrokerCustomerListServiceResponse);
+    rpc BrokerCustomerService(MainRequest) returns (BrokerCustomerServiceResponse);
+    rpc FundSaveCancelOrderService(FundSaveCancelOrderRequest) returns (FundSaveCancelOrderServiceResponse);
+    rpc FundChartService(FundChartRequest) returns (FundChartServiceResponse);
+    rpc RayanAccountService(Request) returns (RayanAccountResponse);
+    rpc FundChartDbService(Request) returns (FundChartDbResponse);
+    rpc FundCancelOrderService(FundCancelOrderRequest) returns (FundCancelOrderServiceResponse);
+    rpc RayanAccountImageService(MainRequest) returns (RayanAccountImageResponse);
+
+
+}
+
+message FundCustomerList {
+    int64 customer_id = 1;
+    string branch_name = 2;
+    string personality = 3;
+    string customer_full_name = 4;
+    string representative = 5;
+    string nationality = 6;
+    string birth_date = 7;
+    string birth_certification_number = 8;
+    string issuing_city = 9;
+    string national_identifier = 10;
+    string customer_status_name = 11;
+    string referred_by = 12;
+    string is_profit_issue = 13;
+    string account_number = 14;
+    string cell_pone = 15;
+    string phone = 16;
+    string creation_date = 17;
+
+}
+message FundCustomerListServiceResponse {
+    repeated FundCustomerList result = 1;
+}
+
+message FundBankAccount{
+    int64 bank_account_id = 1;
+    string account_number = 2;
+    string ba_type_name = 3;
+    string bank_id = 4;
+    string bank_name = 5;
+    string bank_branch = 6;
+    string bank_branch_code = 7;
+    string shaba_number = 8;
+    string is_default = 9;
+
+}
+message FundCustomerInfo {
+    int64 customer_id = 1;
+    string is_legal = 2;
+    string is_stock_credit_purchase = 3;
+    string customer_status_id = 4;
+    string is_iranian = 5;
+    string national_id = 6;
+    string first_name = 7;
+    string last_name = 8;
+    string father_name = 9;
+    string birth_date = 10;
+    string birth_place = 11;
+    string birth_cert_number = 12;
+    string national_code = 13;
+    string phone = 14;
+    string mobile_number = 15;
+    string email = 16;
+    string address = 17;
+    string postal_code = 18;
+    string referred_by = 19;
+    string site_username = 20;
+    string registration_date = 21;
+    string branch_id = 22;
+    string branch_name = 23;
+    string dl_number = 24;
+    string is_profit_issue = 25;
+    string profit_rate = 26;
+    string sejam_status_type_id = 27;
+    string birth_certification_id = 28;
+    string full_name = 29;
+    repeated FundBankAccount bank_accounts = 30;
+
+
+}
+message FundCustomerInfoServiceResponse {
+    repeated FundCustomerInfo result = 1;
+}
+
+
+message FunOrderData {
+    string fundName = 1;
+    int64 fundOrderId = 2;
+    int64 customerId = 3;
+    int64 fundId = 4;
+    int64 isPurchase = 5;
+    int64 fundUnit = 6;
+    int64 unitPrice = 7;
+    int64 receiptId = 8;
+    string orderDate = 9;
+    int64 foStatusId = 10;
+    string creationDate = 11;
+    string creationTime = 12;
+    string modificationDate = 13;
+    string modificationTime = 14;
+    int64 branchId = 15;
+    string fundOrderNumber = 16;
+    int64 bankAccountId = 17;
+    int64 orderAmount = 18;
+    int64 appuserId = 19;
+    int64 forCashGeneration = 20;
+    int64 fixWage = 21;
+    int64 variableWage = 22;
+    int64 isSystemReject = 23;
+    string licenseDate = 24;
+    string baseOrderDate = 25;
+    int64 guaranteeAmount = 26;
+    int64 fundIssueTypeId = 27;
+    int64 fundIssuePartPercent = 28;
+    int64 vatAmount = 29;
+    int64 orderPaymentTypeId  = 30;
+    string orderTypeName  = 31;
+    string foStatusName  = 32;
+    string accountNumber  = 33;
+    string receiptNumber  = 34;
+    int64 toBankAccountId  = 35;
+    string receiptComments  = 36;
+    string licenseNumber  = 37;
+
+
+}
+
+
+
+message FunOrder {
+    repeated FunOrderData data = 1;
+    int64 pageSize  = 2;
+    int64 pageNumber  = 3;
+    int64 offset  = 4;
+    int64 total  = 5;
+
+
+
+}
+message FunOrderServiceResponse {
+    FunOrder result = 1;
+}
+
+
+message FundNavInfo {
+    string calcDate = 1;
+    int64 fundCapital = 2;
+    int64 purchaseNav = 3;
+    int64 saleNav = 4;
+    int64 fundNavId = 5;
+    int64 issuedUnit = 6;
+    int64 revokedUnit = 7;
+    int64 statisticNav = 8;
+
+
+}
+message FundNavInfoServiceResponse {
+    repeated FundNavInfo result = 1;
+}
+
+
+message FundStatisticInfo {
+    int64 activeCustomers = 1;
+    int64 normalUnitOwners = 2;
+    int64 premiumUnitOwners = 3;
+    string calcDate = 4;
+    int64 purchaseNav = 5;
+    int64 saleNav = 6;
+    float simpleDaily = 7;
+    float simpleMonthly = 8;
+    float simpleMonthly3 = 9;
+    float simpleYearly = 10;
+    int64 fundCapital = 11;
+    float simpleAllDays = 12;
+
+
+}
+message FundStatisticInfoServiceResponse {
+    repeated FundStatisticInfo result = 1;
+}
+
+message FundOrderReports {
+    int64 fundOrderId = 1;
+    int64 unitPrice = 2;
+    int64 orderAmount = 3;
+    string customerAccountNumber = 4;
+    string customerName = 5;
+    string nationalCode = 6;
+    string foStatusName = 7;
+    string fundOrderNumber = 8;
+    int64 fundUnit = 9;
+    string orderDate = 10;
+    string creationDate = 11;
+    string creationTime = 12;
+    string modificationDate = 13;
+    string modificationTime = 14;
+    string licenseDate = 15;
+    int64 guaranteeAmount = 16;
+    int64 vatAmount = 17;
+    string branchName = 18;
+    string appuserName = 19;
+    string orderType = 20;
+    string fundIssueTypeName = 21;
+    string orderPaymentTypeName = 22;
+    string fundIssueOriginName = 23;
+    int64 fixWage = 24;
+    int64 variableWage = 25;
+    string branchCode = 26;
+    string dlNumber = 27;
+    int64 licenseNumber = 28;
+    string receiptComment = 29;
+    string voucherNumber = 30;
+    string voucherTempNumber = 31;
+    string toBankAccountId = 32;
+    string receiptDate = 33;
+    string receiptNumber = 34;
+    int64 fundIssueTypeId = 35;
+
+
+
+}
+message FundOrderReportsServiceResponse {
+    repeated FundOrderReports result = 1;
+}
+
+
+message FundCustomerProfits {
+    string appliedProfitDate = 1;
+    int64 fundUnit = 2;
+    int64 unitProfit = 3;
+    int64 guaranteeAmount = 4;
+    int64 profitAmount = 5;
+    int64 totalProfitAmount = 6;
+    int64 extraProfit = 7;
+
+
+
+
+}
+message FundCustomerProfitsServiceResponse {
+    repeated FundCustomerProfits result = 1;
+}
+
+
+message FundCustomerStatement {
+    string transactionDate = 1;
+    string transactionType = 2;
+    string comments = 3;
+    int64 debitAmount = 4;
+    int64 creditAmount = 5;
+    int64 customerId = 6;
+    string branchName = 7;
+    int64 balance = 8;
+
+
+
+}
+message FundCustomerStatementServiceResponse {
+    repeated FundCustomerStatement result = 1;
+    int64 pageSize = 2;
+    int64 pageNumber = 3;
+    int64 total = 4;
+}
+
+
+message FundBankAccountType {
+    int64 baTypeId = 1;
+    string baTypeName = 2;
+
+
+
+}
+message FundBankAccountTypeServiceResponse {
+    repeated FundBankAccountType result = 1;
+}
+
+
+message FundIssueType {
+    int64 fundIssueTypeId = 1;
+    string fundIssueTypeName = 2;
+
+
+
+}
+message FundIssueTypeServiceResponse {
+    repeated FundIssueType result = 1;
+}
+
+
+message FundInfo {
+    string today = 1;
+    bool  isCharityFund = 2;
+    bool  isEtf = 3;
+    string fundName = 4;
+    string mainAddress = 5;
+    int64 trustee2Id = 6;
+    int64 trusteeId = 7;
+    string executionManagerId = 8;
+    int64 fundCategoryId = 9;
+    int64 fundTypeId = 10;
+    string fundAbbreviation = 11;
+    int64 proctorId = 12;
+    string trusteeProfit2Id = 13;
+    float annualProfit = 14;
+    int64 auditorId = 15;
+    string managerName = 16;
+    string trusteeName = 17;
+    string trustee2Name = 18;
+    string trusteeProfitName = 19;
+    string trustee2ProfitName = 20;
+    string executionManagerName = 21;
+    string proctorName = 22;
+    string registrationManagerName = 23;
+    int64 trusteeDlId = 24;
+    string auditorName = 25;
+    string webSiteUrl = 26;
+    string socialNetworkAddress = 27;
+    string phone = 28;
+    int64 fixIssueWage = 29;
+    string fundIssuePartPercent = 30;
+    bool  isTestMode = 31;
+    string navTime = 32;
+    bool  isLockCheck = 33;
+    string lockTime = 34;
+    bool  isInBourseXml = 35;
+    bool  isAutoBourseXml = 36;
+    bool  checkConfirmedAdjustedPrice = 37;
+    int64 fixCancelWage = 38;
+    string startPeriodDate = 39;
+    int64 nomialValue = 40;
+    bool  charityFund = 41;
+    bool  etf = 42;
+    string fundType = 43;
+
+
+
+}
+message FundInfoServiceResponse {
+    FundInfo result = 1;
+}
+
+
+message FundInvestmentManagers {
+    string investmentManagerName = 1;
+
+
+
+}
+message FundInvestmentManagersServiceResponse {
+    repeated FundInvestmentManagers result = 1;
+}
+
+
+message FundSaveIpoRequest {
+
+    string bank_account_id = 1;
+    string refund_id = 2;
+    string fund_issue_type_id = 3;
+    string order_amount = 4;
+    string receipt_number = 5;
+    string receipt_date = 6;
+    string receipt_comments = 7;
+    string order_payment_type_id = 8;
+    string is_portfo = 9;
+    string wireImage = 10;
+    string national_code = 11;
+    string fund_name = 12;
+}
+message FundSaveIpo {
+    string rayan_id = 1;
+    string description = 2;
+
+}
+message FundSaveIpoServiceResponse {
+    FundSaveIpo result = 1;
+    int32 status = 2 ;
+}
+
+
+message FundSaveCancelOrderRequest {
+
+    int64 licenseNumber = 1;
+    int64 fundUnit = 2;
+    string comment = 3;
+    string name = 4;
+    string national_code = 5;
+
+
+}
+message FundSaveCancelOrder {
+    string rayan_id = 1;
+    string description = 2;
+
+}
+message FundSaveCancelOrderServiceResponse {
+    FundSaveCancelOrder result = 1;
+    int32 status = 2;
+}
+
+
+message FundCancelOrderRequest {
+
+    int64 fundOrderId = 1;
+    string name = 2;
+    string national_code = 3;
+
+
+}
+message FundCancelOrder {
+    string rayan_id = 1;
+    string description = 2;
+
+}
+message FundCancelOrderServiceResponse {
+    FundCancelOrder result = 1;
+    int32 status = 2 ;
+}
+
+message FundChartRequest {
+
+    string Type = 3;
+    string name = 4;
+
+
+}
+message FundChart {
+    string data = 1;
+    string data2 = 2;
+
+}
+message FundChartServiceResponse {
+    repeated FundChart result = 1;
+}
+
+
+message BrokerCustomerList {
+    int64 customerId = 1;
+    string nationalCode = 2;
+    string companyName = 3;
+    string firstName = 4;
+    string lastName = 5;
+    string fatherName = 6;
+    string phoneNumber = 7;
+    string mobileNumber = 8;
+    string emailAddress = 9;
+    string dlNumber = 10;
+    string status = 11;
+    int64 credit = 12;
+    int64 comexCredit = 13;
+    int64 sfCredit = 14;
+    string telegramUsername = 15;
+    string telegramStatusId = 16;
+    string creationDate = 17;
+    int64 branchId = 18;
+    string branchName = 19;
+    int64 isCompany = 20;
+    string customerIdentity = 21;
+    string birthDate = 22;
+    string birthCertificationNumber = 23;
+    string address = 24;
+    string postalCode = 25;
+    string registerationNumber = 26;
+    string bourseAccountName = 27;
+    string accountNumber = 28;
+    string onlineUsername = 29;
+    int64 hasOnlineAccount = 30;
+    string modificationDate = 31;
+    int64 isMmtpUser = 32;
+    int64 mmtpUserStatusId = 33;
+    int64 isSiteUser = 34;
+    int64 eorderStatusId = 35;
+    int64 sexTypeId = 36;
+    string sexTypeName = 37;
+    string referredBy = 38;
+    bool hasSignSample = 39;
+    bool hasCustomerPhoto = 40;
+    bool hasBirthCertificate = 41;
+    bool hasCertificateComments = 42;
+    bool hasZipFile = 43;
+    bool hasOfficialGazette = 44;
+    bool hasOfficialAds = 45;
+    int64 comexVisitorId = 46;
+    int64 mmtpUserId = 47;
+    string comexEconomyAccount = 48;
+    int64 isPortfo = 49;
+    int64 traderCredit = 50;
+    string provinceCode = 51;
+    string provinceName = 52;
+    int64 cityId = 53;
+    string cityCode = 54;
+    string cityName = 55;
+    int64 bankAccountId = 56;
+    string bankAccountNumber = 57;
+    string shabaNumber = 58;
+    string baTypeName = 59;
+    string bankName = 60;
+    int64 isStockCreditPurchase = 61;
+    repeated BrokerDomains domains = 62;
+    repeated BrokerCustomerGroups customerGroups = 63;
+
+
+}
+message BrokerCustomerListServiceResponse {
+    repeated BrokerCustomerList result = 1;
+}
+
+
+message BrokerDomains {
+    int64 domainId = 1;
+    string domainName = 2;
+
+}
+
+message BrokerCustomerGroups {
+    int64 customerGroupId = 1;
+    string customerGroupName = 2;
+
+}
+
+
+
+message BrokerCustomer {
+    int64 customerId = 1;
+    int64 isLegal = 2;
+    string isStockCreditPurchase = 3;
+    int64 customerStatusId = 4;
+    string companyName = 5;
+    string nationalIdentifier = 6;
+    string registrationNumber = 7;
+    string firstName = 8;
+    string lastName = 9;
+    string parent = 10;
+    string birthDate = 11;
+    string birthCertificationNumber = 12;
+    string birthCertId = 13;
+    string nationalCode = 14;
+    int64 sexTypeId = 15;
+    string phone = 16;
+    string cellPhone = 17;
+    string email = 18;
+    string address = 19;
+    string postalCode = 20;
+    int64 isPortfo = 21;
+    int64 isMmtpUser = 22;
+    int64 mmtpUserStatusId = 23;
+    int64 isSiteUser = 24;
+    int64 siteuserId = 25;
+    int64 eorderStatusId = 26;
+    string mmtpUsername = 27;
+    string creationDate = 28;
+    string referredBy = 29;
+    string cityCode = 30;
+    string cityName = 31;
+    string provinceCode = 32;
+    string provinceName = 33;
+    int64 smsTransaction = 34;
+    int64 isEPaymentCustomer = 35;
+    string sejamReferenceCode = 36;
+    string dlNumber = 37;
+    string siteUsername = 38;
+    int64 comexVisitorId = 39;
+    string bourseAccountName = 40;
+    string accountNumber = 41;
+    string issuingCity = 42;
+    bool hasSignSample = 43;
+    bool hasCustomerPhoto = 44;
+    bool hasBirthCertificate = 45;
+    bool hasCertificateComments = 46;
+    bool hasZipFile = 47;
+    bool hasCustomerScannedProperties = 48;
+    int64 branchId = 49;
+    string branchName = 50;
+    string fullName = 51;
+    string sexTypeName = 52;
+    repeated BrokerBourseAccounts bourseAccounts = 53;
+    repeated BrokerBankAccount bankAccounts = 54;
+    repeated int64 groupIds = 55;
+    repeated int64 domainIds = 56;
+
+
+
+}
+
+
+message BrokerCustomerServiceResponse {
+    repeated BrokerCustomer result = 1;
+}
+
+
+message BrokerBourseAccounts {
+    int64 bourseAccountId = 1;
+    string bourseAccountName = 2;
+    string accountNumber = 3;
+    int64 isDefault = 4;
+}
+
+
+message BrokerBankAccount{
+    int64 bankAccountId = 1;
+    string accountNumber = 2;
+    int64 baTypeId = 3;
+    string baTypeName = 4;
+    int64 bankId = 5;
+    string bankName = 6;
+    string bankBranch = 7;
+    string shabaNumber = 8;
+    int64 isDefault = 9;
+    int64 isOnline = 10;
+    string bankBranchCode = 11;
+    bool isActive = 12;
+
+}

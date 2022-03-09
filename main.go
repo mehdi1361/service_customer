@@ -5,6 +5,7 @@ import (
 	"log"
 	"net"
 	service "service_customer/service/proto"
+	_ "service_customer/scheduler"
 	gServer "service_customer/server"
 )
 

@@ -69,6 +69,12 @@ service CustomerService {
         rpc GetPersonById (PersonItemRequest) returns (PersonItemResponse) {}
         rpc CreatePerson (CreatePersonItemRequest) returns (PersonItemResponse) {}
         rpc DeletePerson (PersonItemRequest) returns (DeletePersonItemResponse) {}
+
+
+        rpc PersonAll (google.protobuf.Empty) returns (PersonListResponse) {}
+        rpc GetPersonById (PersonItemRequest) returns (PersonItemResponse) {}
+        rpc CreatePerson (CreatePersonItemRequest) returns (PersonItemResponse) {}
+        rpc DeletePerson (PersonItemRequest) returns (DeletePersonItemResponse) {}
 }
 
 message GenderListResponse {

@@ -48,49 +48,54 @@ func (Server) GetPersonById(ctx context.Context, e *service.PersonItemRequest) (
 	}
 	defer db.Close()
 	customer := models.Customer{}
-	db.Find(&comexVisitor, "id=?", e.Id)
-	result := service.ComexVisitorItemResponse{
-		Id:           int32(comexVisitor.ID),
-		ComexIdRayan: int32(comexVisitor.ComexIdRayan),
-		FullName:     comexVisitor.FullName,
-		TypeMebbcoId: int32(comexVisitor.TypeMebbcoId),
+	db.Find(&customer, "id=?", e.Id)
+	result := service.PersonItemResponse{
+		Id:                 int32(customer.ID),
+		SejamReferenceCode: customer.SejamReferenceCode,
+		UserName:           customer.UserName,
+		Password:           customer.Password,
+		IsActive:           customer.IsActive,
+		IsRayanService:     customer.IsRayanService,
 	}
 	return &result, nil
 }
 
-func (Server) CreateComexVisitor(ctx context.Context, e *service.CreateComexVisitorItemRequest) (*service.ComexVisitorItemResponse, error) {
+func (Server) CreatePerson(ctx context.Context, e *service.CreatePersonItemRequest) (*service.PersonItemResponse, error) {
 
 	db, err := models.Connect()
 	if err != nil {
 		fmt.Print(err)
 	}
 	defer db.Close()
-	comexVisitor := models.ComexVisitor{
-		ComexIdRayan: e.ComexIdRayan,
-		FullName:     e.FullName,
-		Rate:         e.Rate,
-		TypeMebbcoId: uint(e.TypeMebbcoId),
+	customer := models.Customer{
+		SejamReferenceCode: e.SejamReferenceCode,
+		UserName:           e.UserName,
+		Password:           e.Password,
+		IsActive:           e.IsActive,
+		IsRayanService:     e.IsRayanService,
 	}
-	db.Create(&comexVisitor)
-	result := service.ComexVisitorItemResponse{
-		Id:           int32(comexVisitor.ID),
-		ComexIdRayan: int32(comexVisitor.ComexIdRayan),
-		FullName:     comexVisitor.FullName,
-		TypeMebbcoId: int32(comexVisitor.TypeMebbcoId),
+	db.Create(&customer)
+	result := service.PersonItemResponse{
+		Id:                 int32(customer.ID),
+		SejamReferenceCode: customer.SejamReferenceCode,
+		UserName:           customer.UserName,
+		Password:           customer.Password,
+		IsActive:           customer.IsActive,
+		IsRayanService:     customer.IsRayanService,
 	}
 	return &result, nil
 }
 
-func (Server) DeleteComexVisitor(ctx context.Context, e *service.ComexVisitorItemRequest) (*service.DeleteComexVisitorItemResponse, error) {
+func (Server) DeletePerson(ctx context.Context, e *service.PersonItemRequest) (*service.DeletePersonItemResponse, error) {
 
 	db, err := models.Connect()
 	if err != nil {
 		fmt.Print(err)
 	}
 	defer db.Close()
-	db.Delete(&models.ComexVisitor{}, e.Id)
+	db.Delete(&models.Customer{}, e.Id)
 
-	result := service.DeleteComexVisitorItemResponse{
+	result := service.DeletePersonItemResponse{
 		Message: "delete successfull",
 	}
 	return &result, nil
