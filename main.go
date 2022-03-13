@@ -4,12 +4,13 @@ import (
 	"google.golang.org/grpc"
 	"log"
 	"net"
-	service "service_customer/service/proto"
 	_ "service_customer/scheduler"
 	gServer "service_customer/server"
+	service "service_customer/service/proto"
 )
 
 func main() {
+
 	grpcServer := grpc.NewServer()
 	var server gServer.Server
 	service.RegisterCustomerServiceServer(grpcServer, server)

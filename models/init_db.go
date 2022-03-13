@@ -3,10 +3,14 @@ package models
 import (
 	"fmt"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
+	"github.com/joho/godotenv"
 )
 
 func init() {
-	fmt.Println("test dbbbbbbbbbbbbbbbbbbbbbb")
+	envErr := godotenv.Load()
+	if envErr != nil {
+		panic(envErr)
+	}
 	conn, err := Connect()
 	if err != nil {
 		fmt.Print(err)
@@ -46,7 +50,7 @@ func init() {
 	db.Model(&ComexVisitor{}).AddForeignKey("type_mebbco_id", "base_mebbco_branch(id)", "CASCADE", "CASCADE")
 	db.Model(&JobInfo{}).AddForeignKey("job_id", "base_job(id)", "CASCADE", "CASCADE")
 	db.Model(&JobInfo{}).AddForeignKey("customer_id", "customer_customer(id)", "CASCADE", "CASCADE")
-	db.Model(&Fund{}).AddForeignKey("id", "customer_customer(id)", "CASCADE", "CASCADE")
+	db.Model(&Fund{}).AddForeignKey("customer_service_id", "customer_customer(id)", "CASCADE", "CASCADE")
 	db.Model(&CustomerPrivate{}).AddForeignKey("id", "customer_customer(id)", "CASCADE", "CASCADE")
 	db.Model(&CustomerLegal{}).AddForeignKey("id", "customer_customer(id)", "CASCADE", "CASCADE")
 }
