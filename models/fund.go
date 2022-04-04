@@ -10,7 +10,7 @@ type Fund struct {
 	CustomerId            int64  `json:"customer_id" gorm:"Column:customer_id"`
 	ReferredBy            string `json:"referred_by" gorm:"Column:referred_by;size:60"`
 	BranchId              uint   `gorm:"Column:branch_id"`
-	fundName              string `json:"fund_name" gorm:"Column:fund_name;size:60"`
+	FundName              string `json:"fund_name" gorm:"Column:fund_name;size:60;primaryKey"`
 	Personality           string `json:"personality" gorm:"Column:personality;size:60"`
 	FullName              string `json:"fullname" gorm:"Column:fullname;size:100"`
 	IssunigCity           string `json:"issuing_city" gorm:"Column:issuing_city;size:100"`
@@ -20,7 +20,7 @@ type Fund struct {
 	IsProfitIssue         string `json:"is_profit_issue" gorm:"Column:is_profit_issue;size:100"`
 	Status                string `json:"status" gorm:"Column:status;size:100"`
 	AccountNumber         string `json:"account_number" gorm:"Column:account_number;size:100"`
-	CustomerServiceId     uint   `gorm:"Column:customer_service_id"`
+	CustomerServiceId     uint   `gorm:"Column:customer_service_id;primaryKey"`
 }
 
 func (f Fund) TableName() string {

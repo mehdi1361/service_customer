@@ -35,14 +35,14 @@ message FundChartDbResponse {
 
 
 message MainRequest {
-    string name = 1;
-    string national_code = 2;
-    string start_date = 3;
-    string end_date = 4;
-    int64 size = 5;
-    string rayan_customer_id = 6;
-    int64  page_size = 7;
-    int64  offset = 8;
+     string name = 1;
+     string national_code = 2;
+     string start_date = 3;
+     string end_date = 4;
+     int64 size = 5;
+     string rayan_customer_id = 6;
+     int64  page_size = 7;
+     int64  offset = 8;
 
 
 }
@@ -141,35 +141,35 @@ message FundCustomerInfo {
     string customer_status_id = 4;
     string is_iranian = 5;
     string national_id = 6;
-    string first_name = 7;
-    string last_name = 8;
-    string father_name = 9;
-    string birth_date = 10;
-    string birth_place = 11;
-    string birth_cert_number = 12;
-    string national_code = 13;
-    string phone = 14;
-    string mobile_number = 15;
-    string email = 16;
-    string address = 17;
-    string postal_code = 18;
-    string referred_by = 19;
-    string site_username = 20;
-    string registration_date = 21;
-    string branch_id = 22;
-    string branch_name = 23;
-    string dl_number = 24;
-    string is_profit_issue = 25;
-    string profit_rate = 26;
-    string sejam_status_type_id = 27;
-    string birth_certification_id = 28;
-    string full_name = 29;
-    repeated FundBankAccount bank_accounts = 30;
-
-
+    string company_name = 7;
+    string registration_id = 8;
+    string first_name = 9;
+    string last_name = 10;
+    string father_name = 11;
+    string birth_date = 12;
+    string birth_place = 13;
+    string birth_cert_number = 14;
+    string national_code = 15;
+    string phone = 16;
+    string mobile_number = 17;
+    string email = 18;
+    string address = 19;
+    string postal_code = 20;
+    string referred_by = 21;
+    string site_username = 22;
+    string registration_date = 23;
+    string branch_id = 24;
+    string branch_name = 25;
+    string dl_number = 26;
+    string is_profit_issue = 27;
+    string profit_rate = 28;
+    string sejam_status_type_id = 29;
+    string birth_certification_id = 30;
+    string full_name = 31;
+    repeated FundBankAccount bank_accounts = 32;
 }
 message FundCustomerInfoServiceResponse {
-    repeated FundCustomerInfo result = 1;
+    FundCustomerInfo result = 1;
 }
 
 
@@ -211,11 +211,7 @@ message FunOrderData {
     int64 toBankAccountId  = 35;
     string receiptComments  = 36;
     string licenseNumber  = 37;
-
-
 }
-
-
 
 message FunOrder {
     repeated FunOrderData data = 1;
@@ -223,10 +219,8 @@ message FunOrder {
     int64 pageNumber  = 3;
     int64 offset  = 4;
     int64 total  = 5;
-
-
-
 }
+
 message FunOrderServiceResponse {
     FunOrder result = 1;
 }
@@ -262,8 +256,6 @@ message FundStatisticInfo {
     float simpleYearly = 10;
     int64 fundCapital = 11;
     float simpleAllDays = 12;
-
-
 }
 message FundStatisticInfoServiceResponse {
     repeated FundStatisticInfo result = 1;
@@ -305,15 +297,10 @@ message FundOrderReports {
     string receiptDate = 33;
     string receiptNumber = 34;
     int64 fundIssueTypeId = 35;
-
-
-
 }
 message FundOrderReportsServiceResponse {
     repeated FundOrderReports result = 1;
 }
-
-
 message FundCustomerProfits {
     string appliedProfitDate = 1;
     int64 fundUnit = 2;
@@ -322,10 +309,6 @@ message FundCustomerProfits {
     int64 profitAmount = 5;
     int64 totalProfitAmount = 6;
     int64 extraProfit = 7;
-
-
-
-
 }
 message FundCustomerProfitsServiceResponse {
     repeated FundCustomerProfits result = 1;
@@ -457,8 +440,8 @@ message FundSaveIpoRequest {
     string fund_name = 12;
 }
 message FundSaveIpo {
-    string rayan_id = 1;
-    string description = 2;
+     string rayan_id = 1;
+     string description = 2;
 
 }
 message FundSaveIpoServiceResponse {
@@ -473,13 +456,13 @@ message FundSaveCancelOrderRequest {
     int64 fundUnit = 2;
     string comment = 3;
     string name = 4;
-    string national_code = 5;
+     string national_code = 5;
 
 
 }
 message FundSaveCancelOrder {
-    string rayan_id = 1;
-    string description = 2;
+     string rayan_id = 1;
+     string description = 2;
 
 }
 message FundSaveCancelOrderServiceResponse {
@@ -497,8 +480,8 @@ message FundCancelOrderRequest {
 
 }
 message FundCancelOrder {
-    string rayan_id = 1;
-    string description = 2;
+     string rayan_id = 1;
+     string description = 2;
 
 }
 message FundCancelOrderServiceResponse {
@@ -514,8 +497,8 @@ message FundChartRequest {
 
 }
 message FundChart {
-    string data = 1;
-    string data2 = 2;
+     string data = 1;
+     string data2 = 2;
 
 }
 message FundChartServiceResponse {

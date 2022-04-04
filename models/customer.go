@@ -3,7 +3,6 @@ package models
 import (
 	"fmt"
 	"github.com/jinzhu/gorm"
-	//"github.com/k0kubun/pp/v3"
 	service "service_customer/service/rayan/proto"
 	"strings"
 	"sync"
@@ -13,7 +12,7 @@ import (
 type Customer struct {
 	gorm.Model
 	SejamReferenceCode string          `json:"sejam_reference_code" gorm:"size:100"`
-	NormalNationalCode string          `json:"normal_national_code gorm:"size:10"`
+	NormalNationalCode string          `json:"normal_national_code" gorm:"size:11;unique"`
 	UserName           string          `json:"user_name" gorm:"size:100"`
 	Password           string          `json:"user_name" gorm:"size:100"`
 	IsActive           bool            `json:"is_active"`
@@ -29,7 +28,7 @@ func (c *Customer) TableName() string {
 	return "customer_customer"
 }
 
-func (c Customer) SetBulkDataFund(customers []*service.FundCustomerList) {
+func (c Customer) SetBulkDataFund(customers []*service.FundCustomerList, fundName string) {
 	var wg sync.WaitGroup
 	var mu sync.Mutex
 
@@ -51,9 +50,8 @@ func (c Customer) SetBulkDataFund(customers []*service.FundCustomerList) {
 	for _, v := range customers {
 
 		wg.Add(1)
-		c.SetFund(db, *v, &wg)
+		c.SetFund(db, *v, &wg, fundName)
 	}
-	fmt.Printf("length of customer lis is %d", len(customers))
 	wg.Wait()
 	defer db.Close()
 }
@@ -62,6 +60,7 @@ func (c Customer) SetFund(
 	db *gorm.DB,
 	customer service.FundCustomerList,
 	wg *sync.WaitGroup,
+	fundName string,
 ) error {
 	defer wg.Done()
 	sqlDB := db.DB()
@@ -83,31 +82,44 @@ func (c Customer) SetFund(
 	}
 
 	normalNationalCode := strings.Replace(customer.NationalIdentifier, "-", "", -1)
-	newCustomer := Customer{
-		NormalNationalCode: normalNationalCode,
-		IsActive:           true,
-		IsRayanService:     true,
+	fCustomer := Customer{}
+
+	db.Find(&fCustomer, "normal_national_code=?", normalNationalCode)
+
+	if fCustomer.ID == 0 {
+		fCustomer = Customer{
+			NormalNationalCode: normalNationalCode,
+			IsActive:           true,
+			IsRayanService:     true,
+		}
+
+		if err := tx.Create(&fCustomer).Error; err != nil {
+			tx.Rollback()
+			return err
+		}
+
 	}
 
-	if err := tx.Create(&newCustomer).Error; err != nil {
-		tx.Rollback()
-		return err
-	}
+	fFund := Fund{}
+	db.Find(&fFund, "customer_service_id=? and fund_name=?", fCustomer.ID, fundName)
 
-	fund := Fund{
-		CustomerServiceId:  newCustomer.ID,
-		CustomerId:         customer.CustomerId,
-		ReferredBy:         customer.ReferredBy,
-		Personality:        customer.Personality,
-		FullName:           customer.CustomerFullName,
-		IssunigCity:        customer.IssuingCity,
-		Nationality:        customer.Nationality,
-		NationalIdentifier: customer.NationalIdentifier,
-	}
+	if fFund.ID == 0 {
+		fund := Fund{
+			CustomerServiceId:  fCustomer.ID,
+			CustomerId:         customer.CustomerId,
+			ReferredBy:         customer.ReferredBy,
+			Personality:        customer.Personality,
+			FullName:           customer.CustomerFullName,
+			IssunigCity:        customer.IssuingCity,
+			Nationality:        customer.Nationality,
+			NationalIdentifier: customer.NationalIdentifier,
+			FundName:           fundName,
+		}
 
-	if err := tx.Create(&fund).Error; err != nil {
-		tx.Rollback()
-		return err
+		if err := tx.Create(&fund).Error; err != nil {
+			tx.Rollback()
+			return err
+		}
 	}
 
 	//pp.Print(customer)

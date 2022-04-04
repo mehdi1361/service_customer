@@ -33,7 +33,7 @@ func readCustomerFundData() {
 				log.Fatalf("error: %s", err)
 			}
 			fmt.Println(len(customers.Result))
-			models.Customer{}.SetBulkDataFund(customers.Result)
+			models.Customer{}.SetBulkDataFund(customers.Result, account_data.Name)
 		}
 	}
 }
