@@ -10,6 +10,7 @@ require (
 	github.com/jasonlvhit/gocron v0.0.1 // indirect
 	github.com/jinzhu/gorm v1.9.16
 	github.com/joho/godotenv v1.4.0
+	github.com/k0kubun/pp v3.0.1+incompatible // indirect
 	github.com/k0kubun/pp/v3 v3.1.0 // indirect
 	github.com/kisielk/gotool v1.0.0 // indirect
 	github.com/qor/qor v1.2.0 // indirect

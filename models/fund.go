@@ -21,6 +21,7 @@ type Fund struct {
 	Status                string `json:"status" gorm:"Column:status;size:100"`
 	AccountNumber         string `json:"account_number" gorm:"Column:account_number;size:100"`
 	CustomerServiceId     uint   `gorm:"Column:customer_service_id;primaryKey"`
+	IsPortfo              uint   `gorm:"Column:is_portfo"`
 }
 
 func (f Fund) TableName() string {

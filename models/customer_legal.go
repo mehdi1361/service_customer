@@ -2,6 +2,7 @@ package models
 
 import (
 	"github.com/jinzhu/gorm"
+	"time"
 )
 
 type CustomerLegal struct {
@@ -20,4 +21,41 @@ type CustomerLegal struct {
 
 func (cl *CustomerLegal) TableName() string {
 	return "customer_legal_info"
+}
+
+func (cl CustomerLegal) Set(customerLegal *CustomerLegal) error {
+
+	db, err := Connect()
+	if err != nil {
+		return err
+	}
+
+	sqlDB := db.DB()
+	for {
+		if e := sqlDB.Ping(); e == nil {
+			break
+		}
+	}
+
+	sqlDB.SetMaxIdleConns(10)
+
+	sqlDB.SetMaxOpenConns(300)
+
+	sqlDB.SetConnMaxLifetime(time.Hour)
+
+	defer db.Close()
+	customer := CustomerLegal{}
+	db.Find(&customer, "customer_id=?", customerLegal.CustomerId)
+
+	tx := db.Begin()
+
+	if customer.ID == 0 {
+		if err := tx.Create(&customerLegal).Error; err != nil {
+			tx.Rollback()
+			return err
+		}
+	}
+
+	return tx.Commit().Error
+
 }

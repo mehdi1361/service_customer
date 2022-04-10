@@ -2,6 +2,7 @@ package models
 
 import (
 	"github.com/jinzhu/gorm"
+	"time"
 )
 
 type CustomerPrivate struct {
@@ -17,9 +18,46 @@ type CustomerPrivate struct {
 	BirthDate     string `json:"birth_date" gorm:"size:100"`
 	PlaceOfIssue  string `json:"place_of_issue" gorm:"size:100"`
 	SignatureFile string `json:"signature_file" gorm:"type:text"`
-	CustomerId    uint   `json:"customer" `
+	CustomerId    uint   `json:"customer" gorm:"unique"`
 }
 
 func (cp *CustomerPrivate) TableName() string {
 	return "customer_private_info"
+}
+
+func (cp CustomerPrivate) Set(customerPrivate *CustomerPrivate) error {
+
+	db, err := Connect()
+	if err != nil {
+		return err
+	}
+
+	sqlDB := db.DB()
+	for {
+		if e := sqlDB.Ping(); e == nil {
+			break
+		}
+	}
+
+	sqlDB.SetMaxIdleConns(10)
+
+	sqlDB.SetMaxOpenConns(300)
+
+	sqlDB.SetConnMaxLifetime(time.Hour)
+
+	defer db.Close()
+	customer := CustomerPrivate{}
+	db.Find(&customer, "customer_id=?", customerPrivate.CustomerId)
+
+	tx := db.Begin()
+
+	if customer.ID == 0 {
+		if err := tx.Create(&customerPrivate).Error; err != nil {
+			tx.Rollback()
+			return err
+		}
+	}
+
+	return tx.Commit().Error
+
 }

@@ -56,12 +56,7 @@ func (c Customer) SetBulkDataFund(customers []*service.FundCustomerList, fundNam
 	defer db.Close()
 }
 
-func (c Customer) SetFund(
-	db *gorm.DB,
-	customer service.FundCustomerList,
-	wg *sync.WaitGroup,
-	fundName string,
-) error {
+func (c Customer) SetFund(db *gorm.DB, customer service.FundCustomerList, wg *sync.WaitGroup, fundName string,) error {
 	defer wg.Done()
 	sqlDB := db.DB()
 	for {

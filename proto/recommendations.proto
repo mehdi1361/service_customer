@@ -35,14 +35,14 @@ message FundChartDbResponse {
 
 
 message MainRequest {
-     string name = 1;
-     string national_code = 2;
-     string start_date = 3;
-     string end_date = 4;
-     int64 size = 5;
-     string rayan_customer_id = 6;
-     int64  page_size = 7;
-     int64  offset = 8;
+    string name = 1;
+    string national_code = 2;
+    string start_date = 3;
+    string end_date = 4;
+    int64 size = 5;
+    int64 rayan_customer_id = 6;
+    int64  page_size = 7;
+    int64  offset = 8;
 
 
 }
@@ -167,6 +167,8 @@ message FundCustomerInfo {
     string birth_certification_id = 30;
     string full_name = 31;
     repeated FundBankAccount bank_accounts = 32;
+
+
 }
 message FundCustomerInfoServiceResponse {
     FundCustomerInfo result = 1;
@@ -211,7 +213,11 @@ message FunOrderData {
     int64 toBankAccountId  = 35;
     string receiptComments  = 36;
     string licenseNumber  = 37;
+
+
 }
+
+
 
 message FunOrder {
     repeated FunOrderData data = 1;
@@ -219,8 +225,10 @@ message FunOrder {
     int64 pageNumber  = 3;
     int64 offset  = 4;
     int64 total  = 5;
-}
 
+
+
+}
 message FunOrderServiceResponse {
     FunOrder result = 1;
 }
@@ -256,6 +264,8 @@ message FundStatisticInfo {
     float simpleYearly = 10;
     int64 fundCapital = 11;
     float simpleAllDays = 12;
+
+
 }
 message FundStatisticInfoServiceResponse {
     repeated FundStatisticInfo result = 1;
@@ -297,10 +307,15 @@ message FundOrderReports {
     string receiptDate = 33;
     string receiptNumber = 34;
     int64 fundIssueTypeId = 35;
+
+
+
 }
 message FundOrderReportsServiceResponse {
     repeated FundOrderReports result = 1;
 }
+
+
 message FundCustomerProfits {
     string appliedProfitDate = 1;
     int64 fundUnit = 2;
@@ -309,6 +324,10 @@ message FundCustomerProfits {
     int64 profitAmount = 5;
     int64 totalProfitAmount = 6;
     int64 extraProfit = 7;
+
+
+
+
 }
 message FundCustomerProfitsServiceResponse {
     repeated FundCustomerProfits result = 1;
@@ -440,8 +459,8 @@ message FundSaveIpoRequest {
     string fund_name = 12;
 }
 message FundSaveIpo {
-     string rayan_id = 1;
-     string description = 2;
+    string rayan_id = 1;
+    string description = 2;
 
 }
 message FundSaveIpoServiceResponse {
@@ -456,13 +475,13 @@ message FundSaveCancelOrderRequest {
     int64 fundUnit = 2;
     string comment = 3;
     string name = 4;
-     string national_code = 5;
+    string national_code = 5;
 
 
 }
 message FundSaveCancelOrder {
-     string rayan_id = 1;
-     string description = 2;
+    string rayan_id = 1;
+    string description = 2;
 
 }
 message FundSaveCancelOrderServiceResponse {
@@ -480,8 +499,8 @@ message FundCancelOrderRequest {
 
 }
 message FundCancelOrder {
-     string rayan_id = 1;
-     string description = 2;
+    string rayan_id = 1;
+    string description = 2;
 
 }
 message FundCancelOrderServiceResponse {
@@ -497,8 +516,8 @@ message FundChartRequest {
 
 }
 message FundChart {
-     string data = 1;
-     string data2 = 2;
+    string data = 1;
+    string data2 = 2;
 
 }
 message FundChartServiceResponse {

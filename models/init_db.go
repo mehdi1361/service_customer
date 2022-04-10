@@ -39,6 +39,7 @@ func init() {
 		&ComexVisitor{},
 		&JobInfo{},
 		&Fund{},
+		&CustomerBranch{},
 	)
 	db.Model(&Province{}).AddForeignKey("country_id", "base_countries(id)", "CASCADE", "CASCADE")
 	db.Model(&City{}).AddForeignKey("province_id", "base_province(id)", "CASCADE", "CASCADE")
@@ -53,4 +54,6 @@ func init() {
 	db.Model(&Fund{}).AddForeignKey("customer_service_id", "customer_customer(id)", "CASCADE", "CASCADE")
 	db.Model(&CustomerPrivate{}).AddForeignKey("id", "customer_customer(id)", "CASCADE", "CASCADE")
 	db.Model(&CustomerLegal{}).AddForeignKey("id", "customer_customer(id)", "CASCADE", "CASCADE")
+	db.Model(&CustomerBranch{}).AddForeignKey("customer_id", "customer_customer(id)", "CASCADE", "CASCADE")
+	db.Model(&CustomerBranch{}).AddForeignKey("branch_id", "base_mebbco_branch(id)", "CASCADE", "CASCADE")
 }
