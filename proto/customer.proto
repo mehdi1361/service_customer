@@ -70,11 +70,7 @@ service CustomerService {
         rpc CreatePerson (CreatePersonItemRequest) returns (PersonItemResponse) {}
         rpc DeletePerson (PersonItemRequest) returns (DeletePersonItemResponse) {}
 
-
-        rpc PersonAll (google.protobuf.Empty) returns (PersonListResponse) {}
-        rpc GetPersonById (PersonItemRequest) returns (PersonItemResponse) {}
-        rpc CreatePerson (CreatePersonItemRequest) returns (PersonItemResponse) {}
-        rpc DeletePerson (PersonItemRequest) returns (DeletePersonItemResponse) {}
+        rpc LoginByNationalId (LoginByNationalIdRequest) returns (LoginStateResponse) {}
 }
 
 message GenderListResponse {
@@ -382,4 +378,13 @@ message CreatePersonItemRequest {
 
 message DeletePersonItemResponse {
         string message = 1;
+}
+
+message LoginByNationalIdRequest {
+        string NationalId = 1;
+}
+
+message LoginStateResponse {
+        int32 Id = 1;
+        string Message = 3;
 }

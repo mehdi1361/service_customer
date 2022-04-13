@@ -11,17 +11,18 @@ import (
 
 type Customer struct {
 	gorm.Model
-	SejamReferenceCode string          `json:"sejam_reference_code" gorm:"size:100"`
-	NormalNationalCode string          `json:"normal_national_code" gorm:"size:11;unique"`
-	UserName           string          `json:"user_name" gorm:"size:100"`
-	Password           string          `json:"user_name" gorm:"size:100"`
-	IsActive           bool            `json:"is_active"`
-	IsRayanService     bool            `json:"is_rayan_service"`
-	PhonePerson        []PhonePerson   `json:"phone_persons"`
-	PrivateInfo        CustomerPrivate `gorm:"foreignKey:CustomerId;association_foreignkey:ID"`
-	LegalInfo          CustomerLegal   `gorm:"foreignKey:CustomerId;association_foreignkey:ID"`
-	JobInfos           []JobInfo       `gorm:"foreignKey:CustomerId"`
-	Fund               Fund            `gorm:"foreignKey:CustomerServiceId"`
+	SejamReferenceCode string             `json:"sejam_reference_code" gorm:"size:100"`
+	NormalNationalCode string             `json:"normal_national_code" gorm:"size:11;unique"`
+	UserName           string             `json:"user_name" gorm:"size:100"`
+	Password           string             `json:"user_name" gorm:"size:100"`
+	IsActive           bool               `json:"is_active"`
+	IsRayanService     bool               `json:"is_rayan_service"`
+	PhonePerson        []PhonePerson      `json:"phone_persons"`
+	PrivateInfo        CustomerPrivate    `gorm:"foreignKey:CustomerId;association_foreignkey:ID"`
+	LegalInfo          CustomerLegal      `gorm:"foreignKey:CustomerId;association_foreignkey:ID"`
+	JobInfos           []JobInfo          `gorm:"foreignKey:CustomerId"`
+	VerificationCodes  []VerificationCode `gorm:"foreignKey:CustomerId"`
+	Fund               Fund               `gorm:"foreignKey:CustomerServiceId"`
 }
 
 func (c *Customer) TableName() string {
@@ -56,7 +57,7 @@ func (c Customer) SetBulkDataFund(customers []*service.FundCustomerList, fundNam
 	defer db.Close()
 }
 
-func (c Customer) SetFund(db *gorm.DB, customer service.FundCustomerList, wg *sync.WaitGroup, fundName string,) error {
+func (c Customer) SetFund(db *gorm.DB, customer service.FundCustomerList, wg *sync.WaitGroup, fundName string) error {
 	defer wg.Done()
 	sqlDB := db.DB()
 	for {
