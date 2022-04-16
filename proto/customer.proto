@@ -71,6 +71,8 @@ service CustomerService {
         rpc DeletePerson (PersonItemRequest) returns (DeletePersonItemResponse) {}
 
         rpc LoginByNationalId (LoginByNationalIdRequest) returns (LoginStateResponse) {}
+        rpc CustomerMobileList (LoginByNationalIdRequest) returns (CustomerMobileListResponse) {}
+        rpc CustomerSetActiveMobile (CustomerSetActiveMobileRequest) returns (StateResponse) {}
 }
 
 message GenderListResponse {
@@ -385,6 +387,25 @@ message LoginByNationalIdRequest {
 }
 
 message LoginStateResponse {
+        int32 Id = 1;
+        string Message = 3;
+}
+
+message CustomerMobile {
+        string PhoneNumber = 1;
+        bool IsActive = 2;
+}
+
+message CustomerMobileListResponse {
+        repeated CustomerMobile customermobile = 1;
+}
+
+message CustomerSetActiveMobileRequest {
+        string PhoneNumber = 1;
+        string NationalId = 2;
+}
+
+message StateResponse {
         int32 Id = 1;
         string Message = 3;
 }

@@ -28,6 +28,23 @@ func (Server) LoginByNationalId(ctx context.Context, e *service.LoginByNationalI
 			Message: "user not found",
 		}, errors.New("user not found")
 	}
+	var count int64
+	db.Model(&models.PhonePerson{}).Where("customer_id=? and is_mobile=?", customer.ID, true).Count(&count)
+
+	if count > 1 {
+		return nil, errors.New("Active mobile mor than one")
+	}
+
+
+	err = models.VerificationCode{}.SendVerificationCode(customer)
+
+	if err != nil {
+		return &service.LoginStateResponse{
+			Id:      400,
+			Message: "error to sending verification code",
+		}, err
+
+	}
 
 	return &service.LoginStateResponse{
 		Id:      200,
