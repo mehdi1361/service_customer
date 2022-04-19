@@ -73,6 +73,8 @@ service CustomerService {
         rpc LoginByNationalId (LoginByNationalIdRequest) returns (LoginStateResponse) {}
         rpc CustomerMobileList (LoginByNationalIdRequest) returns (CustomerMobileListResponse) {}
         rpc CustomerSetActiveMobile (CustomerSetActiveMobileRequest) returns (StateResponse) {}
+        rpc CustomerVerified (CustomerVerifiedRequest) returns (StateResponse) {}
+        rpc CustomerListApp (CustomerListAppRequest) returns (CustomerListAppResponse) {}
 }
 
 message GenderListResponse {
@@ -408,4 +410,22 @@ message CustomerSetActiveMobileRequest {
 message StateResponse {
         int32 Id = 1;
         string Message = 3;
+}
+
+message CustomerVerifiedRequest {
+        string VerificationCode = 1;
+        string NationalId = 2;
+}
+
+message CustomerListAppRequest {
+        string CustomerId = 1;
+}
+
+message CustomerListAppResponse {
+        repeated CustomerApp customerapp = 1;
+}
+
+message CustomerApp {
+        int64 Id = 1;
+        string Name = 2;
 }
