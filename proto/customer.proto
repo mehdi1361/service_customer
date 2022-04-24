@@ -418,7 +418,7 @@ message CustomerVerifiedRequest {
 }
 
 message CustomerListAppRequest {
-        string CustomerId = 1;
+        string NationalId = 1;
 }
 
 message CustomerListAppResponse {

@@ -32,6 +32,18 @@ func (Server) CustomerVerified(ctx context.Context, e *service.CustomerVerifiedR
 		}, nil
 	}
 
+	if e.VerificationCode != verificationCode.Code {
+		return &service.StateResponse{
+			Id:      400,
+			Message: "verification code not match!!!",
+		}, nil
+
+	}
+
+	db.Model(&models.VerificationCode{}).Where(
+		"customer_id=? and is_active=? and code=?", customer.ID, true,e.VerificationCode,
+	).Update("is_active", false)
+
 	return &service.StateResponse{
 		Id:      200,
 		Message: "verification code accepted",

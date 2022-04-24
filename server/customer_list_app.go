@@ -12,7 +12,11 @@ func (Server) CustomerListApp(ctx context.Context, e *service.CustomerListAppReq
 	inlineResult := []*service.CustomerApp{}
 	defer db.Close()
 
-	db.Where("customer_service_id=?", e.CustomerId).Find(&funds)
+
+	customer := models.Customer{}
+	db.Find(&customer, "normal_natioanl_code", e.NationalId)
+
+	db.Where("customer_service_id=?", customer.ID).Find(&funds)
 
 	for _, v := range funds {
 		inlineResult = append(
