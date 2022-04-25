@@ -5,6 +5,8 @@ import (
 	"golang.org/x/net/context"
 	models "service_customer/models"
 	service "service_customer/service/proto"
+	utils "service_customer/utils"
+	"strconv"
 )
 
 func (Server) CustomerMobileList(ctx context.Context, e *service.LoginByNationalIdRequest) (*service.CustomerMobileListResponse, error) {
@@ -22,7 +24,8 @@ func (Server) CustomerMobileList(ctx context.Context, e *service.LoginByNational
 	servicePhones := []*service.CustomerMobile{}
 	for _, v := range phones {
 		servicePhones = append(servicePhones, &service.CustomerMobile{
-			PhoneNumber: v.PhoneNumber,
+			PhoneNumber: utils.HashMobile(v.PhoneNumber),
+			PhoneId: strconv.Itoa(int(v.ID)),
 			IsActive: v.IsActive,
 		})
 	}

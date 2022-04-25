@@ -17,7 +17,7 @@ func (Server) CustomerSetActiveMobile(ctx context.Context, e *service.CustomerSe
 	db.Model(&models.PhonePerson{}).Where("customer_id=? and is_mobile=?", customer.ID, true).Update("is_active", false)
 
 	db.Model(&models.PhonePerson{}).Where(
-		"customer_id=? and is_mobile=? and phone_number=?", customer.ID, true,e.PhoneNumber,
+		"customer_id=? and is_mobile=? and id=?", customer.ID, true,e.PhoneId,
 	).Update("is_active", true)
 
 	return &service.StateResponse{

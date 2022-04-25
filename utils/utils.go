@@ -13,3 +13,15 @@ func RandomCodeGenerate(length int) string {
 	}
 	return strings.Join(result, "")
 }
+
+func HashMobile(phoneNumber string) string {
+	result := make([]string, len(phoneNumber))
+	for i, v := range phoneNumber {
+		if i > 2 && i < 7 {
+			result[i] = "*"
+		} else {
+			result[i] = string(v)
+		}
+	}
+	return strings.Join(result, "")
+}

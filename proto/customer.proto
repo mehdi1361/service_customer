@@ -395,7 +395,8 @@ message LoginStateResponse {
 
 message CustomerMobile {
         string PhoneNumber = 1;
-        bool IsActive = 2;
+        string PhoneId = 2;
+        bool IsActive = 3;
 }
 
 message CustomerMobileListResponse {
@@ -403,7 +404,7 @@ message CustomerMobileListResponse {
 }
 
 message CustomerSetActiveMobileRequest {
-        string PhoneNumber = 1;
+        string PhoneId = 1;
         string NationalId = 2;
 }
 
