@@ -14,7 +14,7 @@ func (Server) CustomerListApp(ctx context.Context, e *service.CustomerListAppReq
 
 
 	customer := models.Customer{}
-	db.Find(&customer, "normal_natioanl_code", e.NationalId)
+	db.Find(&customer, "normal_national_code=?", e.NationalId)
 
 	db.Where("customer_service_id=?", customer.ID).Find(&funds)
 
