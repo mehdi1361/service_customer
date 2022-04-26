@@ -18,7 +18,7 @@ func (Server) CustomerMobileList(ctx context.Context, e *service.LoginByNational
 
 	phones := []*models.PhonePerson{}
 
-	db.Find(&phones, "customer_id=? and is_mobile=? and is_active=?", customer.ID, true, true)
+	db.Find(&phones, "customer_id=? and is_mobile=?", customer.ID, true)
 	fmt.Println(len(phones))
 
 	servicePhones := []*service.CustomerMobile{}
