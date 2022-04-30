@@ -18,4 +18,5 @@ require (
 	google.golang.org/genproto v0.0.0-20220218161850-94dd64e39d7c // indirect
 	google.golang.org/grpc v1.44.0 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
+	github.com/jinzhu/gorm v1.9.16 // indirect
 )
