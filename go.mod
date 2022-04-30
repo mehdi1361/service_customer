@@ -1,10 +1,11 @@
-module service_customer/v1
+module service_customer
 
 go 1.16
 
 require (
 	github.com/asaskevich/govalidator v0.0.0-20210307081110-f21760c49a8d // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
+	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/jasonlvhit/gocron v0.0.1
 	github.com/jinzhu/gorm v1.9.16
 	github.com/k0kubun/colorstring v0.0.0-20150214042306-9440f1994b88 // indirect
@@ -17,6 +18,4 @@ require (
 	golang.org/x/sys v0.0.0-20220209214540-3681064d5158 // indirect
 	google.golang.org/genproto v0.0.0-20220218161850-94dd64e39d7c // indirect
 	google.golang.org/grpc v1.44.0 // indirect
-	github.com/golang/protobuf v1.5.2 // indirect
-	github.com/jinzhu/gorm v1.9.16 // indirect
 )
