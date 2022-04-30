@@ -1,0 +1,53 @@
+syntax = "proto3";
+package sms_service;
+
+
+message Request {
+    string name_service = 1;
+
+}
+
+message SmsSendRequest {
+    string name_service = 1;
+    repeated string phone = 2 ;
+    repeated string text = 3 ;
+
+}
+
+message SmsStatusRequest {
+    string name_service = 1;
+    repeated string phone = 2 ;
+
+}
+
+message SmsMagfaStatus {
+    repeated string status = 1;
+}
+message SmsMagfaStatusServiceResponse {
+    SmsMagfaStatus result = 1;
+}
+
+
+message SmsMagfa {
+    repeated string sms_id = 1;
+}
+message SmsMagfaServiceResponse {
+    SmsMagfa result = 1;
+    int32 status_code = 2;
+}
+
+message SmsDb {
+    string name = 1;
+    string domain = 2;
+    string number = 3;
+}
+message SmsDbServiceResponse {
+    repeated SmsDb result = 1;
+}
+
+
+service SmsService {
+    rpc SmsService (SmsSendRequest) returns (SmsMagfaServiceResponse);
+    rpc SmsDbService (Request) returns (SmsDbServiceResponse);
+    rpc SmsStatusService (SmsStatusRequest) returns (SmsMagfaStatusServiceResponse);
+    }
