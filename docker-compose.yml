@@ -1,0 +1,7 @@
+version: "3.8"
+services:
+  service_customer_501_master:
+    image: service_customer_501_master:latest
+    container_name: service_customer_501_master
+    ports:
+      - 3002:3000
