@@ -1,7 +1,11 @@
 package models
 
 import (
+	"fmt"
 	"github.com/jinzhu/gorm"
+	"golang.org/x/net/context"
+	sms "service_customer/service/sms/proto"
+	service "service_customer/service_connections"
 	utils "service_customer/utils"
 )
 
@@ -23,13 +27,28 @@ func (v VerificationCode) SendVerificationCode(customer Customer) error {
 	}
 	defer db.Close()
 	db.Model(&VerificationCode{}).Where("customer_id=?", customer.ID).Update("is_active", false)
+	verificationCode := utils.RandomCodeGenerate(4)
 
 	verificarionCode := VerificationCode{
-		Code:       utils.RandomCodeGenerate(4),
+		Code:       verificationCode,
 		CustomerId: customer.ID,
 		IsActive:   true,
 	}
 	db.Create(&verificarionCode)
+
+	phone := PhonePerson{}
+	db.Find(&phone, "customer_id=?", customer.ID)
+
+	conn, _ := service.SmsServiceConnection()
+	ce := sms.NewSmsServiceClient(conn)
+	_, _ = ce.SmsService(
+		context.Background(),
+		&sms.SmsSendRequest{
+			NameService: "customer service",
+			Phone:       []string{phone.PhoneNumber},
+			Text:        []string{fmt.Sprintf("کد فعالسازی سامانه کارگزاری بانک خاورمیانه %s", verificarionCode)},
+		},
+	)
 
 	return nil
 }
