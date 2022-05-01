@@ -1,12 +1,11 @@
 package models
 
 import (
-	"fmt"
 	"github.com/jinzhu/gorm"
-	"golang.org/x/net/context"
-	sms "service_customer/service/sms/proto"
-	service "service_customer/service_connections"
-	utils "service_customer/utils"
+	//"golang.org/x/net/context"
+	//sms "service_customer/service/sms/proto"
+	//service "service_customer/service_connections"
+	//	utils "service_customer/utils"
 )
 
 type VerificationCode struct {
