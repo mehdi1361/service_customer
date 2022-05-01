@@ -39,7 +39,7 @@ func (v VerificationCode) SendVerificationCode(customer Customer) error {
 		&sms.SmsSendRequest{
 			NameService: "customer service",
 			Phone:       []string{phone.PhoneNumber},
-			Text:        []string{fmt.Sprintf("کد فعالسازی سامانه کارگزاری بانک خاورمیانه %s", verificarionCode)},
+			Text:        []string{fmt.Sprintf("کد فعالسازی سامانه کارگزاری بانک خاورمیانه %s", verificationCode)},
 		},
 	)
 
