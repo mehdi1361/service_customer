@@ -27,7 +27,8 @@ func (v VerificationCode) SendVerificationCode(customer Customer) error {
 	}
 	defer db.Close()
 	db.Model(&VerificationCode{}).Where("customer_id=?", customer.ID).Update("is_active", false)
-	verificationCode := utils.RandomCodeGenerate(4)
+	//verificationCode := utils.RandomCodeGenerate(4)
+	verificationCode := "1000"
 
 	phone := PhonePerson{}
 	db.Find(&phone, "customer_id=? and is_active=?", customer.ID, true)
@@ -42,6 +43,7 @@ func (v VerificationCode) SendVerificationCode(customer Customer) error {
 			Text:        []string{fmt.Sprintf("کد فعالسازی سامانه کارگزاری بانک خاورمیانه %s", verificationCode)},
 		},
 	)
+	fmt.Println("uuuuuuuuuuuuuuuuuuuu", err)
 
 	verificarionCode := VerificationCode{
 		Code:       verificationCode,
