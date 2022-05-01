@@ -5,6 +5,7 @@ import (
 	"golang.org/x/net/context"
 	models "service_customer/models"
 	service "service_customer/service/proto"
+
 )
 
 func (Server) LoginByNationalId(ctx context.Context, e *service.LoginByNationalIdRequest) (*service.LoginStateResponse, error) {
@@ -28,7 +29,7 @@ func (Server) LoginByNationalId(ctx context.Context, e *service.LoginByNationalI
 		}, nil
 	}
 	var count int64
-	db.Model(&models.PhonePerson{}).Where("customer_id=? and is_mobile=? an is_active=?", customer.ID, true, true).Count(&count)
+	db.Model(&models.PhonePerson{}).Where("customer_id=? and is_mobile=? and is_active=?", customer.ID, true, true).Count(&count)
 
 	if count > 1 {
 		return &service.LoginStateResponse{
@@ -46,6 +47,8 @@ func (Server) LoginByNationalId(ctx context.Context, e *service.LoginByNationalI
 		}, nil
 
 	}
+
+
 
 	return &service.LoginStateResponse{
 		Id:      200,
