@@ -33,7 +33,7 @@ func (v VerificationCode) SendVerificationCode(customer Customer) error {
 	phone := PhonePerson{}
 	db.Find(&phone, "customer_id=? and is_active=?", customer.ID, true)
 
-	conn, _ := service.SmsServiceConnection()
+	/*	conn, _ := service.SmsServiceConnection()
 	ce := sms.NewSmsServiceClient(conn)
 	_, err = ce.SmsService(
 		context.Background(),
@@ -43,7 +43,7 @@ func (v VerificationCode) SendVerificationCode(customer Customer) error {
 			Text:        []string{fmt.Sprintf("کد فعالسازی سامانه کارگزاری بانک خاورمیانه %s", verificationCode)},
 		},
 	)
-	fmt.Println("uuuuuuuuuuuuuuuuuuuu", err)
+	*/
 
 	verificarionCode := VerificationCode{
 		Code:       verificationCode,
