@@ -29,19 +29,12 @@ func (v VerificationCode) SendVerificationCode(customer Customer) error {
 	db.Model(&VerificationCode{}).Where("customer_id=?", customer.ID).Update("is_active", false)
 	verificationCode := utils.RandomCodeGenerate(4)
 
-	verificarionCode := VerificationCode{
-		Code:       verificationCode,
-		CustomerId: customer.ID,
-		IsActive:   true,
-	}
-	db.Create(&verificarionCode)
-
 	phone := PhonePerson{}
-	db.Find(&phone, "customer_id=?", customer.ID)
+	db.Find(&phone, "customer_id=? and is_active=?", customer.ID, true)
 
 	conn, _ := service.SmsServiceConnection()
 	ce := sms.NewSmsServiceClient(conn)
-	_, _ = ce.SmsService(
+	_, err = ce.SmsService(
 		context.Background(),
 		&sms.SmsSendRequest{
 			NameService: "customer service",
@@ -49,6 +42,13 @@ func (v VerificationCode) SendVerificationCode(customer Customer) error {
 			Text:        []string{fmt.Sprintf("کد فعالسازی سامانه کارگزاری بانک خاورمیانه %s", verificarionCode)},
 		},
 	)
+
+	verificarionCode := VerificationCode{
+		Code:       verificationCode,
+		CustomerId: customer.ID,
+		IsActive:   true,
+	}
+	db.Create(&verificarionCode)
 
 	return nil
 }
