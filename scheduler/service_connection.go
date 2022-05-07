@@ -12,7 +12,7 @@ import (
 func rayanConnection() (*grpc.ClientConn, error) {
 	envErr := godotenv.Load()
 	if envErr != nil {
-		panic(envErr)
+		return nil, errors.New("cant connect to rayan service")
 	}
 
 	rayanUrl := os.Getenv("RAYAN_URL")

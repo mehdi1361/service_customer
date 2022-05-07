@@ -15,6 +15,7 @@ func readCustomerFundInfo() {
 	db, err := models.Connect()
 	if err != nil {
 		fmt.Print(err)
+		return
 	}
 	defer db.Close()
 
@@ -25,6 +26,7 @@ func readCustomerFundInfo() {
 
 	if err != nil {
 		log.Fatal("error in connection")
+		return
 	}
 
 	defer conn.Close()
@@ -38,7 +40,8 @@ func readCustomerFundInfo() {
 			customer, err := c.FundCustomerInfoService(context.Background(), &service.MainRequest{RayanCustomerId: t.CustomerId, Name: t.FundName})
 
 			if err != nil {
-				log.Fatalf("error: %s", err)
+				log.Printf("error: %s", err)
+				return
 			}
 			fmt.Println(customer.Result.IsLegal)
 
@@ -53,7 +56,7 @@ func readCustomerFundInfo() {
 			}()
 
 			if err != nil {
-				log.Fatalf("error: %s customer id %s, %v", err, v.ID, customer)
+				log.Printf("error: %s customer id %s, %v", err, v.ID, customer)
 			}
 
 			go func() {
@@ -67,7 +70,8 @@ func readCustomerFundInfo() {
 			}()
 
 			if err != nil {
-				log.Fatalf("error: %s customer id %s, %v", err, v.ID, customer)
+				log.Printf("error: %s customer id %s, %v", err, v.ID, customer)
+				return
 			}
 			go func() {
 				if customer.Result.IsLegal == "0" {
