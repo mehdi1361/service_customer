@@ -5,6 +5,7 @@ import (
 	"golang.org/x/net/context"
 	models "service_customer/models"
 	service "service_customer/service/proto"
+	message "service_customer/utils/message"
 
 )
 
@@ -25,7 +26,7 @@ func (Server) LoginByNationalId(ctx context.Context, e *service.LoginByNationalI
 
 		return &service.LoginStateResponse{
 			Id:      404,
-			Message: "user not found",
+			Message: message.UserNotFound,
 		}, nil
 	}
 	var count int64
@@ -34,7 +35,7 @@ func (Server) LoginByNationalId(ctx context.Context, e *service.LoginByNationalI
 	if count > 1 {
 		return &service.LoginStateResponse{
 			Id:      403,
-			Message: "Active mobile more than one",
+			Message: message.MultipleMoobileActive,
 		}, nil
 	}
 
@@ -43,7 +44,7 @@ func (Server) LoginByNationalId(ctx context.Context, e *service.LoginByNationalI
 	if err != nil {
 		return &service.LoginStateResponse{
 			Id:      400,
-			Message: "error to sending verification code",
+			Message: message.ErrorSendVerificationCode,
 		}, nil
 
 	}
@@ -52,6 +53,6 @@ func (Server) LoginByNationalId(ctx context.Context, e *service.LoginByNationalI
 
 	return &service.LoginStateResponse{
 		Id:      200,
-		Message: "verification code sent",
+		Message: message.VerificationCodeSent,
 	}, nil
 }

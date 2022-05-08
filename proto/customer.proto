@@ -75,6 +75,7 @@ service CustomerService {
         rpc CustomerSetActiveMobile (CustomerSetActiveMobileRequest) returns (StateResponse) {}
         rpc CustomerVerified (CustomerVerifiedRequest) returns (StateResponse) {}
         rpc CustomerListApp (CustomerListAppRequest) returns (CustomerListAppResponse) {}
+
 }
 
 message GenderListResponse {

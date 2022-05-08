@@ -4,6 +4,7 @@ import (
 	"golang.org/x/net/context"
 	models "service_customer/models"
 	service "service_customer/service/proto"
+	message "service_customer/utils/message"
 	"time"
 )
 
@@ -20,7 +21,7 @@ func (Server) CustomerVerified(ctx context.Context, e *service.CustomerVerifiedR
 
 		return &service.StateResponse{
 			Id:      404,
-			Message: "verification code not found",
+			Message: message.VerificationCodeNotFound,
 		}, nil
 	}
 
@@ -28,14 +29,14 @@ func (Server) CustomerVerified(ctx context.Context, e *service.CustomerVerifiedR
 
 		return &service.StateResponse{
 			Id:      400,
-			Message: "verification code expired",
+			Message: message.VerificationCodeExpired,
 		}, nil
 	}
 
 	if e.VerificationCode != verificationCode.Code {
 		return &service.StateResponse{
 			Id:      400,
-			Message: "verification code not match!!!",
+			Message: message.VerificationCodeExpired,
 		}, nil
 
 	}
@@ -46,7 +47,7 @@ func (Server) CustomerVerified(ctx context.Context, e *service.CustomerVerifiedR
 
 	return &service.StateResponse{
 		Id:      200,
-		Message: "verification code accepted",
+		Message: message.VerificationCodeAccepted,
 	}, nil
 
 }
