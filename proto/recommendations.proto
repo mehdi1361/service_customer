@@ -1,6 +1,7 @@
 syntax = "proto3";
 
 
+
 message Request {
 }
 
@@ -94,8 +95,6 @@ service Recommendations {
     rpc FundChartDbService(Request) returns (FundChartDbResponse);
     rpc FundCancelOrderService(FundCancelOrderRequest) returns (FundCancelOrderServiceResponse);
     rpc RayanAccountImageService(MainRequest) returns (RayanAccountImageResponse);
-
-
 }
 
 message FundCustomerList {
@@ -587,8 +586,9 @@ message BrokerCustomerList {
     string baTypeName = 59;
     string bankName = 60;
     int64 isStockCreditPurchase = 61;
-    repeated BrokerDomains domains = 62;
-    repeated BrokerCustomerGroups customerGroups = 63;
+    int64 isCollateralStocksCustomer = 62;
+    repeated BrokerDomains domains = 63;
+    repeated BrokerCustomerGroups customerGroups = 64;
 
 
 }
