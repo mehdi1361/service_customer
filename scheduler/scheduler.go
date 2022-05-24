@@ -20,4 +20,5 @@ func init() {
 		gocron.Every(fund_customer_info).Second().Do(readCustomerFundInfo)
 		<-gocron.Start()
 	}()
+	readBrokerCustomerData()
 }
