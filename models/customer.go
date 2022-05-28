@@ -57,7 +57,6 @@ func (c Customer) SetBulkDataFund(customers []*service.FundCustomerList, fundNam
 		defer db.Close()
 }
 
-
 func (c Customer) SetFund(db *gorm.DB, customer service.FundCustomerList, wg *sync.WaitGroup, fundName string) error {
 	defer wg.Done()
 	sqlDB := db.DB()
@@ -123,8 +122,7 @@ func (c Customer) SetFund(db *gorm.DB, customer service.FundCustomerList, wg *sy
 	return tx.Commit().Error
 }
 
-
-func (c Customer) SetBulkDataBroker(customers []*service.BrokerCustomerList, fundName string) {
+func (c Customer) SetBulkDataBroker(customers []*service.BrokerCustomerList) {
 	var wg sync.WaitGroup
 	var mu sync.Mutex
 
@@ -146,14 +144,13 @@ func (c Customer) SetBulkDataBroker(customers []*service.BrokerCustomerList, fun
 	for _, v := range customers {
 
 		wg.Add(1)
-		c.SetBroker(db, *v, &wg, fundName)
+		c.SetBroker(db, *v, &wg)
 	}
 	wg.Wait()
 	defer db.Close()
 }
 
-
-func (c Customer) SetBroker(db *gorm.DB, customer service.BrokerCustomerList, wg *sync.WaitGroup, fundName string) error {
+func (c Customer) SetBroker(db *gorm.DB, customer service.BrokerCustomerList, wg *sync.WaitGroup) error {
 	defer wg.Done()
 	sqlDB := db.DB()
 	for {
@@ -192,28 +189,48 @@ func (c Customer) SetBroker(db *gorm.DB, customer service.BrokerCustomerList, wg
 
 	}
 
-	fFund := Fund{}
-	db.Find(&fFund, "customer_service_id=? and fund_name=?", fCustomer.ID, fundName)
+	brokerData := Broker{}
+	db.Find(&brokerData, "customer_id=?", fCustomer.ID)
 
-	if fFund.ID == 0 {
-		fund := Fund{
-			CustomerServiceId:  fCustomer.ID,
-			CustomerId:         customer.CustomerId,
-			ReferredBy:         customer.ReferredBy,
-			Personality:        customer.Personality,
-			FullName:           customer.CustomerFullName,
-			IssunigCity:        customer.IssuingCity,
-			Nationality:        customer.Nationality,
-			NationalIdentifier: customer.NationalIdentifier,
-			FundName:           fundName,
+	if brokerData.ID == 0 {
+		broker := Broker{
+			CustomerServiceId: fCustomer.ID,
+			CustomerId:        customer.CustomerId,
+			TelegramUsername:  customer.TelegramUsername,
+			TelegramStatusId:  customer.TelegramStatusId,
+			BourseAccountName: customer.BourseAccountName,
+			AccountNumber:     customer.AccountNumber,
+			OnlineUsername:    customer.OnlineUsername,
+			HasOnlineAccount:  customer.HasOnlineAccount,
+			ModificationDate:  customer.ModificationDate,
+			IsMmtpUser:        customer.IsMmtpUser,
+			MmtpUserStatusId:  customer.MmtpUserStatusId,
+			IsSiteUser:  customer.IsSiteUser,
+			EorderStatusId:  customer.EorderStatusId,
+			HasSignSample:  customer.HasSignSample,
+			HasCustomerPhoto:  customer.HasCustomerPhoto,
+			HasBirthCertificate:  customer.HasBirthCertificate,
+			HasCertificateComments:  customer.HasCertificateComments,
+			HasZipFile:  customer.HasZipFile,
+			HasOfficialGazette:  customer.HasOfficialGazette,
+			HasOfficialAds:  customer.HasOfficialAds,
+			ComexVisitorId:  customer.ComexVisitorId,
+			MmtpUserId:  customer.MmtpUserId,
+			ComexEconomyAccount:  customer.ComexEconomyAccount,
+			IsPortfo:  customer.IsPortfo,
+			TraderCredit:  customer.TraderCredit,
+			ComexCredit:  customer.ComexCredit,
+			SfCredit:  customer.SfCredit,
+			Credit:  customer.Credit,
+			IsStockCreditPurchase:  customer.IsStockCreditPurchase,
+			IsCollateralStocksCustomer:  customer.IsCollateralStocksCustomer,
+			CustomerIdentity:  customer.CustomerIdentity,
 		}
 
-		if err := tx.Create(&fund).Error; err != nil {
+		if err := tx.Create(&broker).Error; err != nil {
 			tx.Rollback()
 			return err
 		}
 	}
-
-	//pp.Print(customer)
 	return tx.Commit().Error
 }

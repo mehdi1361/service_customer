@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"golang.org/x/net/context"
 	"log"
-	//models "service_customer/models"
+	models "service_customer/models"
 	service "service_customer/service/rayan/proto"
 )
 
@@ -25,6 +25,6 @@ func readBrokerCustomerData() {
 	} else {
 
 		fmt.Println(customers.Result)
+		models.Customer{}.SetBulkDataBroker(customers.Result)
 	}
-	//models.Customer{}.SetBulkDataFund(customers.Result, "broker")
 }
