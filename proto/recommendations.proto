@@ -664,13 +664,18 @@ message BrokerCustomer {
     string branchName = 50;
     string fullName = 51;
     string sexTypeName = 52;
-    repeated BrokerBourseAccounts bourseAccounts = 53;
-    repeated BrokerBankAccount bankAccounts = 54;
-    repeated int64 groupIds = 55;
-    repeated int64 domainIds = 56;
-
-
-
+    bool hasNationalCardImage = 53;
+    string comexEconomyAccount = 54;
+    string lastModificationDate = 55;
+    string nationalId = 56;
+    bool hasOfficialGazette = 57;
+    bool hasOfficialAds = 58;
+    string registrationCity = 59;
+    string registrationDate = 60;
+    repeated BrokerBourseAccounts bourseAccounts = 61;
+    repeated BrokerBankAccount bankAccounts = 62;
+    repeated int64 groupIds = 63;
+    repeated int64 domainIds = 64;
 }
 
 
