@@ -66,7 +66,7 @@ func (Server) CreateMebbcoBranch(ctx context.Context, e *service.CreateMebbcoBra
 	mebbcoBranch := models.MebbcoBranch{
 		Title: e.Title,
 		TypeMebbco: e.TypeMebbco,
-		IdRayan: int(e.IdRayan),
+		IdRayan: int64(e.IdRayan),
 	}
 	db.Create(&mebbcoBranch)
 	result := service.MebbcoBranchItemResponse{

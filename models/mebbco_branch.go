@@ -9,7 +9,7 @@ type MebbcoBranch struct {
 	gorm.Model
 	Title         string         `json:"title" gorm:"size:100"`
 	TypeMebbco    string         `json:"type_mebbco" gorm:"size:50;column:type_mebbco"`
-	IdRayan       int            `json:"id_rayan" gorm:"unique;Column:id_rayan"`
+	IdRayan       int64            `json:"id_rayan" gorm:"unique;Column:id_rayan"`
 	Portfos       []Portfo       `gorm:"foreignKey:TypeMebbcoId"`
 	ComexVisitors []ComexVisitor `gorm:"foreignKey:TypeMebbcoId"`
 	TradingCodes  []TradingCode  `gorm:"foreignKey:TypeMebbcoId"`

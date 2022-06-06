@@ -43,7 +43,6 @@ func readCustomerFundInfo() {
 				log.Printf("error: %s", err)
 				return
 			}
-			fmt.Println(customer.Result.IsLegal)
 
 			go func() {
 				err = models.PhonePerson{}.SetPhone(&models.PhonePerson{
@@ -100,7 +99,7 @@ func readCustomerFundInfo() {
 				t.FundName,
 				&models.MebbcoBranch{
 					Title: customer.Result.BranchName,
-					IdRayan: idRayan,
+					IdRayan: int64(idRayan),
 				})
 
 			if err == nil {

@@ -7,7 +7,7 @@ import (
 
 type Domain struct {
 	gorm.Model
-	Title   string `json:"title" gorm:"size:10;unique"`
+	Title   string `json:"title" gorm:"size:10;Null"`
 	IdRayan int32  `json:"id_rayan"`
 }
 

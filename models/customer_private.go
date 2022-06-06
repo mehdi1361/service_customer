@@ -19,6 +19,7 @@ type CustomerPrivate struct {
 	PlaceOfIssue  string `json:"place_of_issue" gorm:"size:100"`
 	SignatureFile string `json:"signature_file" gorm:"type:text"`
 	CustomerId    uint   `json:"customer" gorm:"unique"`
+	SexTypeId     int    `json:"sex_type_id" gorm:"Column:sex_type_id;Null"`
 }
 
 func (cp *CustomerPrivate) TableName() string {

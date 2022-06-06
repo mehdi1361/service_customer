@@ -42,6 +42,8 @@ func init() {
 		&CustomerBranch{},
 		&VerificationCode{},
 		&Broker{},
+		&CustomerAddress{},
+		&BourseAccounts{},
 	)
 	db.Model(&Province{}).AddForeignKey("country_id", "base_countries(id)", "CASCADE", "CASCADE")
 	db.Model(&City{}).AddForeignKey("province_id", "base_province(id)", "CASCADE", "CASCADE")
@@ -60,4 +62,6 @@ func init() {
 	db.Model(&CustomerBranch{}).AddForeignKey("branch_id", "base_mebbco_branch(id)", "CASCADE", "CASCADE")
 	db.Model(&VerificationCode{}).AddForeignKey("customer_id", "customer_customer(id)", "CASCADE", "CASCADE")
 	db.Model(&Broker{}).AddForeignKey("customer_service_id", "customer_customer(id)", "CASCADE", "CASCADE")
+	db.Model(&CustomerAddress{}).AddForeignKey("customer_id", "customer_customer(id)", "CASCADE", "CASCADE")
+	db.Model(&BourseAccounts{}).AddForeignKey("customer_id", "customer_broker_info(id)", "CASCADE", "CASCADE")
 }
