@@ -64,4 +64,5 @@ func init() {
 	db.Model(&Broker{}).AddForeignKey("customer_service_id", "customer_customer(id)", "CASCADE", "CASCADE")
 	db.Model(&CustomerAddress{}).AddForeignKey("customer_id", "customer_customer(id)", "CASCADE", "CASCADE")
 	db.Model(&BourseAccounts{}).AddForeignKey("customer_id", "customer_broker_info(id)", "CASCADE", "CASCADE")
+	db.Model(&CustomerGroup{}).AddForeignKey("customer_id", "customer_broker_info(id)", "CASCADE", "CASCADE")
 }

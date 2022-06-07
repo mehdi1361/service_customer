@@ -101,6 +101,28 @@ func readCustomerBrokerInfo() {
 				)
 			}
 		}()
+
+		go func() {
+			for _, value := range customer.Result[0].GroupIds {
+				models.CustomerGroup{}.GetOrCreate(
+					models.CustomerGroupParams{
+						RayanId: value,
+						CustomerId: v.ID,
+					},
+				)
+			}
+		}()
+
+		go func() {
+			for _, value := range customer.Result[0].DomainIds {
+				models.Domain{}.GetOrCreate(
+					models.DomainParams{
+						RayanId: value,
+						CustomerId: v.ID,
+					},
+				)
+			}
+		}()
 	}
 
 }

@@ -26,3 +26,15 @@ type BourseAccountParam struct {
 	IsDefault  int64
 	CustomerId uint
 }
+
+type CustomerGroupParams struct {
+	Title      string
+	RayanId    int64
+	CustomerId uint
+}
+
+type DomainParams struct {
+	Title      string
+	RayanId    int64
+	CustomerId uint
+}
