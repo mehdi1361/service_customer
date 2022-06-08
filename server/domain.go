@@ -24,7 +24,7 @@ func (Server) DomainAll(ctx context.Context, e *empty.Empty) (*service.DomainLis
 	for _, v := range allDomain {
 		data = append(data, &service.DomainItemResponse{
 			Id: int32(v.ID),
-			IdRayan: int32(v.IdRayan),
+			IdRayan: int32(v.RayanId),
 			Title: v.Title,
 		},
 		)
@@ -48,7 +48,7 @@ func (Server) GetDomainById(ctx context.Context, e *service.DomainItemRequest) (
 	db.Find(&domain, "id=?", e.Id)
 	result := service.DomainItemResponse{
 		Id:   int32(domain.ID),
-		IdRayan:   int32(domain.IdRayan),
+		IdRayan:   int32(domain.RayanId),
 		Title: domain.Title,
 	}
 	return &result, nil
@@ -63,12 +63,12 @@ func (Server) CreateDomain(ctx context.Context, e *service.CreateDomainItemReque
 	defer db.Close()
 	domain:= models.Domain{
 		Title: e.Title,
-		IdRayan: e.IdRayan,
+		RayanId: int64(e.IdRayan),
 	}
 	db.Create(&domain)
 	result := service.DomainItemResponse{
 		Id:   int32(domain.ID),
-		IdRayan:   domain.IdRayan,
+		IdRayan:   int32(domain.RayanId),
 		Title: domain.Title,
 	}
 	return &result, nil

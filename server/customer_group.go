@@ -24,7 +24,7 @@ func (Server) CustomerGroupAll(ctx context.Context, e *empty.Empty) (*service.Cu
 	for _, v := range allDomain {
 		data = append(data, &service.CustomerGroupItemResponse{
 			Id: int32(v.ID),
-			IdRayan: int32(v.IdRayan),
+			IdRayan: int32(v.RayanId),
 			Title: v.Title,
 		},
 		)
@@ -48,7 +48,7 @@ func (Server) GetCustomerGroupById(ctx context.Context, e *service.CustomerGroup
 	db.Find(&domain, "id=?", e.Id)
 	result := service.CustomerGroupItemResponse{
 		Id:   int32(domain.ID),
-		IdRayan:   int32(domain.IdRayan),
+		IdRayan:   int32(domain.RayanId),
 		Title: domain.Title,
 	}
 	return &result, nil
@@ -63,12 +63,12 @@ func (Server) CreateCustomerGroup(ctx context.Context, e *service.CreateCustomer
 	defer db.Close()
 	domain:= models.CustomerGroup{
 		Title: e.Title,
-		IdRayan: e.IdRayan,
+		RayanId: int64(e.IdRayan),
 	}
 	db.Create(&domain)
 	result := service.CustomerGroupItemResponse{
 		Id:   int32(domain.ID),
-		IdRayan:   domain.IdRayan,
+		IdRayan:   int32(domain.RayanId),
 		Title: domain.Title,
 	}
 	return &result, nil

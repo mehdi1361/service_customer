@@ -92,10 +92,10 @@ func readCustomerBrokerInfo() {
 			for _, value := range customer.Result[0].BourseAccounts {
 				models.BourseAccounts{}.GetOrCreate(
 					models.BourseAccountParam{
-						Id:     value.BourseAccountId,
-						Name:   value.BourseAccountName,
-						Number: value.AccountNumber,
-						IsDefault: value.IsDefault,
+						Id:         value.BourseAccountId,
+						Name:       value.BourseAccountName,
+						Number:     value.AccountNumber,
+						IsDefault:  value.IsDefault,
 						CustomerId: v.ID,
 					},
 				)
@@ -106,7 +106,7 @@ func readCustomerBrokerInfo() {
 			for _, value := range customer.Result[0].GroupIds {
 				models.CustomerGroup{}.GetOrCreate(
 					models.CustomerGroupParams{
-						RayanId: value,
+						RayanId:    value,
 						CustomerId: v.ID,
 					},
 				)
@@ -117,8 +117,29 @@ func readCustomerBrokerInfo() {
 			for _, value := range customer.Result[0].DomainIds {
 				models.Domain{}.GetOrCreate(
 					models.DomainParams{
-						RayanId: value,
+						RayanId:    value,
 						CustomerId: v.ID,
+					},
+				)
+			}
+		}()
+
+		go func() {
+			for _, value := range customer.Result[0].BankAccounts {
+				models.BankAccount{}.GetOrCreate(
+					models.BankAccountParam{
+						AccountNumber:      value.AccountNumber,
+						RayanBankAccountId: value.BankAccountId,
+						BaTypeName:         value.BaTypeName,
+						Shaba:              value.ShabaNumber,
+						IsDefault:          value.IsDefault,
+						IsActive:           value.IsActive,
+						IsOnline:           value.IsOnline,
+						BankId:             value.BankId,
+						BankName:           value.BankName,
+						BankBranchCode:     value.BankName,
+						BranchName:         value.BankBranch,
+						CustomerId:         v.ID,
 					},
 				)
 			}

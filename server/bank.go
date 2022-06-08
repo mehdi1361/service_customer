@@ -63,7 +63,7 @@ func (Server) CreateBank(ctx context.Context, e *service.CreateBankItemRequest) 
 	defer db.Close()
 	bank:= models.Bank{
 		Title: e.Title,
-		BankId: uint(e.BankId),
+		BankId: int64(e.BankId),
 	}
 	db.Create(&bank)
 	result := service.BankItemResponse{

@@ -8,7 +8,7 @@ import (
 type CustomerGroup struct {
 	gorm.Model
 	Title      string `json:"title" gorm:"size:10"`
-	RayanId    int64  `json:"rayan_id" gorm:"Column"`
+	RayanId    int64  `json:"rayan_id" gorm:"Column:rayan_id"`
 	CustomerId uint   `json:"customer" gorm:"Column:customer_id"`
 }
 

@@ -38,3 +38,30 @@ type DomainParams struct {
 	RayanId    int64
 	CustomerId uint
 }
+
+type BankParam struct {
+	BankId   int64
+	BankName string
+}
+
+type BankBranchParam struct {
+	BankId         int64
+	BankName       string
+	BankBranchCode string
+	Name           string
+}
+
+type BankAccountParam struct {
+	AccountNumber      string
+	RayanBankAccountId int64
+	BaTypeName         string
+	Shaba              string
+	IsDefault          int64
+	IsActive           bool
+	IsOnline           int64
+	BankId             int64
+	BankName           string
+	BankBranchCode     string
+	BranchName         string
+	CustomerId         uint
+}
