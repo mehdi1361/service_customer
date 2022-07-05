@@ -76,6 +76,7 @@ service CustomerService {
         rpc CustomerVerified (CustomerVerifiedRequest) returns (StateResponse) {}
         rpc CustomerListApp (CustomerListAppRequest) returns (CustomerListAppResponse) {}
 
+        rpc SejamRegisterPrivatePerson (SejamRegisterPrivatePersonRequest) returns (SejamRegisterPrivatePersonResponse) {}
 }
 
 message GenderListResponse {
@@ -430,4 +431,115 @@ message CustomerListAppResponse {
 message CustomerApp {
         int64 Id = 1;
         string Name = 2;
+}
+
+message SejamProfileParams {
+        string EmailAddress = 1;
+        string NationalCode = 2;
+        string CustomerSejamType = 3;
+        string Status = 4;
+        string Mobile = 5;
+
+}
+
+message SejamFinancialInfo {
+        int64 AssetsValue = 1;
+        int64 InComingAverage = 2;
+        int64 SExchangeTransaction = 3;
+        int64 CExchangeTransaction = 4;
+        int64 OutExchangeTransaction = 5;
+        string TransactionLevel = 6;
+        string TradingKnowledgeLevel = 7;
+        string CompanyPurpose = 8;
+        string ReferenceRateCompany = 9;
+        string RateDate = 10;
+        string Rate = 11;
+}
+
+
+message SejamJobInfo {
+        string EmploymentDate = 1;
+        string CompanyName = 2;
+        string CompanyAddress = 3;
+        string CompanyPostalCode = 4;
+        string CompanyEmail = 5;
+        string CompanyWebSite = 6;
+        string CompanyCityPrefix = 7;
+        string CompanyPhone = 8;
+        string Position = 9;
+        string CompanyFaxPrefix = 10;
+        string CompanyFax = 11;
+        int32 JobId = 12;
+        string JobTitle = 13;
+        string JobDescription = 14;
+}
+
+
+message SejamBankAccount {
+        string AccountNumber = 1;
+        string AccountType = 2;
+        string Sheba = 3;
+        int32 BankId = 4;
+        string BankName = 5;
+        string BranchCode = 6;
+        string BranchName = 7;
+        int32 BranchCityId = 8;
+        string BranchCityName = 9;
+        bool IsDefault = 10;
+}
+
+
+message SejamAddress {
+        int32 CountryId = 1;
+        string CountryName = 2;
+        int32 ProvinceId = 3;
+        string ProvinceName = 4;
+        int32 CityId = 5;
+        string CityName = 6;
+        int32 SectionId = 7;
+        string SectionName = 8;
+        int32 CityPrefix = 9;
+        string RemnantAddress = 10;
+        string Alley = 11;
+        string Plaque = 12;
+        string Tel = 13;
+        string CountryPrefix = 14;
+        string Mobile = 15;
+        string EmergencyTel = 16;
+        string EmergencyTelCityPrefix = 17;
+        string EmergencyTelCountryPrefix = 18;
+        string FaxPrefix = 19;
+        string Fax = 20;
+        string Website = 21;
+        string Email = 22;
+}
+
+
+message SejamPrivatePerson {
+        string FirstName = 1;
+        string LastName = 2;
+        string FatherName = 3;
+        string Gender = 4;
+        string SeriShChar = 5;
+        string SeriSh = 6;
+        string Serial = 7;
+        string ShNumber = 8;
+        string BirthDate = 9;
+        string PlaceOfIssue = 10;
+        string PlaceOfBirth = 11;
+        string SignatureFile = 12;
+}
+
+message SejamRegisterPrivatePersonRequest {
+        SejamProfileParams profile = 1;
+        SejamFinancialInfo FinancialInfo = 2;
+        SejamJobInfo JobInfo = 3;
+        repeated SejamBankAccount SejamBankAccounts = 4;
+        repeated SejamAddress SejamAddresses = 5;
+        SejamPrivatePerson PrivatePerson = 6;
+}
+
+message SejamRegisterPrivatePersonResponse {
+        int32 id = 1;
+        string message = 2;
 }
