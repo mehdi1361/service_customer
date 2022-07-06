@@ -512,6 +512,7 @@ message SejamAddress {
         string Fax = 20;
         string Website = 21;
         string Email = 22;
+        string PostalCode = 23;
 }
 
 
