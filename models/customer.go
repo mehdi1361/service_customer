@@ -23,6 +23,8 @@ type Customer struct {
 	JobInfos           []JobInfo          `gorm:"foreignKey:CustomerId"`
 	VerificationCodes  []VerificationCode `gorm:"foreignKey:CustomerId"`
 	Fund               Fund               `gorm:"foreignKey:CustomerServiceId"`
+	IsSejami           bool               `json:"is_sejami" gorm:"Column:is_sejami;"`
+	NormalNationalCode string             `json:"normal_national_code" gorm:"size:11;unique"`
 }
 
 func (c *Customer) TableName() string {
