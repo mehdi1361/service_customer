@@ -498,7 +498,7 @@ message SejamAddress {
         string CityName = 6;
         int32 SectionId = 7;
         string SectionName = 8;
-        int32 CityPrefix = 9;
+        string CityPrefix = 9;
         string RemnantAddress = 10;
         string Alley = 11;
         string Plaque = 12;
@@ -532,7 +532,7 @@ message SejamPrivatePerson {
 }
 
 message SejamRegisterPrivatePersonRequest {
-        SejamProfileParams profile = 1;
+        SejamProfileParams Profile = 1;
         SejamFinancialInfo FinancialInfo = 2;
         SejamJobInfo JobInfo = 3;
         repeated SejamBankAccount SejamBankAccounts = 4;

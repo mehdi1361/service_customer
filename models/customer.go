@@ -234,3 +234,42 @@ func (c Customer) SetBroker(db *gorm.DB, customer service.BrokerCustomerList, wg
 	}
 	return tx.Commit().Error
 }
+
+func (c Customer) GetOrCreate(d Customer) (*Customer, error) {
+	sqlDB := db.DB()
+	for {
+		if e := sqlDB.Ping(); e == nil {
+			break
+		}
+	}
+	tx := db.Begin()
+	defer func() {
+		if r := recover(); r != nil {
+			tx.Rollback()
+
+		}
+	}()
+
+	if err := tx.Error; err != nil {
+		return err
+	}
+
+	normalNationalCode := strings.Replace(d.NormalNationalCode, "-", "", -1)
+	fCustomer := Customer{}
+
+	db.Find(&fCustomer, "normal_national_code=?", normalNationalCode)
+
+	if fCustomer.ID == 0 {
+		fCustomer = Customer{
+			NormalNationalCode: normalNationalCode,
+			IsActive:           true,
+			IsRayanService:     true,
+		}
+
+		if err := tx.Create(&fCustomer).Error; err != nil {
+			tx.Rollback()
+			return err
+		}
+
+	}
+}
