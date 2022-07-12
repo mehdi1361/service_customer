@@ -24,7 +24,7 @@ type Customer struct {
 	VerificationCodes  []VerificationCode `gorm:"foreignKey:CustomerId"`
 	Fund               Fund               `gorm:"foreignKey:CustomerServiceId"`
 	IsSejami           bool               `json:"is_sejami" gorm:"Column:is_sejami;"`
-	NormalNationalCode string             `json:"normal_national_code" gorm:"size:11;unique"`
+	SejamType          string             `json:"sejam_type gorm:"size:100;Column:sejam_type"`
 }
 
 func (c *Customer) TableName() string {
@@ -56,7 +56,7 @@ func (c Customer) SetBulkDataFund(customers []*service.FundCustomerList, fundNam
 		c.SetFund(db, *v, &wg, fundName)
 	}
 	wg.Wait()
-		defer db.Close()
+	defer db.Close()
 }
 
 func (c Customer) SetFund(db *gorm.DB, customer service.FundCustomerList, wg *sync.WaitGroup, fundName string) error {
@@ -196,37 +196,37 @@ func (c Customer) SetBroker(db *gorm.DB, customer service.BrokerCustomerList, wg
 
 	if brokerData.ID == 0 {
 		broker := Broker{
-			CustomerServiceId: fCustomer.ID,
-			CustomerId:        customer.CustomerId,
-			TelegramUsername:  customer.TelegramUsername,
-			TelegramStatusId:  customer.TelegramStatusId,
-			BourseAccountName: customer.BourseAccountName,
-			AccountNumber:     customer.AccountNumber,
-			OnlineUsername:    customer.OnlineUsername,
-			HasOnlineAccount:  customer.HasOnlineAccount,
-			ModificationDate:  customer.ModificationDate,
-			IsMmtpUser:        customer.IsMmtpUser,
-			MmtpUserStatusId:  customer.MmtpUserStatusId,
-			IsSiteUser:  customer.IsSiteUser,
-			EorderStatusId:  customer.EorderStatusId,
-			HasSignSample:  customer.HasSignSample,
-			HasCustomerPhoto:  customer.HasCustomerPhoto,
-			HasBirthCertificate:  customer.HasBirthCertificate,
-			HasCertificateComments:  customer.HasCertificateComments,
-			HasZipFile:  customer.HasZipFile,
-			HasOfficialGazette:  customer.HasOfficialGazette,
-			HasOfficialAds:  customer.HasOfficialAds,
-			ComexVisitorId:  customer.ComexVisitorId,
-			MmtpUserId:  customer.MmtpUserId,
-			ComexEconomyAccount:  customer.ComexEconomyAccount,
-			IsPortfo:  customer.IsPortfo,
-			TraderCredit:  customer.TraderCredit,
-			ComexCredit:  customer.ComexCredit,
-			SfCredit:  customer.SfCredit,
-			Credit:  customer.Credit,
-			IsStockCreditPurchase:  customer.IsStockCreditPurchase,
-			IsCollateralStocksCustomer:  customer.IsCollateralStocksCustomer,
-			CustomerIdentity:  customer.CustomerIdentity,
+			CustomerServiceId:          fCustomer.ID,
+			CustomerId:                 customer.CustomerId,
+			TelegramUsername:           customer.TelegramUsername,
+			TelegramStatusId:           customer.TelegramStatusId,
+			BourseAccountName:          customer.BourseAccountName,
+			AccountNumber:              customer.AccountNumber,
+			OnlineUsername:             customer.OnlineUsername,
+			HasOnlineAccount:           customer.HasOnlineAccount,
+			ModificationDate:           customer.ModificationDate,
+			IsMmtpUser:                 customer.IsMmtpUser,
+			MmtpUserStatusId:           customer.MmtpUserStatusId,
+			IsSiteUser:                 customer.IsSiteUser,
+			EorderStatusId:             customer.EorderStatusId,
+			HasSignSample:              customer.HasSignSample,
+			HasCustomerPhoto:           customer.HasCustomerPhoto,
+			HasBirthCertificate:        customer.HasBirthCertificate,
+			HasCertificateComments:     customer.HasCertificateComments,
+			HasZipFile:                 customer.HasZipFile,
+			HasOfficialGazette:         customer.HasOfficialGazette,
+			HasOfficialAds:             customer.HasOfficialAds,
+			ComexVisitorId:             customer.ComexVisitorId,
+			MmtpUserId:                 customer.MmtpUserId,
+			ComexEconomyAccount:        customer.ComexEconomyAccount,
+			IsPortfo:                   customer.IsPortfo,
+			TraderCredit:               customer.TraderCredit,
+			ComexCredit:                customer.ComexCredit,
+			SfCredit:                   customer.SfCredit,
+			Credit:                     customer.Credit,
+			IsStockCreditPurchase:      customer.IsStockCreditPurchase,
+			IsCollateralStocksCustomer: customer.IsCollateralStocksCustomer,
+			CustomerIdentity:           customer.CustomerIdentity,
 		}
 
 		if err := tx.Create(&broker).Error; err != nil {
@@ -238,6 +238,10 @@ func (c Customer) SetBroker(db *gorm.DB, customer service.BrokerCustomerList, wg
 }
 
 func (c Customer) GetOrCreate(d Customer) (*Customer, error) {
+	db, err := Connect()
+	if err != nil {
+		return nil, err
+	}
 	sqlDB := db.DB()
 	for {
 		if e := sqlDB.Ping(); e == nil {
@@ -253,25 +257,28 @@ func (c Customer) GetOrCreate(d Customer) (*Customer, error) {
 	}()
 
 	if err := tx.Error; err != nil {
-		return err
+		return nil, err
 	}
 
 	normalNationalCode := strings.Replace(d.NormalNationalCode, "-", "", -1)
 	fCustomer := Customer{}
+
 
 	db.Find(&fCustomer, "normal_national_code=?", normalNationalCode)
 
 	if fCustomer.ID == 0 {
 		fCustomer = Customer{
 			NormalNationalCode: normalNationalCode,
-			IsActive:           true,
-			IsRayanService:     true,
+			IsSejami:           d.IsSejami,
+			SejamType:          d.SejamType,
 		}
 
 		if err := tx.Create(&fCustomer).Error; err != nil {
 			tx.Rollback()
-			return err
+			return nil, err
 		}
 
 	}
+
+	return &fCustomer, nil
 }

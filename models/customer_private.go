@@ -19,7 +19,7 @@ type CustomerPrivate struct {
 	PlaceOfIssue  string `json:"place_of_issue" gorm:"size:100"`
 	SignatureFile string `json:"signature_file" gorm:"type:text"`
 	CustomerId    uint   `json:"customer" gorm:"unique"`
-	SexTypeId     int    `json:"sex_type_id" gorm:"Column:sex_type_id;Null"`
+	Gender        string `json:"gender" gorm:"Column:gender;Null"`
 }
 
 func (cp *CustomerPrivate) TableName() string {
@@ -60,5 +60,58 @@ func (cp CustomerPrivate) Set(customerPrivate *CustomerPrivate) error {
 	}
 
 	return tx.Commit().Error
+
+}
+
+func (cp CustomerPrivate) GetOrCreate(d CustomerPrivate) (*CustomerPrivate, error) {
+	db, err := Connect()
+	if err != nil {
+		return nil, err
+	}
+	sqlDB := db.DB()
+	for {
+		if e := sqlDB.Ping(); e == nil {
+			break
+		}
+	}
+	tx := db.Begin()
+
+	defer func() {
+		if r := recover(); r != nil {
+			tx.Rollback()
+
+		}
+	}()
+
+	if err := tx.Error; err != nil {
+		return nil, err
+	}
+
+	private := CustomerPrivate{}
+	db.Find(&private, "customer_id", d.CustomerId)
+
+	if private.ID == 0 {
+		private = CustomerPrivate{
+			FirstName:     d.FirstName,
+			LastName:      d.FirstName,
+			FatherName:    d.FatherName,
+			SeriShChar:    d.SeriShChar,
+			SeriSh:        d.SeriSh,
+			Serial:        d.Serial,
+			ShNumber:      d.ShNumber,
+			BirthDate:     d.BirthDate,
+			PlaceOfIssue:  d.PlaceOfIssue,
+			SignatureFile: d.SignatureFile,
+			CustomerId:    d.CustomerId,
+			Gender:        d.Gender,
+		}
+
+		if err := tx.Create(&private).Error; err != nil {
+			tx.Rollback()
+			return nil, err
+		}
+		return &private, nil
+	}
+	return nil, nil
 
 }
