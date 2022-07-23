@@ -17,6 +17,7 @@ type CustomerPrivate struct {
 	ShNumber      string `json:"sh_number" gorm:"size:100"`
 	BirthDate     string `json:"birth_date" gorm:"size:100"`
 	PlaceOfIssue  string `json:"place_of_issue" gorm:"size:100"`
+	PlaceOfBirth  string `json:"place_of_birth gorm:"size:100"`
 	SignatureFile string `json:"signature_file" gorm:"type:text"`
 	CustomerId    uint   `json:"customer" gorm:"unique"`
 	Gender        string `json:"gender" gorm:"Column:gender;Null"`
@@ -68,27 +69,8 @@ func (cp CustomerPrivate) GetOrCreate(d CustomerPrivate) (*CustomerPrivate, erro
 	if err != nil {
 		return nil, err
 	}
-	sqlDB := db.DB()
-	for {
-		if e := sqlDB.Ping(); e == nil {
-			break
-		}
-	}
-	tx := db.Begin()
-
-	defer func() {
-		if r := recover(); r != nil {
-			tx.Rollback()
-
-		}
-	}()
-
-	if err := tx.Error; err != nil {
-		return nil, err
-	}
-
 	private := CustomerPrivate{}
-	db.Find(&private, "customer_id", d.CustomerId)
+	db.Find(&private, "customer_id=?", d.CustomerId)
 
 	if private.ID == 0 {
 		private = CustomerPrivate{
@@ -106,12 +88,8 @@ func (cp CustomerPrivate) GetOrCreate(d CustomerPrivate) (*CustomerPrivate, erro
 			Gender:        d.Gender,
 		}
 
-		if err := tx.Create(&private).Error; err != nil {
-			tx.Rollback()
-			return nil, err
-		}
-		return &private, nil
+		db.Create(&private)
 	}
-	return nil, nil
+	return &private, nil
 
 }

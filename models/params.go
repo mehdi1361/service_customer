@@ -53,7 +53,7 @@ type BankBranchParam struct {
 
 type BankAccountParam struct {
 	AccountNumber      string
-	RayanBankAccountId int64
+	RayanBankAccountId string
 	BaTypeName         string
 	Shaba              string
 	IsDefault          int64

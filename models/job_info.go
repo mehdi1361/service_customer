@@ -32,27 +32,9 @@ func (j JobInfo) GetOrCreate(d JobInfo) (*JobInfo, error) {
 	if err != nil {
 		return nil, err
 	}
-	sqlDB := db.DB()
-	for {
-		if e := sqlDB.Ping(); e == nil {
-			break
-		}
-	}
-	tx := db.Begin()
-
-	defer func() {
-		if r := recover(); r != nil {
-			tx.Rollback()
-
-		}
-	}()
-
-	if err := tx.Error; err != nil {
-		return nil, err
-	}
 
 	job := JobInfo{}
-	db.Find(&job, "customer_id", d.CustomerId)
+	db.Find(&job, "customer_id=?", d.CustomerId)
 
 	if job.ID == 0 {
 		job = JobInfo{
@@ -72,12 +54,9 @@ func (j JobInfo) GetOrCreate(d JobInfo) (*JobInfo, error) {
 			JobDescription:    d.JobDescription,
 		}
 
-		if err := tx.Create(&job).Error; err != nil {
-			tx.Rollback()
-			return nil, err
-		}
-		return &job, nil
+		db.Create(&job)
+
 	}
-	return nil, nil
+		return &job, nil
 
 }

@@ -242,27 +242,8 @@ func (c Customer) GetOrCreate(d Customer) (*Customer, error) {
 	if err != nil {
 		return nil, err
 	}
-	sqlDB := db.DB()
-	for {
-		if e := sqlDB.Ping(); e == nil {
-			break
-		}
-	}
-	tx := db.Begin()
-	defer func() {
-		if r := recover(); r != nil {
-			tx.Rollback()
-
-		}
-	}()
-
-	if err := tx.Error; err != nil {
-		return nil, err
-	}
-
 	normalNationalCode := strings.Replace(d.NormalNationalCode, "-", "", -1)
 	fCustomer := Customer{}
-
 
 	db.Find(&fCustomer, "normal_national_code=?", normalNationalCode)
 
@@ -271,12 +252,10 @@ func (c Customer) GetOrCreate(d Customer) (*Customer, error) {
 			NormalNationalCode: normalNationalCode,
 			IsSejami:           d.IsSejami,
 			SejamType:          d.SejamType,
+			IsActive:            true,
 		}
 
-		if err := tx.Create(&fCustomer).Error; err != nil {
-			tx.Rollback()
-			return nil, err
-		}
+		db.Create(&fCustomer)
 
 	}
 

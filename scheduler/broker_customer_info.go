@@ -129,7 +129,7 @@ func readCustomerBrokerInfo() {
 				models.BankAccount{}.GetOrCreate(
 					models.BankAccountParam{
 						AccountNumber:      value.AccountNumber,
-						RayanBankAccountId: value.BankAccountId,
+						RayanBankAccountId: string(value.BankAccountId),
 						BaTypeName:         value.BaTypeName,
 						Shaba:              value.ShabaNumber,
 						IsDefault:          value.IsDefault,
