@@ -45,6 +45,8 @@ func init() {
 		&CustomerAddress{},
 		&BourseAccounts{},
 		&FinancialInfo{},
+		&State{},
+		&CustomerState{},
 	)
 	db.Model(&Province{}).AddForeignKey("country_id", "base_countries(id)", "CASCADE", "CASCADE")
 	db.Model(&City{}).AddForeignKey("province_id", "base_province(id)", "CASCADE", "CASCADE")
@@ -68,4 +70,21 @@ func init() {
 	db.Model(&CustomerGroup{}).AddForeignKey("customer_id", "customer_broker_info(id)", "CASCADE", "CASCADE")
 	db.Model(&BankAccount{}).AddForeignKey("customer_id", "customer_customer(id)", "CASCADE", "CASCADE")
 	db.Model(&FinancialInfo{}).AddForeignKey("customer_id", "customer_customer(id)", "CASCADE", "CASCADE")
+	db.Model(&CustomerState{}).AddForeignKey("customer_id", "customer_customer(id)", "CASCADE", "CASCADE")
+	db.Model(&CustomerState{}).AddForeignKey("state_id", "base_state(id)", "CASCADE", "CASCADE")
+
+	/*
+	var states = []State{
+		{StateName: "person_info", Title: "اطلاعات هویتی", IconClass: "fas fa-briefcase", StateId: 1},
+		{StateName: "contact_us", Title: "اطلاعات تماس", IconClass: "fas fa-book-reader", StateId: 2},
+		{StateName: "account_info", Title: "اطلاعات حساب", IconClass: "fas fa-people-arrows", StateId: 3},
+		{StateName: "job_experience", Title: "اطلاعات کاری", IconClass: "fas fa-users", StateId: 4},
+		{StateName: "asset", Title: "اطلاعات دارایی", IconClass: "far fa-comment-alt", StateId: 5},
+		{StateName: "contract", Title: "بارگزاری", IconClass: "fas fa-images", StateId: 6},
+	}
+	for _, state := range states {
+		db.Create(&state)
+	}
+	*/
+
 }

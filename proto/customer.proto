@@ -79,6 +79,7 @@ service CustomerService {
         rpc SejamRegisterPrivatePerson (SejamRegisterPrivatePersonRequest) returns (SejamRegisterPrivatePersonResponse) {}
         rpc CustomerIsSejami (CustomerIsSejamiRequest) returns (CustomerSejamiResponse) {}
         rpc CustomerGetActiveMobile (CustomerActiveMobileRequest) returns (CustomerActiveMobileResponse) {}
+        rpc CustomerGetState (CustomerGetStateRequest) returns (CustomerGetStateResponse) {}
 }
 
 message GenderListResponse {
@@ -562,4 +563,21 @@ message CustomerActiveMobileRequest {
 
 message CustomerActiveMobileResponse {
         CustomerMobile customermobile = 1;
+}
+
+
+message CustomerGetStateRequest {
+        string NationalId = 1;
+}
+
+message CustomerGetStateResponse {
+        repeated CustomerState customerState = 1;
+}
+
+message CustomerState {
+        uint32 Id = 1;
+        string StateName = 2;
+        string Title = 3;
+        string IconClass = 4;
+        int64 StateId = 5;
 }
