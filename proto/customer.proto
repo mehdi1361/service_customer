@@ -80,6 +80,9 @@ service CustomerService {
         rpc CustomerIsSejami (CustomerIsSejamiRequest) returns (CustomerSejamiResponse) {}
         rpc CustomerGetActiveMobile (CustomerActiveMobileRequest) returns (CustomerActiveMobileResponse) {}
         rpc CustomerGetState (CustomerGetStateRequest) returns (CustomerGetStateResponse) {}
+        rpc GetPersonByNationalId (PersonByNationalIdRequest) returns (PersonByNationalIdResponse) {}
+        rpc GetPersonByAddress (PersonByNationalIdRequest) returns (PersonByAddressResponse) {}
+        rpc GetPersonBankAccount (PersonByNationalIdRequest) returns (PersonBankAccountResponse) {}
 }
 
 message GenderListResponse {
@@ -580,4 +583,49 @@ message CustomerState {
         string Title = 3;
         string IconClass = 4;
         int64 StateId = 5;
+}
+
+message PersonByNationalIdRequest {
+        string NationalId = 1;
+}
+
+message PersonByNationalIdResponse {
+	string FirstName = 1;
+	string LastName = 2;
+	string FatherName = 3;
+	string SeriShChar = 4;
+	string SeriSh = 5;
+	string Serial = 6;
+	string ShNumber = 7;
+	string BirthDate = 8;
+	string PlaceOfIssue = 9;
+	string PlaceOfBirth = 10;
+    string EconomicCode = 11;
+    string NationalId = 12;
+}
+
+message PersonByAddressResponse {
+	string PostalCode = 1;
+	string Address = 2;
+	string Mobile = 3;
+	string Fax = 4;
+	string Tel = 5;
+	string Email = 6;
+	string ProvinceName = 7;
+	string CityName = 8;
+}
+
+message PersonBankAccountResponse {
+        repeated PersonBankAccount PersonBankAccount = 1;
+}
+
+message PersonBankAccount {
+	string AccountNumber = 1;
+	string RayanBankAccountId = 2;
+	string BaTypeName = 3;
+	string Shaba = 4;
+	int64 IsDefault = 5;
+	bool IsActive = 6;
+	int64 IsOnline = 7;
+	uint32 BranchId = 8;
 }
