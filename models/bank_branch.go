@@ -8,8 +8,12 @@ import (
 type BankBranch struct {
 	gorm.Model
 	Name        string        `json:"name" gorm:"size:100"`
+	Code        string        `json:"code" gorm:"size:100;null"`
+	SejamCode   string        `json:"sejam_code" gorm:"size:100;null"`
+	DlNumber    string        `json:"dl_number" gorm:"size:100;null"`
 	RayanBankId string        `json:"rayan_bank_id" gorm:"Column:rayan_bank_id"`
 	BankId      uint          `gorm:"Column:bank_id"`
+	CityId      uint          `gorm:"Column:city_id"`
 	BankAccount []BankAccount `json:"bank_accounts"`
 }
 

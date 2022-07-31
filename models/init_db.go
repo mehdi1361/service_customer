@@ -47,6 +47,8 @@ func init() {
 		&FinancialInfo{},
 		&State{},
 		&CustomerState{},
+		&FileType{},
+		&CustomerFile{},
 	)
 	db.Model(&Province{}).AddForeignKey("country_id", "base_countries(id)", "CASCADE", "CASCADE")
 	db.Model(&City{}).AddForeignKey("province_id", "base_province(id)", "CASCADE", "CASCADE")
@@ -72,6 +74,8 @@ func init() {
 	db.Model(&FinancialInfo{}).AddForeignKey("customer_id", "customer_customer(id)", "CASCADE", "CASCADE")
 	db.Model(&CustomerState{}).AddForeignKey("customer_id", "customer_customer(id)", "CASCADE", "CASCADE")
 	db.Model(&CustomerState{}).AddForeignKey("state_id", "base_state(id)", "CASCADE", "CASCADE")
+	db.Model(&CustomerFile{}).AddForeignKey("file_type_id", "base_file_type(id)", "CASCADE", "CASCADE")
+	db.Model(&CustomerFile{}).AddForeignKey("customer_id", "customer_customer(id)", "CASCADE", "CASCADE")
 
 	/*
 	var states = []State{
@@ -85,6 +89,50 @@ func init() {
 	for _, state := range states {
 		db.Create(&state)
 	}
-	*/
 
+	customer := Customer{}
+	db.Find(&customer, "id=2")
+	db.Create(&FinancialInfo{
+		AssetsValue: 10,
+		InComingAverage: 100,
+		SExchangeTransaction:2000,
+		CExchangeTransaction: 2000,
+		OutExchangeTransaction: 4000,
+		TransactionLevel: "good",
+		TradingKnowledgeLevel: "good",
+		CompanyPurpose:"test",
+		ReferenceRateCompany: "100",
+		RateDate:"2012",
+		Rate: "12",
+		CustomerId: 2,
+	})
+	db.Create(&Job{Title: "کارمند", JobId: "1"})
+	db.Create(&JobInfo{
+			EmploymentDate:    "2022-01-01",
+			CompanyName:       "خاورمیانه",
+			CompanyAddress:    "تهران",
+			CompanyPostalCode: "021",
+			CompanyEmail:      "mhd.mosavi@gmail.com",
+			CompanyWebSite:    "www.test.com",
+			CompanyCityPrefix: "021",
+			CompanyPhone:      "44522545",
+			Position:          "1",
+			CompanyFaxPrefix:  "021",
+			CompanyFax:        "2121236545",
+			JobId:             uint(1),
+			JobTitle:          "برنامه نویس",
+			JobDescription:    "برنامه نویسی",
+			CustomerId:    uint(2),
+		})
+	var types = []FileType {
+		{Name: "signature", FaName: "نمونه امضا", IsActive: true, IsForce: true},
+		{Name: "birth_cert_copy", FaName: "کپی شناسنامه", IsActive: true, IsForce: true},
+		{Name: "nationa_security_card_copy", FaName: "کپی کارت ملی", IsActive: true, IsForce: true},
+		{Name: "etc", FaName: "غیره", IsActive: true, IsForce: false},
+	}
+
+	for _, sType := range types {
+		db.Create(&sType)
+	}
+	*/
 }

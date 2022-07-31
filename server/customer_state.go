@@ -35,17 +35,21 @@ func (Server) CustomerGetState(ctx context.Context, e *service.CustomerGetStateR
 	customerStates := []*service.CustomerState{}
 	customer := models.Customer{}
 	states := []models.State{}
+	cState := models.CustomerState{}
 
 	db.Find(&customer, "normal_national_code=?", e.NationalId)
 	db.Find(&states)
 
 	for _, v := range states {
+		db.Find(&cState, "customer_id=? and state_id=?", customer.ID, v.ID)
+
 		customerStates = append(customerStates, &service.CustomerState{
 			Id:        uint32(v.ID),
 			StateName: v.StateName,
 			Title:     v.Title,
 			IconClass: v.IconClass,
 			StateId:   v.StateId,
+			Confirm: cState.Confirm,
 		})
 	}
 

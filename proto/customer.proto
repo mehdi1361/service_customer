@@ -83,6 +83,10 @@ service CustomerService {
         rpc GetPersonByNationalId (PersonByNationalIdRequest) returns (PersonByNationalIdResponse) {}
         rpc GetPersonByAddress (PersonByNationalIdRequest) returns (PersonByAddressResponse) {}
         rpc GetPersonBankAccount (PersonByNationalIdRequest) returns (PersonBankAccountResponse) {}
+        rpc GetPersonFinancialInfo (PersonByNationalIdRequest) returns (PersonFinancialResponse) {}
+        rpc GetPersonJobInfo (PersonByNationalIdRequest) returns (JobInfoResponse) {}
+        rpc CustomerUpdateState (CustomerUpdateStateRequest) returns (CustomerUpdateStateResponse) {}
+        rpc CustomerGetFile (PersonByNationalIdRequest) returns (CustomerGetFileResponse) {}
 }
 
 message GenderListResponse {
@@ -583,6 +587,7 @@ message CustomerState {
         string Title = 3;
         string IconClass = 4;
         int64 StateId = 5;
+        bool Confirm = 6;
 }
 
 message PersonByNationalIdRequest {
@@ -627,5 +632,76 @@ message PersonBankAccount {
 	int64 IsDefault = 5;
 	bool IsActive = 6;
 	int64 IsOnline = 7;
-	uint32 BranchId = 8;
+	BranchData BranchData = 8;
+}
+
+message BranchData {
+    string Name = 1;
+    string Code = 2;
+    string SejamCode = 3;
+    string DlNumber = 4;
+    string Bank = 5;
+    string City = 6;
+}
+
+message PersonFinancialResponse {
+	int64 AssetsValue = 1;
+	int64 InComingAverage = 2;
+	int64 SExchangeTransaction = 3;
+	int64 CExchangeTransaction = 4;
+	int64 OutExchangeTransaction = 5;
+	string TransactionLevel = 6;
+	string TradingKnowledgeLevel = 7;
+	string CompanyPurpose = 8;
+	string ReferenceRateCompany = 9;
+	string RateDate = 10;
+	string Rate = 11;
+}
+
+message JobInfoResponse {
+        string EmploymentDate = 1;
+        string CompanyName = 2;
+        string CompanyAddress = 3;
+		string CompanyPostalCode = 4;
+		string CompanyEmail = 5;
+		string CompanyWebSite = 6;
+		string CompanyCityPrefix = 7;
+		string CompanyPhone = 8;
+		string Position = 9;
+		string CompanyFaxPrefix = 10;
+		string CompanyFax = 11;
+		string JobId = 12;
+		string JobTitle = 13;
+		string JobDescription = 14;
+		string CustomerId = 15;
+}
+
+message CustomerUpdateStateRequest {
+        string NationalId = 1;
+        uint32 StateId = 2;
+        bool Confirm = 3;
+}
+
+message CustomerUpdateStateResponse {
+        string Message = 1;
+        int32 Code = 2;
+}
+
+message FileExtension {
+        string Name = 1;
+        int32 RealSize = 2;
+        string Size = 3;
+}
+
+message CustomerGetFile {
+        uint32 Id = 1;
+        string Name = 2;
+        string FaName = 3;
+        bool IsForce = 4;
+        string FileData = 5;
+        FileExtension FileExtension = 6;
+}
+
+message CustomerGetFileResponse {
+        repeated CustomerGetFile CustomerGetFile = 1;
 }

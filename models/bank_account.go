@@ -8,14 +8,14 @@ import (
 type BankAccount struct {
 	gorm.Model
 	AccountNumber      string `json:"account_number gorm:"size:60"`
-	RayanBankAccountId string  `json:"rayan_bank_account_id" gorm: "Column:rayan_bank_account_id;size:100"`
+	RayanBankAccountId string `json:"rayan_bank_account_id" gorm: "Column:rayan_bank_account_id;size:100"`
 	BaTypeName         string `json:"sheba" gorm:"size:60"`
 	Shaba              string `json:"shaba" gorm:"size:60"`
 	IsDefault          int64  `json:"is_default" gorm:"Column:is_default"`
-	IsActive           bool   `json:"is_active" gorm:"Column:is_active"`
-	IsOnline           int64  `json:"is_online" gorm:"Column:is_online"`
-	BranchId           uint   `json:"branch_id" gorm:"Column:branch_id;null"`
-	CustomerId         uint   `json:"customer_id" gorm:"Column:customer_id"`
+	IsActive   bool  `json:"is_active" gorm:"Column:is_active"`
+	IsOnline   int64 `json:"is_online" gorm:"Column:is_online"`
+	BranchId   uint  `json:"branch_id" gorm:"Column:branch_id;null"`
+	CustomerId uint  `json:"customer_id" gorm:"Column:customer_id"`
 }
 
 func (ba *BankAccount) TableName() string {
